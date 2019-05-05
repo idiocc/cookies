@@ -1,0 +1,49 @@
+{
+  "name": "@goa/cookies",
+  "version": "0.0.0-pre",
+  "description": "[fork] Signed And Unsigned Cookies Based On Keygrip Written In ES6 And Optimised With JavaScri",
+  "main": "build/index.js",
+  "module": "src/index.js",
+  "scripts": {
+    "t": "zoroaster -a",
+    "test": "yarn t test/spec test/mask",
+    "spec": "yarn t test/spec",
+    "mask": "yarn t test/mask",
+    "test-build": "ALAMODE_ENV=test-build yarn test",
+    "lint": "eslint .",
+    "doc": "NODE_DEBUG=doc doc -o README.md",
+    "b": "alamode src -o build -s",
+    "d": "yarn-s d1 externs",
+    "d1": "typal src -c",
+    "externs": "typal externs.js -e",
+    "build": "yarn-s d b doc",
+    "e": "alanode"
+  },
+  "files": [
+    "build",
+    "src",
+    "externs.js"
+  ],
+  "externs": "externs.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/idiocc/cookies.git"
+  },
+  "keywords": [
+    "cookies",
+    "goa"
+  ],
+  "author": "Anton <anton@adc.sh>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/idiocc/cookies/issues"
+  },
+  "homepage": "https://github.com/idiocc/cookies#readme",
+  "devDependencies": {
+    "alamode": "^2.1.1",
+    "documentary": "^1.26.5",
+    "eslint-config-artdeco": "1.0.1",
+    "yarn-s": "1.1.0",
+    "zoroaster": "^4.1.0-alpha"
+  }
+}
