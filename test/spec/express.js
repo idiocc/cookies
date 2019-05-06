@@ -1,11 +1,11 @@
-import Cookies, { connect, express } from '../../src'
+import { connect, express } from '../../src'
 import { ok } from 'assert'
 import Context from '../context'
 
 /** @type {TestSuite} */
 const TS = {
   context: Context,
-  async 'express'({ start, get, assert }) {
+  async 'express'({ start }) {
     await start((req, res) => {
       const mw = express(['key'])
       mw(req, res, () => {
@@ -14,10 +14,10 @@ const TS = {
         res.end('ok')
       })
     })
-    await get('/')
-    assert(200, 'ok')
+      .get('/')
+      .assert(200, 'ok')
   },
-  async 'connect'({ start, get, assert }) {
+  async 'connect'({ start }) {
     await start((req, res) => {
       const mw = connect(['key'])
       mw(req, res, () => {
@@ -26,8 +26,8 @@ const TS = {
         res.end('ok')
       })
     })
-    await get('/')
-    assert(200, 'ok')
+      .get('/')
+      .assert(200, 'ok')
   },
 }
 

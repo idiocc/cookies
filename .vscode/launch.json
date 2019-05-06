@@ -8,7 +8,8 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Zoroaster",
-      "program": "${workspaceFolder}/node_modules/.bin/zoroaster",
+      "program": "${workspaceFolder}/node_modules/zoroaster/src/bin/index.js",
+      // "program": "${workspaceFolder}/node_modules/.bin/zoroaster",
       "env": {
         "NODE_DEBUG": "@goa/cookies",
         "ALAMODE_ENV": "test-build",
@@ -19,6 +20,9 @@
         "test/mask",
         "-a", "-w", "-t", "9999999"
       ],
+      "timeout": 20000,
+      // "runtimeExecutable": "/Users/zavr/.nvm/versions/node/v12.1.0/bin/node",
+      // "runtimeArgs": ["--async-stack-traces"],
       "skipFiles": [
         "<node_internals>/**/*.js"
       ]
