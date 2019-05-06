@@ -138,8 +138,8 @@ class v {
     let f = d.getHeader("Set-Cookie") || [];
     "string" == typeof f && (f = [f]);
     var h = e.protocol;
-    const x = e.connection.encrypted;
-    h = void 0 !== this.secure ? !!this.secure : "https" == h || x;
+    const y = e.connection.encrypted;
+    h = void 0 !== this.secure ? !!this.secure : "https" == h || y;
     a = new t(a, b, c);
     b = c && void 0 !== c.signed ? c.signed : !!this.keys;
     if (!h && c && c.secure) {
@@ -168,8 +168,11 @@ function w(a, b) {
   }
   a.push(r(b));
 }
-;DEPACK_EXPORT = {Cookies:v, Keygrip:k};
+const x = a => (b, c, d) => {
+  b.cookies = c.cookies = new v(b, c, {keys:a});
+  d();
+};
+DEPACK_EXPORT = {Cookies:v, Keygrip:k, express:x, connect:x};
 
 
 module.exports = DEPACK_EXPORT
-//# sourceMappingURL=depack.js.map

@@ -78,8 +78,25 @@ class Keygrip extends _Cookies.Keygrip {
   }
 }
 
+/**
+ * Creates connect middleware that adds the `cookies` property on the request and response.
+ * @param {!(Array<string>|_goa.Keygrip)} keys The keys or Keygrip object.
+ */
+const express = (keys) => {
+  return _Cookies.express(keys)
+}
+/**
+ * Creates connect middleware that adds the `cookies` property on the request and response.
+ * @param {!(Array<string>|_goa.Keygrip)} keys The keys or Keygrip object.
+ */
+const connect = (keys) => {
+  return _Cookies.connect(keys)
+}
+
 module.exports = Cookies
 module.exports.Keygrip = Keygrip
+module.exports.express = express
+module.exports.connect = connect
 
 /**
  * @suppress {nonStandardJsDocs}

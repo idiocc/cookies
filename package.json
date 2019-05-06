@@ -9,7 +9,7 @@
     "test": "yarn t test/spec test/mask",
     "spec": "yarn t test/spec",
     "mask": "yarn t test/mask",
-    "depack": "depack-dev src/depack -o depack/depack.js -l -a -p --externs types/externs.js",
+    "depack": "depack-dev src/depack -o depack/depack.js -l -a -p --externs types/externs.js -S",
     "test-build": "ALAMODE_ENV=test-build yarn test",
     "lint": "eslint .",
     "doc": "NODE_DEBUG=doc doc -o README.md",

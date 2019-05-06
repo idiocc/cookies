@@ -21,6 +21,7 @@ yarn add @goa/cookies
   * [`_goa.CookieAttributes`](#type-_goacookieattributes)
 - [class Keygrip](#class-keygrip)
   * [`_goa.Keygrip`](#type-_goakeygrip)
+- [Express/Connect](#expressconnect)
 - [Copyright](#copyright)
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/0.svg?sanitize=true"></a></p>
@@ -30,7 +31,7 @@ yarn add @goa/cookies
 The package is available by importing its default function:
 
 ```js
-import Cookies, { Keygrip } from '@goa/cookies'
+import Cookies, { Keygrip, express, connect } from '@goa/cookies'
 ```
 
 The deprecated `secureProxy`, `maxage` attributes of a cookie has been removed. The constructor only accepts the `{ keys: Array<string>|Keygrip }` option, without being able to pass keys as an array, or _Keygrip_ as an object. Please make sure no middleware is using these options.
@@ -131,8 +132,6 @@ __<a name="type-_goacookieattributes">`_goa.CookieAttributes`</a>__: Used to gen
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/2.svg?sanitize=true"></a></p>
 
-
-
 ## class Keygrip
 
 This module already comes with [_Keygrip_](https://www.npmjs.com/package/keygrip) built-in. This is because they are meant to be used together, so they were optimised together as well. The API is the same.
@@ -146,6 +145,12 @@ __<a name="type-_goakeygrip">`_goa.Keygrip`</a>__: Signing and verifying data (s
 | __verify*__ | <em>function(?, string): boolean</em> | This uses `index` to return true if the digest matches any existing keys, and false otherwise.                                                                                                                                                                                                                                                                                                                          |
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/3.svg?sanitize=true"></a></p>
+
+## Express/Connect
+
+The `express` and `connect` methods can be used to create middleware for the _Express_ and _Connect_ servers.
+
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/4.svg?sanitize=true"></a></p>
 
 ## Copyright
 
