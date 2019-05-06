@@ -1,6 +1,6 @@
 const _Cookies = require('./depack')
 
-class Cookies extends _Cookies {
+class Cookies extends _Cookies.Cookies {
   /**
    * @param {!http.IncomingMessage} request
    * @param {!http.ServerResponse} response
@@ -39,9 +39,47 @@ class Cookies extends _Cookies {
   }
 }
 
-console.log('testing depack')
+class Keygrip extends _Cookies.Keygrip {
+  /**
+   * This creates a new Keygrip based on the provided keylist, an array of secret keys used for SHA1 HMAC digests. `keylist` is obligatory. `hmacAlgorithm` defaults to 'sha1' and `encoding` defaults to 'base64'.
+   * @param {!Array<string>} keylist An array of all valid keys for signing, in descending order of freshness; new keys should be unshifted into the array and old keys should be popped.
+   * @param {string} [hmacAlgorithm="sha1"] Default `sha1`.
+   * @param {string} [encoding="base64"] Default `base64`.
+   */
+  constructor(keylist, hmacAlgorithm, encoding) {
+    super(keylist, hmacAlgorithm, encoding)
+  }
+  /**
+   * This creates a SHA1 HMAC based on the first key in the keylist, and outputs it as a 27-byte url-safe base64 digest (base64 without padding, replacing `+` with `-` and `/` with `_`).
+   * @param {?} data The data to sign.
+   * @return {string}
+   */
+  sign(data) {
+    return super.sign(data)
+  }
+  /**
+   * This loops through all of the keys currently in the keylist until the digest of the current key matches the given digest, at which point the current index is returned. If no key is matched, `-1` is returned.
+   * The idea is that if the index returned is greater than `0`, the data should be re-signed to prevent premature credential invalidation, and enable better performance for subsequent challenges.
+   * @param {?} data The data to look for.
+   * @param {string} digest The digest to find.
+   * @return {number} The index of the found key.
+   */
+  index(data, digest) {
+    return super.index(data, digest)
+  }
+  /**
+   * This uses index to return `true` if the digest matches any existing keys, and `false` otherwise.
+   * @param {?} data The data to look for.
+   * @param {string} digest The data's digest.
+   * @returns {boolean}
+   */
+  verify(data, digest) {
+    return super.verify(data, digest)
+  }
+}
 
 module.exports = Cookies
+module.exports.Keygrip = Keygrip
 
 /**
  * @suppress {nonStandardJsDocs}
@@ -54,4 +92,12 @@ module.exports = Cookies
 /**
  * @suppress {nonStandardJsDocs}
  * @typedef {import('../types').CookieAttributes} _goa.CookieAttributes
+ */
+/**
+ * @suppress {nonStandardJsDocs}
+ * @typedef {import('../types').CookiesOptions} _goa.CookiesOptions
+ */
+/**
+ * @suppress {nonStandardJsDocs}
+ * @typedef {import('../types').Keygrip} _goa.Keygrip
  */

@@ -18,7 +18,7 @@ const sameSiteRegExp = /^(?:lax|strict)$/i
 export default class Cookie {
   /**
    * @param {string} name
-   * @param {String} [value]
+   * @param {?string} [value]
    * @param {!_goa.CookieAttributes} [attrs]
    */
   constructor(name, value, attrs) {

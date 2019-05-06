@@ -6,6 +6,9 @@
 
 import { createHmac } from 'crypto'
 
+/**
+ * @implements {_goa.Keygrip}
+ */
 export default class Keygrip {
   constructor(keys, algorithm = 'sha1', encoding = 'base64') {
     if (!keys || !(0 in keys)) {

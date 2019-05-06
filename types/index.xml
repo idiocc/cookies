@@ -13,7 +13,7 @@
       - If the signature cookie hash matches any other key, the original cookie value is returned AND an outbound header is set to update the signature cookie's value to the hash of the first key. This enables automatic freshening of signature cookies that have become stale due to key rotation.
       - If the signature cookie hash does not match any key, nothing is returned, and an outbound header with an expired date is used to delete the cookie.
     </prop>
-    <prop type="function(string, String=, _goa.CookieAttributes=)" name="set">
+    <prop type="function(string, ?string=, _goa.CookieAttributes=)" name="set">
       This sets the given cookie in the response and returns the current context to allow chaining. If the value is omitted, an outbound header with an expired date is used to delete the cookie.
     </prop>
   </type>

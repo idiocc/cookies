@@ -5,7 +5,7 @@
  * MIT Licensed
  */
 
-import Keygrip from './keygrip'
+import Keygrip from './Keygrip'
 import { OutgoingMessage } from 'http'
 import Cookie from './Cookie'
 
@@ -27,7 +27,7 @@ export default class Cookies {
     this.request = request
     this.response = response
     if (options) {
-      /** @type {!Keygrip} */
+      /** @type {!_goa.Keygrip} */
       this.keys = Array.isArray(options.keys) ? new Keygrip(options.keys) : options.keys
       this.secure = options.secure
     }
@@ -67,7 +67,7 @@ export default class Cookies {
   }
   /**
    * @param {string} name The name of the cookie to set.
-   * @param {String} [value] The value of the cookie to set.
+   * @param {?string} [value] The value of the cookie to set.
    * @param {!_goa.CookieAttributes} [opts] Used to generate the outbound cookie header.
    * @param {number} [opts.maxAge] Represents the milliseconds from Date.now() for expiry.
    * @param {!Date} [opts.expires] Indicates the cookie's expiration date (expires at the end of session by default).
@@ -163,4 +163,8 @@ export const express = connect
 /**
  * @suppress {nonStandardJsDocs}
  * @typedef {import('../types').CookieAttributes} _goa.CookieAttributes
+ */
+/**
+ * @suppress {nonStandardJsDocs}
+ * @typedef {import('../types').Keygrip} _goa.Keygrip
  */

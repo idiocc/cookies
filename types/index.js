@@ -12,7 +12,7 @@ export {}
       - If the signature cookie hash matches the first key, the original cookie value is returned.
       - If the signature cookie hash matches any other key, the original cookie value is returned AND an outbound header is set to update the signature cookie's value to the hash of the first key. This enables automatic freshening of signature cookies that have become stale due to key rotation.
       - If the signature cookie hash does not match any key, nothing is returned, and an outbound header with an expired date is used to delete the cookie.
- * @prop {function(string, String=, _goa.CookieAttributes=)} set This sets the given cookie in the response and returns the current context to allow chaining. If the value is omitted, an outbound header with an expired date is used to delete the cookie.
+ * @prop {function(string, ?string=, _goa.CookieAttributes=)} set This sets the given cookie in the response and returns the current context to allow chaining. If the value is omitted, an outbound header with an expired date is used to delete the cookie.
  */
 /**
  * @typedef {_goa.CookiesOptions} CookiesOptions Options for the constructor.
@@ -36,4 +36,16 @@ export {}
  * @prop {boolean|string} [sameSite=false] Indicates whether the cookie is a "same site" cookie. This can be set to `'strict'`, `'lax'`, or `true` (which maps to `'strict'`). Default `false`.
  * @prop {boolean} [signed=false] Indicating whether the cookie is to be signed. If this is true, another cookie of the same name with the .sig suffix appended will also be sent, with a 27-byte url-safe base64 SHA1 value representing the hash of cookie-name=cookie-value against the first Keygrip key. This signature key is used to detect tampering the next time a cookie is received. Default `false`.
  * @prop {boolean} [overwrite=false] Indicates whether to overwrite previously set cookies of the same name. If this is true, all cookies set during the same request with the same name (regardless of path or domain) are filtered out of the Set-Cookie header when setting this cookie. Default `false`.
+ */
+
+/* typal types/keygrip.xml closure noSuppress */
+/**
+ * @typedef {_goa.Keygrip} Keygrip `@interface` Signing and verifying data (such as cookies or URLs) through a rotating credential system.
+ */
+/**
+ * @typedef {Object} _goa.Keygrip `@interface` Signing and verifying data (such as cookies or URLs) through a rotating credential system.
+ * @prop {function(?): string} sign This creates a SHA1 HMAC based on the _first_ key in the keylist, and outputs it as a 27-byte url-safe base64 digest (base64 without padding, replacing `+` with `-` and `/` with `_`).
+ * @prop {function(?, string): number} index This loops through all of the keys currently in the keylist until the digest of the current key matches the given digest, at which point the current index is returned. If no key is matched, -1 is returned.
+      The idea is that if the index returned is greater than `0`, the data should be re-signed to prevent premature credential invalidation, and enable better performance for subsequent challenges.
+ * @prop {function(?, string): boolean} verify This uses `index` to return true if the digest matches any existing keys, and false otherwise.
  */
