@@ -13,25 +13,24 @@
     "lint": "eslint .",
     "doc": "NODE_DEBUG=doc doc -o README.md",
     "b": "alamode src -o build -s",
-    "d": "yarn-s d1 externs",
-    "d1": "typal src -c",
-    "externs": "typal externs.js -e",
+    "d": "typal types/index.js src/index.js types/externs.js -t types/index.xml -c",
     "build": "yarn-s d b doc",
     "e": "alanode"
   },
   "files": [
-    "build",
+    "depack",
     "src",
-    "externs.js"
+    "types/externs.js"
   ],
-  "externs": "externs.js",
+  "externs": "types/externs.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/idiocc/cookies.git"
   },
   "keywords": [
     "cookies",
-    "goa"
+    "goa",
+    "http"
   ],
   "author": "Anton <anton@adc.sh>",
   "license": "MIT",

@@ -4,7 +4,7 @@
       The keys object constructed from passed keys.
     </prop>
     <prop opt boolean name="secure">
-      Explicitally specifies if the connection is secure.
+      Explicitly specifies if the connection is secure.
     </prop>
     <prop type="function(string, { signed: boolean }): string" name="get">
       This extracts the cookie with the given name from the Cookie header in the request. If such a cookie exists, its value is returned. Otherwise, nothing is returned. `{ signed: true }` can optionally be passed as the second parameter options. In this case, a signature cookie (a cookie of same name ending with the .sig suffix appended) is fetched. If no such cookie exists, nothing is returned.
@@ -13,11 +13,19 @@
       - If the signature cookie hash matches any other key, the original cookie value is returned AND an outbound header is set to update the signature cookie's value to the hash of the first key. This enables automatic freshening of signature cookies that have become stale due to key rotation.
       - If the signature cookie hash does not match any key, nothing is returned, and an outbound header with an expired date is used to delete the cookie.
     </prop>
-    <prop type="function(string, string=, _goa.CookieSetOptions=)" name="set">
+    <prop type="function(string, string=, _goa.CookieAttributes=)" name="set">
       This sets the given cookie in the response and returns the current context to allow chaining. If the value is omitted, an outbound header with an expired date is used to delete the cookie.
     </prop>
   </type>
-  <type name="CookieSetOptions" desc="Used to generate the outbound cookie header.">
+  <type name="CookiesOptions" desc="Options for the constructor.">
+    <prop type="!(Array<string>|_goa.Keygrip)" name="keys">
+      The array of keys, or the `Keygrip` object.
+    </prop>
+    <prop opt type="boolean" name="secure">
+      Explicitly specifies if the connection is secure, rather than this module examining request.
+    </prop>
+  </type>
+  <type name="CookieAttributes" desc="Used to generate the outbound cookie header.">
     <prop opt number name="maxAge">
       Represents the milliseconds from Date.now() for expiry.
     </prop>
@@ -28,10 +36,10 @@
       Indicates the path of the cookie.
     </prop>
     <prop opt string name="domain">
-      Indicats the domain of the cookie (no default).
+      Indicates the domain of the cookie.
     </prop>
     <prop opt boolean name="secure">
-      Indicats whether the cookie is only to be sent over HTTPS (false by default for HTTP, true by default for HTTPS).
+      Indicates whether the cookie is only to be sent over HTTPS (false by default for HTTP, true by default for HTTPS).
     </prop>
     <prop opt number name="httpOnly" default="true">
       Indicates whether the cookie is only to be sent over HTTP(S), and not made available to client JavaScript.
