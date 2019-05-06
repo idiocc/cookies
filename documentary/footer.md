@@ -4,8 +4,10 @@
 
 ## Copyright
 
-(c) [Idio][1] 2019
+Original [source, documentation and testing](https://github.com/pillarjs/cookies) by [Jed Schmidt](http://jed.is/) & Douglas Christopher Wilson.
 
-[1]: https://idio.cc
+---
+
+<IdioFooter />
 
 %~ -1%

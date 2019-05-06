@@ -3,23 +3,34 @@
 The package is available by importing its default function:
 
 ```js
-import cookies from '@goa/cookies'
+import Cookies from '@goa/cookies'
 ```
 
 %~%
 
-```## cookies
+## class Cookies
+
+_Cookies_ is a Node.JS module for getting and setting HTTP(S) cookies. Cookies can be signed to prevent tampering, using Keygrip. It can be used with the built-in _Node.JS_ HTTP library, or as _Connect/Express_ middleware.
+
+```## constructor => Cookies
 [
-  ["arg1", "string"],
-  ["arg2?", "boolean"]
+  ["request", "IncomingMessage"],
+  ["response", "ServerResponse"],
+  ["options", "CookiesOptions"]
 ]
 ```
 
-Call this function to get the result you want.
+This creates a cookie jar corresponding to the current request and response, additionally passing an object options.
 
-%TYPEDEF types/index.xml%
+A Keygrip object or an array of keys can optionally be passed as options.keys to enable cryptographic signing based on SHA1 HMAC, using rotated credentials.
+
+A Boolean can optionally be passed as options.secure to explicitally specify if the connection is secure, rather than this module examining request.
+
+Note that since this only saves parameters without any other processing, it is very lightweight. Cookies are only parsed on demand when they are accessed.
 
 %EXAMPLE: example, ../src => @goa/cookies%
 %FORK example%
+
+%TYPEDEF types/index.xml%
 
 %~%
