@@ -3,8 +3,10 @@
 The package is available by importing its default function:
 
 ```js
-import Cookies from '@goa/cookies'
+import Cookies, { Keygrip } from '@goa/cookies'
 ```
+
+The deprecated `secureProxy`, `maxage` attributes of a cookie has been removed. The constructor only accepts the `{ keys: Array<string>|Keygrip }` option, without being able to pass keys as an array, or _Keygrip_ as an object. Please make sure no middleware is using these options.
 
 %~%
 
