@@ -40,6 +40,7 @@
   },
   "homepage": "https://github.com/idiocc/cookies#readme",
   "devDependencies": {
+    "@rqt/aqt": "^1.2.5",
     "alamode": "^2.1.1",
     "documentary": "^1.26.5",
     "eslint-config-artdeco": "1.0.1",

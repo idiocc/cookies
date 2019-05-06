@@ -1,7 +1,7 @@
-<types namespace="_@goa/cookies">
-  <type name="Config" desc="Options for the program.">
-    <prop boolean name="shouldRun" default="true">
-      A boolean option.
+<types namespace="_goa">
+  <type name="Cookies" desc="Signed and unsigned cookies based on Keygrip.">
+    <prop type="!_goa.Keygrip" name="keys">
+      The keys object constructed from passed keys.
     </prop>
     <prop string name="text">
       A text to return.
