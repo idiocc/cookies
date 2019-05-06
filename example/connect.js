@@ -1,21 +1,16 @@
-/* alanode example/ */
-import Cookies from '../src'
+import connect from 'connect'
 import aqt from '@rqt/aqt'
-import { createServer } from 'http'
+import { express as cookies } from '../src'
 
-// Optionally define keys to sign cookie values
-// to prevent client tampering
-const keys = ['keyboard cat']
+const app = connect()
 
-const server = createServer((req, res) => {
-  // Create a cookies object
-  const cookies = new Cookies(req, res, { keys: keys })
-
+app.use(cookies(['keyboard cat']))
+app.use('/', (req, res) => {
   // Get a cookie
-  const lastVisit = cookies.get('LastVisit', { signed: true })
+  const lastVisit = req.cookies.get('LastVisit', { signed: true })
 
   // Set the cookie to a value
-  cookies.set('LastVisit', new Date().toISOString(), { signed: true })
+  res.cookies.set('LastVisit', new Date().toISOString(), { signed: true })
 
   if (!lastVisit) {
     res.setHeader('Content-Type', 'text/plain')
@@ -26,7 +21,7 @@ const server = createServer((req, res) => {
   }
 })
 
-server.listen(async () => {
+const server = app.listen(0, async () => {
   const url = `http://localhost:${server.address().port}`
   console.log(url)
   let { body, headers } = await aqt(url)
@@ -37,4 +32,3 @@ server.listen(async () => {
   console.log(body)
   server.close()
 })
-

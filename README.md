@@ -34,7 +34,7 @@ The package is available by importing its default function:
 import Cookies, { Keygrip, express, connect } from '@goa/cookies'
 ```
 
-The deprecated `secureProxy`, `maxage` attributes of a cookie has been removed. The constructor only accepts the `{ keys: Array<string>|Keygrip }` option, without being able to pass keys as an array, or _Keygrip_ as an object. Please make sure no middleware is using these options.
+The deprecated `secureProxy`, `maxage` attributes of a cookie have been removed. The constructor only accepts the `{ keys: Array<string>|Keygrip }` option, without being able to pass keys as an array, or _Keygrip_ as an object. Please make sure no middleware is using these options.
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/1.svg?sanitize=true"></a></p>
 
@@ -62,7 +62,7 @@ import { createServer } from 'http'
 // to prevent client tampering
 const keys = ['keyboard cat']
 
-const server = createServer(function (req, res) {
+const server = createServer((req, res) => {
   // Create a cookies object
   const cookies = new Cookies(req, res, { keys: keys })
 
@@ -94,10 +94,10 @@ server.listen(async () => {
 })
 ```
 ```
-http://localhost:54782
-Welcome, first time visitor! LastVisit=2019-05-06T07:19:24.123Z; path=/; httponly
-LastVisit.sig=PKQbkPHdths-97oQWCl1e6gVxlc; path=/; httponly
-Welcome back! Nothing much changed since your last visit at 2019-05-06T07:19:24.123Z.
+http://localhost:57267
+Welcome, first time visitor! LastVisit=2019-05-06T08:12:18.581Z; path=/; httponly
+LastVisit.sig=D3sCgYR9cq87VCbVzYpWssjH_CU; path=/; httponly
+Welcome back! Nothing much changed since your last visit at 2019-05-06T08:12:18.581Z.
 ```
 
 __<a name="type-_goacookies">`_goa.Cookies`</a>__: Signed and unsigned cookies based on Keygrip.
@@ -149,6 +149,49 @@ __<a name="type-_goakeygrip">`_goa.Keygrip`</a>__: Signing and verifying data (s
 ## Express/Connect
 
 The `express` and `connect` methods can be used to create middleware for the _Express_ and _Connect_ servers.
+
+```js
+import connect from 'connect'
+import aqt from '@rqt/aqt'
+import { express as cookies } from '@goa/cookies'
+
+const app = connect()
+
+app.use(cookies(['keyboard cat']))
+app.use('/', (req, res) => {
+  // Get a cookie
+  const lastVisit = req.cookies.get('LastVisit', { signed: true })
+
+  // Set the cookie to a value
+  res.cookies.set('LastVisit', new Date().toISOString(), { signed: true })
+
+  if (!lastVisit) {
+    res.setHeader('Content-Type', 'text/plain')
+    res.end('Welcome, first time visitor!')
+  } else {
+    res.setHeader('Content-Type', 'text/plain')
+    res.end('Welcome back! Nothing much changed since your last visit at ' + lastVisit + '.')
+  }
+})
+
+const server = app.listen(0, async () => {
+  const url = `http://localhost:${server.address().port}`
+  console.log(url)
+  let { body, headers } = await aqt(url)
+  console.log(body, headers['set-cookie'].join('\n'))
+  ;({ body } = await aqt(url, {
+    headers: { Cookie: headers['set-cookie'] },
+  }))
+  console.log(body)
+  server.close()
+})
+```
+```
+http://localhost:57319
+Welcome, first time visitor! LastVisit=2019-05-06T08:13:14.603Z; path=/; httponly
+LastVisit.sig=bMPntUfX_EVC0ewRMfg5PaUVDNI; path=/; httponly
+Welcome back! Nothing much changed since your last visit at 2019-05-06T08:13:14.603Z.
+```
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/4.svg?sanitize=true"></a></p>
 

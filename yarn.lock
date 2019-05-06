@@ -91,17 +91,17 @@
   dependencies:
     erotic "^2.1.0"
 
-"@zoroaster/assert@^1.0.2":
+"@zoroaster/assert@^1.0.1":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@zoroaster/assert/-/assert-1.0.2.tgz#8ffe2ebb10c81d570d4965080f942af688321a1f"
   integrity sha512-5C0LDzW8DkiSSCLyYO9ux3R5ru65yEn/GtxH1wh7ukRhLAZ/Svx4+A81YvciXcn35B2VmvCqyiTrhNdxdgusSw==
 
-"@zoroaster/mask@^2.1.1":
+"@zoroaster/mask@^2.0.4":
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/@zoroaster/mask/-/mask-2.2.0.tgz#fecdcb6f863440519b91b51f09549b1e981e84da"
   integrity sha512-/k9B/ofxE4x9Vs6EOjXQjcsltraJzNLg/uxEwzfCZUN+foiJxK/j+YBiyJmN3Gwpnry2D3Qs0D3Qm+SMkLqkTg==
 
-alamode@^2.1.2:
+alamode@^2.1.0, alamode@^2.1.1, alamode@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/alamode/-/alamode-2.1.2.tgz#9a9e57f3d9e8d0c54fbab69b85c496d7beb28f4a"
   integrity sha512-gARgN8GfKzgLHfJ+32ax/BESHHYgJ+svT3wJJ0Zl8kMhriq3/gSTojEZlpDtIBya5Q4mVGALBteQ7axbuFNmnw==
@@ -138,7 +138,24 @@ competent@^1.1.1:
     restream "^3.7.1"
     rexml "^1.4.0"
 
-documentary@^1.27.1:
+connect@^3.6.6:
+  version "3.6.6"
+  resolved "https://registry.yarnpkg.com/connect/-/connect-3.6.6.tgz#09eff6c55af7236e137135a72574858b6786f524"
+  integrity sha1-Ce/2xVr3I24TcTWnJXSFi2eG9SQ=
+  dependencies:
+    debug "2.6.9"
+    finalhandler "1.1.0"
+    parseurl "~1.3.2"
+    utils-merge "1.0.1"
+
+debug@2.6.9:
+  version "2.6.9"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
+  integrity sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==
+  dependencies:
+    ms "2.0.0"
+
+documentary@^1.26.5:
   version "1.27.1"
   resolved "https://registry.yarnpkg.com/documentary/-/documentary-1.27.1.tgz#abb5d4457470cdb6903b6ba5b439c2e5f3a67bfd"
   integrity sha512-t6MJpENKlXPnpEQcbfLosb2obsy63gA0wS/7YDJHzX/SQpgq1Hbnzodl7pOI8YzszK2DBrGqp7xOMkuclZqZ0w==
@@ -167,6 +184,16 @@ documentary@^1.27.1:
     usually "^1.2.0"
     which-stream "^1.1.0"
 
+ee-first@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
+  integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
+
+encodeurl@~1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/encodeurl/-/encodeurl-1.0.2.tgz#ad3ff4c86ec2d029322f5a02c3a9a606c95b3f59"
+  integrity sha1-rT/0yG7C0CkyL1oCw6mmBslbP1k=
+
 erotic@^2.1.0, erotic@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/erotic/-/erotic-2.1.1.tgz#97f20c2d6e7fd2ec6f7996823009d3ac8ae7157f"
@@ -179,10 +206,28 @@ erte@^1.1.7, erte@^1.2.0:
   resolved "https://registry.yarnpkg.com/erte/-/erte-1.2.0.tgz#8b7dbf6ad822d96f071947d20d5f440623f10769"
   integrity sha512-saxyNviRCvFENCyZ66O58cY8icaraVeQOgGks6ujsBeS7zf3yyjXrhyfMpERZo7SJH1KKdXcSQqgemxW6eIpjA==
 
+escape-html@~1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/escape-html/-/escape-html-1.0.3.tgz#0258eae4d3d0c0974de1c169188ef0051d1d1988"
+  integrity sha1-Aljq5NPQwJdN4cFpGI7wBR0dGYg=
+
 eslint-config-artdeco@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/eslint-config-artdeco/-/eslint-config-artdeco-1.0.1.tgz#4451c9d0ed1ce4d33dfd43a6315f12c8bfb04274"
   integrity sha1-RFHJ0O0c5NM9/UOmMV8SyL+wQnQ=
+
+finalhandler@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/finalhandler/-/finalhandler-1.1.0.tgz#ce0b6855b45853e791b2fcc680046d88253dd7f5"
+  integrity sha1-zgtoVbRYU+eRsvzGgARtiCU91/U=
+  dependencies:
+    debug "2.6.9"
+    encodeurl "~1.0.1"
+    escape-html "~1.0.3"
+    on-finished "~2.3.0"
+    parseurl "~1.3.2"
+    statuses "~1.3.1"
+    unpipe "~1.0.0"
 
 fpj@^1.3.0:
   version "1.3.0"
@@ -204,6 +249,23 @@ mismatch@^1.1.1, mismatch@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/mismatch/-/mismatch-1.2.0.tgz#3f5021861e8084e36a14c2c1f9489941cd18f790"
   integrity sha512-kuw1k8ZHS+12fBVAVOBXMBJBXcNGnByFTJIDzH4W4v84OocejZ/qzxmT4ll9CLX5OD23NXr+NvrQDus0BsQ8xw==
+
+ms@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
+  integrity sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=
+
+on-finished@~2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/on-finished/-/on-finished-2.3.0.tgz#20f1336481b083cd75337992a16971aa2d906947"
+  integrity sha1-IPEzZIGwg811M3mSoWlxqi2QaUc=
+  dependencies:
+    ee-first "1.1.1"
+
+parseurl@~1.3.2:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/parseurl/-/parseurl-1.3.3.tgz#9da19e7bee8d12dff0513ed5b76957793bc2e8d4"
+  integrity sha512-CiyeOxFT/JZyN5m0z9PfXw4SCBJ6Sygz1Dpl0wqjlhDEGGBP1GnsUVEL0p63hoG1fcj3fHynXi9NYO4nWOL+qQ==
 
 pedantry@^2.3.2:
   version "2.3.2"
@@ -264,6 +326,11 @@ static-analysis@^1.3.3, static-analysis@^1.7.1:
     mismatch "^1.2.0"
     resolve-dependency "^1.0.3"
 
+statuses@~1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.3.1.tgz#faf51b9eb74aaef3b3acf4ad5f61abf24cb7b93e"
+  integrity sha1-+vUbnrdKrvOzrPStX2Gr8ky3uT4=
+
 typal@^1.12.0:
   version "1.12.0"
   resolved "https://registry.yarnpkg.com/typal/-/typal-1.12.0.tgz#4358a3b72bd4b68481f28b251afd1fb041ebc715"
@@ -273,10 +340,20 @@ typal@^1.12.0:
     mismatch "^1.2.0"
     rexml "^1.4.0"
 
+unpipe@~1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/unpipe/-/unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec"
+  integrity sha1-sr9O6FFKrmFltIF4KdIbLvSZBOw=
+
 usually@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/usually/-/usually-1.2.0.tgz#ce4d8ea87875599bbfb3af48692595a3114f618f"
   integrity sha512-/PIDu3pkZNqYdzOr0Cyq2q8FP3ziBISOvVJtZcypg3BygIW/W618oF4dtK4mhCxbk3bUzrfTbCxDWCCr85bq/g==
+
+utils-merge@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
+  integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
 
 which-stream@^1.1.0:
   version "1.1.0"
@@ -292,11 +369,11 @@ yarn-s@1.1.0:
   dependencies:
     spawncommand "1.1.0"
 
-zoroaster@^4.1.1-alpha:
-  version "4.1.1-alpha"
-  resolved "https://registry.yarnpkg.com/zoroaster/-/zoroaster-4.1.1-alpha.tgz#06dbfc3f903edd3b46612200f108406a91d5d0ed"
-  integrity sha512-p2mIXQhKGmaxFQdWSyNYAqK3gdtwBJhjgjOBX64L2rNJiZF7P9qCpY0ryY+BdJMORC4JuerJwihAsPgef2rHZw==
+zoroaster@^4.1.0-alpha:
+  version "4.1.0-alpha"
+  resolved "https://registry.yarnpkg.com/zoroaster/-/zoroaster-4.1.0-alpha.tgz#9eb37e92c7d06b2ea6c47b2a24813480a4444de2"
+  integrity sha512-vx4fSF/RKeCGkQLV41Ojy4CtJw9nG6ZUPT+hZX0abwvNmy/MxUlh3V5e1OtZL4bQ4ypg59OiLISnt47XMI2fwA==
   dependencies:
-    "@zoroaster/assert" "^1.0.2"
-    "@zoroaster/mask" "^2.1.1"
-    alamode "^2.1.2"
+    "@zoroaster/assert" "^1.0.1"
+    "@zoroaster/mask" "^2.0.4"
+    alamode "^2.1.0"
