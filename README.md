@@ -150,6 +150,10 @@ __<a name="type-_goakeygrip">`_goa.Keygrip`</a>__: Signing and verifying data (s
 
 The `express` and `connect` methods can be used to create middleware for the _Express_ and _Connect_ servers.
 
+<table>
+<tr><th>Connect Example</th></tr>
+<tr><td>
+
 ```js
 import connect from 'connect'
 import aqt from '@rqt/aqt'
@@ -186,12 +190,20 @@ const server = app.listen(0, async () => {
   server.close()
 })
 ```
+</td></tr>
+<tr><td align="center">
+<em>The output</em>
+</td></tr>
+<tr><td>
+
 ```
 http://localhost:57319
 Welcome, first time visitor! LastVisit=2019-05-06T08:13:14.603Z; path=/; httponly
 LastVisit.sig=bMPntUfX_EVC0ewRMfg5PaUVDNI; path=/; httponly
 Welcome back! Nothing much changed since your last visit at 2019-05-06T08:13:14.603Z.
 ```
+</td></tr>
+</table>
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/4.svg?sanitize=true"></a></p>
 
