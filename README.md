@@ -44,16 +44,19 @@ _Cookies_ is a Node.JS module for getting and setting HTTP(S) cookies. Cookies c
 
 ## `constructor(`<br/>&nbsp;&nbsp;`request: IncomingMessage,`<br/>&nbsp;&nbsp;`response: ServerResponse,`<br/>&nbsp;&nbsp;`options: CookiesOptions,`<br/>`): Cookies`
 
-This creates a cookie jar corresponding to the current request and response, additionally passing an object options.
+This creates a cookie jar corresponding to the current _request_ and _response_, additionally passing an object options.
 
-A Keygrip object or an array of keys can optionally be passed as options.keys to enable cryptographic signing based on SHA1 HMAC, using rotated credentials.
+A [Keygrip](#class-keygrip) object or an array of keys can optionally be passed as _options.keys_ to enable cryptographic signing based on SHA1 HMAC, using rotated credentials.
 
-A Boolean can optionally be passed as options.secure to explicitally specify if the connection is secure, rather than this module examining request.
+A Boolean can optionally be passed as _options.secure_ to explicitly specify if the connection is secure, rather than this module examining request.
 
 Note that since this only saves parameters without any other processing, it is very lightweight. Cookies are only parsed on demand when they are accessed.
 
+<table>
+<tr><th>Node.JS HTTP Server Example</th></tr>
+<tr><td>
+
 ```js
-/* alanode example/ */
 import Cookies from '@goa/cookies'
 import aqt from '@rqt/aqt'
 import { createServer } from 'http'
@@ -93,12 +96,20 @@ server.listen(async () => {
   server.close()
 })
 ```
+</td></tr>
+<tr><td align="center">
+<em>The output</em>
+</td></tr>
+<tr><td>
+
 ```
-http://localhost:57267
-Welcome, first time visitor! LastVisit=2019-05-06T08:12:18.581Z; path=/; httponly
-LastVisit.sig=D3sCgYR9cq87VCbVzYpWssjH_CU; path=/; httponly
-Welcome back! Nothing much changed since your last visit at 2019-05-06T08:12:18.581Z.
+http://localhost:57553
+Welcome, first time visitor! LastVisit=2019-05-06T08:18:09.130Z; path=/; httponly
+LastVisit.sig=ZwzIGzWS3ByLMimZq5bQ-bIU-MU; path=/; httponly
+Welcome back! Nothing much changed since your last visit at 2019-05-06T08:18:09.130Z.
 ```
+</td></tr>
+</table>
 
 __<a name="type-_goacookies">`_goa.Cookies`</a>__: Signed and unsigned cookies based on Keygrip.
 
@@ -134,7 +145,7 @@ __<a name="type-_goacookieattributes">`_goa.CookieAttributes`</a>__: Used to gen
 
 ## class Keygrip
 
-This module already comes with [_Keygrip_](https://www.npmjs.com/package/keygrip) built-in. This is because they are meant to be used together, so they were optimised together as well. The API is the same.
+This module already comes with [_Keygrip_](https://www.npmjs.com/package/keygrip) built in. This is because they are meant to be used together, so they were optimised together as well. The API is the same.
 
 __<a name="type-_goakeygrip">`_goa.Keygrip`</a>__: Signing and verifying data (such as cookies or URLs) through a rotating credential system.
 

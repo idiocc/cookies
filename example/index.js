@@ -1,4 +1,3 @@
-/* alanode example/ */
 import Cookies from '../src'
 import aqt from '@rqt/aqt'
 import { createServer } from 'http'

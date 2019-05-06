@@ -22,16 +22,28 @@ _Cookies_ is a Node.JS module for getting and setting HTTP(S) cookies. Cookies c
 ]
 ```
 
-This creates a cookie jar corresponding to the current request and response, additionally passing an object options.
+This creates a cookie jar corresponding to the current _request_ and _response_, additionally passing an object options.
 
-A Keygrip object or an array of keys can optionally be passed as options.keys to enable cryptographic signing based on SHA1 HMAC, using rotated credentials.
+A [Keygrip](#class-keygrip) object or an array of keys can optionally be passed as _options.keys_ to enable cryptographic signing based on SHA1 HMAC, using rotated credentials.
 
-A Boolean can optionally be passed as options.secure to explicitally specify if the connection is secure, rather than this module examining request.
+A Boolean can optionally be passed as _options.secure_ to explicitly specify if the connection is secure, rather than this module examining request.
 
 Note that since this only saves parameters without any other processing, it is very lightweight. Cookies are only parsed on demand when they are accessed.
 
+<table>
+<tr><th>Node.JS HTTP Server Example</th></tr>
+<tr><td>
+
 %EXAMPLE: example, ../src => @goa/cookies%
+</td></tr>
+<tr><td align="center">
+<em>The output</em>
+</td></tr>
+<tr><td>
+
 %FORK example%
+</td></tr>
+</table>
 
 %TYPEDEF types/index.xml%
 
