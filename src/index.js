@@ -38,22 +38,23 @@ export default class Cookies {
    */
   get(name, opts) {
     var sigName = name + '.sig'
-      , header, match, value, remote, data, index
+      , header, match, index
       , signed = opts && opts.signed !== undefined ? opts.signed : !!this.keys
 
+    /** @suppress {checkTypes} */
     header = this.request.headers['cookie']
     if (!header) return
 
     match = header.match(getPattern(name))
     if (!match) return
 
-    value = match[1]
+    const value = match[1]
     if (!opts || !signed) return value
 
-    remote = this.get(sigName)
+    const remote = this.get(sigName)
     if (!remote) return
 
-    data = name + '=' + value
+    const data = name + '=' + value
     if (!this.keys) throw new Error('.keys required for signed cookies')
     index = this.keys.index(data, remote)
 
@@ -66,10 +67,10 @@ export default class Cookies {
   }
   /**
    * @param {string} name The name of the cookie to set.
-   * @param {string} value The value of the cookie to set.
-   * @param {_goa.CookieAttributes} [opts] Used to generate the outbound cookie header.
+   * @param {String} [value] The value of the cookie to set.
+   * @param {!_goa.CookieAttributes} [opts] Used to generate the outbound cookie header.
    * @param {number} [opts.maxAge] Represents the milliseconds from Date.now() for expiry.
-   * @param {Date} [opts.expires] Indicates the cookie's expiration date (expires at the end of session by default).
+   * @param {!Date} [opts.expires] Indicates the cookie's expiration date (expires at the end of session by default).
    * @param {string} [opts.path="/"] Indicates the path of the cookie. Default `/`.
    * @param {string} [opts.domain] Indicates the domain of the cookie.
    * @param {boolean} [opts.secure] Indicates whether the cookie is only to be sent over HTTPS (false by default for HTTP, true by default for HTTPS).
@@ -79,14 +80,18 @@ export default class Cookies {
    * @param {boolean} [opts.overwrite=false] Indicates whether to overwrite previously set cookies of the same name. If this is true, all cookies set during the same request with the same name (regardless of path or domain) are filtered out of the Set-Cookie header when setting this cookie. Default `false`.
    */
   set(name, value, opts) {
-    var res = this.response
-      , req = this.request
-      , headers = res.getHeader('Set-Cookie') || []
-      , secure = this.secure !== undefined ? !!this.secure : req.protocol == 'https' || req.connection.encrypted
-      , cookie = new Cookie(name, value, opts)
-      , signed = opts && opts.signed !== undefined ? opts.signed : !!this.keys
-
+    const { response: res, request: req } = this
+    let headers = /** @type {!Array<string>} */ (res.getHeader('Set-Cookie')) || []
     if (typeof headers == 'string') headers = [headers]
+
+    /** @suppress {checkTypes} */
+    const proto = req['protocol']
+    /** @suppress {checkTypes} */
+    const encrypted = req.connection['encrypted']
+    let secure = this.secure !== undefined ? !!this.secure : proto == 'https' || encrypted
+
+    const cookie = new Cookie(name, value, opts)
+    const signed = opts && opts.signed !== undefined ? opts.signed : !!this.keys
 
     if (!secure && opts && opts.secure) {
       throw new Error('Cannot send secure cookie over unencrypted connection')
@@ -104,7 +109,9 @@ export default class Cookies {
       pushCookie(headers, cookie)
     }
 
-    var setHeader = res.set ? OutgoingMessage.prototype.setHeader : res.setHeader
+    /** @suppress {checkTypes} */
+    const set = res['set']
+    const setHeader = set ? OutgoingMessage.prototype.setHeader : res.setHeader
     setHeader.call(res, 'Set-Cookie', headers)
     return this
   }
@@ -121,7 +128,7 @@ function getPattern(name) {
 }
 
 /**
- * @param {!Object} headers
+ * @param {!Array<string>} headers
  * @param {!Cookie} cookie
  */
 function pushCookie(headers, cookie) {

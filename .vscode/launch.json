@@ -11,15 +11,13 @@
       "program": "${workspaceFolder}/node_modules/.bin/zoroaster",
       "env": {
         "NODE_DEBUG": "@goa/cookies",
+        "ALAMODE_ENV": "test-build",
       },
       "console": "integratedTerminal",
       "args": [
         "test/spec",
         "test/mask",
-        "-a",
-        "-w",
-        "-t",
-        "9999999"
+        "-a", "-w", "-t", "9999999"
       ],
       "skipFiles": [
         "<node_internals>/**/*.js"

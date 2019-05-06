@@ -49,7 +49,7 @@ const constantTimeCompare = function(val1, val2){
     return true
   }
 
-  if(val1.length != val2.length){
+  if (val1.length != val2.length){
     return false
   }
 

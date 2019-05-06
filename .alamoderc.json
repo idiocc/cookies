@@ -3,8 +3,8 @@
     "test-build": {
       "import": {
         "replacement": {
-          "from": "^((../)+)src",
-          "to": "$1build"
+          "from": "^((../)+)src$",
+          "to": "$1depack"
         }
       }
     }

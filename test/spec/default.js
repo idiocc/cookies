@@ -1,4 +1,4 @@
-import { ok, strictEqual } from 'assert'
+import { strictEqual } from 'assert'
 import Cookies from '../../src'
 import Keygrip from '../../src/Keygrip'
 import Context from '../context'
@@ -8,7 +8,7 @@ export const options = {
   context: Context,
   async 'accepts array of keys'({ assertServer }) {
     await assertServer((req, res) => {
-      const cookies = new Cookies(req, res, ['keyboard cat'])
+      const cookies = new Cookies(req, res, { keys: ['keyboard cat'] })
       strictEqual(typeof cookies.keys, 'object')
       strictEqual(cookies.keys.sign('foo=bar'), 'iW2fuCIzk9Cg_rqLT1CAqrtdWs8')
     })
@@ -16,7 +16,7 @@ export const options = {
   async 'accepts Keygrip instance'({ assertServer }) {
     await assertServer((req, res) => {
       const keys = new Keygrip(['keyboard cat'])
-      const cookies = new Cookies(req, res, keys)
+      const cookies = new Cookies(req, res, { keys })
       strictEqual(typeof cookies.keys, 'object')
       strictEqual(cookies.keys.sign('foo=bar'), 'iW2fuCIzk9Cg_rqLT1CAqrtdWs8')
     })
@@ -32,7 +32,7 @@ export const options = {
     async 'accepts Keygrip instance'({ assertServer }) {
       await assertServer((req, res) => {
         const keys = new Keygrip(['keyboard cat'])
-        const cookies = new Cookies(req, res, { keys: keys })
+        const cookies = new Cookies(req, res, { keys })
         strictEqual(typeof cookies.keys, 'object')
         strictEqual(cookies.keys.sign('foo=bar'), 'iW2fuCIzk9Cg_rqLT1CAqrtdWs8')
       })
@@ -57,16 +57,16 @@ export const options = {
 /** @type {TestSuite} */
 const TS = {
   context: [Context],
-  async 'creates new cookies instance'({ assertServer }) {
-    await assertServer((req, res) => {
-      const cookies = new Cookies(req, res)
-      ok(cookies)
-      strictEqual(cookies.constructor, Cookies)
-      strictEqual(cookies.request, req)
-      strictEqual(cookies.response, res)
-      strictEqual(cookies.keys, undefined)
-    })
-  },
+  // async 'creates new cookies instance'({ assertServer }) {
+  //   await assertServer((req, res) => {
+  //     const cookies = new Cookies(req, res)
+  //     ok(cookies)
+  //     strictEqual(cookies.constructor, Cookies)
+  //     strictEqual(cookies.request, req)
+  //     strictEqual(cookies.response, res)
+  //     strictEqual(cookies.keys, undefined)
+  //   })
+  // },
   '.get(name, [options])': {
     async 'returns value of cookie'({ start, set, get, assert, c }) {
       await start(c((req, res, cookies) => {
@@ -131,7 +131,8 @@ const TS = {
           async 'deletes signature cookie'({ start, set, get, assert, c, count, attributeAndValue }) {
             const opts = { keys: ['keyboard cat'] }
             await start(c(opts, (req, res, cookies) => {
-              res.end(String(cookies.get('foo', { signed: true })))
+              const t = String(cookies.get('foo', { signed: true }))
+              res.end(t)
             }))
             set('Cookie', 'foo=bar; foo.sig=v5f380JakwVgx2H9B9nA6kJaZNg')
             await get('/')
@@ -405,17 +406,17 @@ const TS = {
         },
       },
     },
-    '"secureProxy" option': {
-      async 'sets secure attribute over http'({ start, attribute, get, assert, c }) {
-        await start(c((req, res, cookies) => {
-          cookies.set('foo', 'bar', { secureProxy: true })
-          res.end()
-        }))
-        await get('/')
-        assert(200)
-        assert(attribute('foo', 'Secure'))
-      },
-    },
+    // '"secureProxy" option': {
+    //   async 'sets secure attribute over http'({ start, attribute, get, assert, c }) {
+    //     await start(c((req, res, cookies) => {
+    //       cookies.set('foo', 'bar', { secureProxy: true })
+    //       res.end()
+    //     }))
+    //     await get('/')
+    //     assert(200)
+    //     assert(attribute('foo', 'Secure'))
+    //   },
+    // },
     '"signed" option': {
       'when true': {
         async 'should throw without .keys'({ start, get, assert, c }) {
@@ -491,20 +492,20 @@ const TS = {
             assert(value('foo.sig', 'ptOkbbiPiGfLWRzz1yXP3XqaW4E'))
           },
         },
-        'with "secureProxy"': {
-          async 'sets additional .sig cookie with secure'({ start, count, attribute, get, assert, c }) {
-            const opts = { keys: ['keyboard cat'] }
-            await start(c(opts, (req, res, cookies) => {
-              cookies.set('foo', 'bar', { signed: true, secureProxy: true })
-              res.end()
-            }))
-            await get('/')
-            assert(200)
-            assert(count(2))
-            assert(attribute('foo', 'Secure'))
-            assert(attribute('foo.sig', 'Secure'))
-          },
-        },
+        // '!with "secureProxy"': {
+        //   async 'sets additional .sig cookie with secure'({ start, count, attribute, get, assert, c }) {
+        //     const opts = { keys: ['keyboard cat'] }
+        //     await start(c(opts, (req, res, cookies) => {
+        //       cookies.set('foo', 'bar', { signed: true, secureProxy: true })
+        //       res.end()
+        //     }))
+        //     await get('/')
+        //     assert(200)
+        //     assert(count(2))
+        //     assert(attribute('foo', 'Secure'))
+        //     assert(attribute('foo.sig', 'Secure'))
+        //   },
+        // },
       },
     },
   },

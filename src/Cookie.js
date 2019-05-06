@@ -18,13 +18,14 @@ const sameSiteRegExp = /^(?:lax|strict)$/i
 export default class Cookie {
   /**
    * @param {string} name
-   * @param {string} value
-   * @param {_goa.CookieAttributes} attrs
+   * @param {String} [value]
+   * @param {!_goa.CookieAttributes} [attrs]
    */
   constructor(name, value, attrs) {
-    this.path = "/"
+    this.path = '/'
     this.expires = undefined
     this.domain = undefined
+    this.maxAge = undefined
     this.httpOnly = true
     this.sameSite = false
     this.secure = false
@@ -41,9 +42,10 @@ export default class Cookie {
     value || (this.expires = new Date(0))
 
     this.name = name
-    this.value = value || ""
+    this.value = value || ''
 
     for (let n in attrs) {
+      /** @suppress {checkTypes} */
       this[n] = attrs[n]
     }
 
@@ -64,17 +66,32 @@ export default class Cookie {
 
     if (this.maxAge) this.expires = new Date(Date.now() + this.maxAge)
 
-    if (this.path) header += "; path=" + this.path
-    if (this.expires) header += "; expires=" + this.expires.toUTCString()
-    if (this.domain) header += "; domain=" + this.domain
-    if (this.sameSite) header += "; samesite=" + (this.sameSite === true ? 'strict' : this.sameSite.toLowerCase())
-    if (this.secure) header += "; secure"
-    if (this.httpOnly) header += "; httponly"
+    if (this.path) header += '; path=' + this.path
+    if (this.expires) header += '; expires=' + this.expires.toUTCString()
+    if (this.domain) header += '; domain=' + this.domain
+    if (this.sameSite) {
+      header += '; samesite='
+      if (this.sameSite === true) header += 'strict'
+      else {
+        /**
+         * @suppress {checkTypes}
+         * @type {string}
+         */
+        const sameSite = this.sameSite.toLowerCase()
+        header += sameSite
+      }
+    }
+    if (this.secure) header += '; secure'
+    if (this.httpOnly) header += '; httponly'
 
     return header
   }
   toString() {
-    return this.name + "=" + this.value
+    return this.name + '=' + this.value
   }
 }
 
+/**
+ * @suppress {nonStandardJsDocs}
+ * @typedef {import('../types').CookieAttributes} _goa.CookieAttributes
+ */
