@@ -1,10 +1,10 @@
 <types namespace="_goa">
-  <type interface name="Cookies" desc="Signed and unsigned cookies based on Keygrip.">
+  <type interface name="Cookies" desc="The interface for Cookies: signed and unsigned cookies based on Keygrip.">
     <prop type="!_goa.Keygrip" name="keys">
-      The keys object constructed from passed keys (internal).
+      The keys object constructed from passed keys (private, will be installed from options).
     </prop>
     <prop opt boolean name="secure">
-      Explicitly specifies if the connection is secure (internal).
+      Explicitly specifies if the connection is secure (private, will be installed from options).
     </prop>
     <prop type="function(string, { signed: boolean }): (string|undefined)" name="get">
       This extracts the cookie with the given name from the Cookie header in the request. If such a cookie exists, its value is returned. Otherwise, nothing is returned. `{ signed: true }` can optionally be passed as the second parameter options. In this case, a signature cookie (a cookie of same name ending with the .sig suffix appended) is fetched. If no such cookie exists, nothing is returned.

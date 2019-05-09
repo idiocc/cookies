@@ -2,17 +2,17 @@
 /** @const */
 var _goa = {}
 /**
- * Signed and unsigned cookies based on Keygrip.
+ * The interface for Cookies: signed and unsigned cookies based on Keygrip.
  * @interface
  */
 _goa.Cookies
 /**
- * The keys object constructed from passed keys.
+ * The keys object constructed from passed keys (private, will be installed from options).
  * @type {!_goa.Keygrip}
  */
 _goa.Cookies.prototype.keys
 /**
- * Explicitly specifies if the connection is secure.
+ * Explicitly specifies if the connection is secure (private, will be installed from options).
  * @type {boolean|undefined}
  */
 _goa.Cookies.prototype.secure
