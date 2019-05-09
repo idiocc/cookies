@@ -1,10 +1,10 @@
 import Cookies from '../../src'
-import Server from './server'
+import CookieContext from '@contexts/http/cookies'
 
 /**
  * A testing context for the package.
  */
-export default class Context extends Server {
+export default class Context extends CookieContext {
   /**
    * Returns the handler.
    * @returns {function(http.IncomingMessage, http.ServerResponse, Cookies)}
@@ -22,21 +22,15 @@ export default class Context extends Server {
 
   /**
    * Creates a request listener (createRequestListener). The passed handler will be called with the cookies instance.
+   * @param {function(http.IncomingMessage, http.ServerResponse)} handler
+   * @param {_goa.CookiesOptions} options
    * @returns {function(http.IncomingMessage, http.ServerResponse)}
    */
-  c(options, handler) {
-    const next = handler || options
-    const opts = next === options ? undefined : options
-
+  c(handler, options) {
     return (req, res) => {
-      const cookies = new Cookies(req, res, opts)
+      const cookies = new Cookies(req, res, options)
 
-      try {
-        next(req, res, cookies)
-      } catch (e) {
-        res.statusCode = 500
-        res.end(e.name + ': ' + e.message)
-      }
+      handler(req, res, cookies)
     }
   }
   /** @param {function(http.IncomingMessage, http.ServerResponse)} test */
@@ -62,3 +56,8 @@ export default class Context extends Server {
 /** @typedef {Object<string, Test & TestSuite0>} TestSuite1 */
 /** @typedef {Object<string, Test>} TestSuite0 */
 /** @typedef {(c: Context)} Test */
+
+/**
+ * @suppress {nonStandardJsDocs}
+ * @typedef {import('../../types').CookiesOptions} _goa.CookiesOptions
+ */

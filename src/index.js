@@ -168,3 +168,7 @@ export const express = connect
  * @suppress {nonStandardJsDocs}
  * @typedef {import('../types').Keygrip} _goa.Keygrip
  */
+/**
+ * @suppress {nonStandardJsDocs}
+ * @typedef {import('../types').CookiesOptions} _goa.CookiesOptions
+ */
