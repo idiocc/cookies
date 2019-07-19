@@ -30,6 +30,8 @@ A Boolean can optionally be passed as _options.secure_ to explicitly specify if 
 
 Note that since this only saves parameters without any other processing, it is very lightweight. Cookies are only parsed on demand when they are accessed.
 
+%TYPEDEF types/options.xml%
+
 <table>
 <tr><th>Node.JS HTTP Server Example</th></tr>
 <tr><td>
@@ -44,10 +46,6 @@ Note that since this only saves parameters without any other processing, it is v
 %FORK example%
 </td></tr>
 </table>
-
-%TYPEDEF types/index.xml%
-
-%TYPEDEF types/options.xml%
 
 %TYPEDEF types/attributes.xml%
 

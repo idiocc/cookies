@@ -16,7 +16,6 @@ yarn add @goa/cookies
 - [API](#api)
 - [class Cookies](#class-cookies)
 - [`constructor(request: IncomingMessage, response: ServerResponse, options: CookiesOptions): Cookies`](#constructorrequest-incomingmessageresponse-serverresponseoptions-cookiesoptions-cookies)
-  * [`Cookies`](#type-cookies)
   * [`CookiesOptions`](#type-cookiesoptions)
   * [`CookieSetOptions`](#type-cookiesetoptions)
   * [`CookieAttributes`](#type-cookieattributes)
@@ -55,6 +54,23 @@ A [Keygrip](#class-keygrip) object or an array of keys can optionally be passed 
 A Boolean can optionally be passed as _options.secure_ to explicitly specify if the connection is secure, rather than this module examining request.
 
 Note that since this only saves parameters without any other processing, it is very lightweight. Cookies are only parsed on demand when they are accessed.
+
+`import('http').IncomingMessage` __<a name="type-httpincomingmessage">`http.IncomingMessage`</a>__: The client request.
+
+`import('http').ServerResponse` __<a name="type-httpserverresponse">`http.ServerResponse`</a>__: The server response.
+
+__<a name="type-cookiesoptions">`CookiesOptions`</a>__: Options for the constructor.
+
+|  Name  |                                                                                   Type                                                                                    |                                         Description                                          |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| keys   | <em>!(Array&lt;string&gt; \| <a href="#type-keygrip" title="Signing and verifying data (such as cookies or URLs) through a rotating credential system.">Keygrip</a>)</em> | The array of keys, or the `Keygrip` object.                                                  |
+| secure | <em>boolean</em>                                                                                                                                                          | Explicitly specifies if the connection is secure, rather than this module examining request. |
+
+__<a name="type-cookiesetoptions">`CookieSetOptions`</a>__: How the cookie will be set.
+
+|  Name  |       Type       |                                                                                                                                                                          Description                                                                                                                                                                           | Default |
+| ------ | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| signed | <em>boolean</em> | Indicating whether the cookie is to be signed. If this is true, another cookie of the same name with the .sig suffix appended will also be sent, with a 27-byte url-safe base64 SHA1 value representing the hash of cookie-name=cookie-value against the first Keygrip key. This signature key is used to detect tampering the next time a cookie is received. | `false` |
 
 <table>
 <tr><th>Node.JS HTTP Server Example</th></tr>
@@ -107,39 +123,13 @@ server.listen(async () => {
 <tr><td>
 
 ```
-http://localhost:50525
-Welcome, first time visitor! LastVisit=2019-07-19T22:56:14.046Z; path=/; httponly
-LastVisit.sig=IfYMKanzOXmbYjRDQ1_igX5C8Hs; path=/; httponly
-Welcome back! Nothing much changed since your last visit at 2019-07-19T22:56:14.046Z.
+http://localhost:51937
+Welcome, first time visitor! LastVisit=2019-07-19T23:26:16.706Z; path=/; httponly
+LastVisit.sig=uGKJSVGJn2r29CcoaaIaCvHcPoY; path=/; httponly
+Welcome back! Nothing much changed since your last visit at 2019-07-19T23:26:16.706Z.
 ```
 </td></tr>
 </table>
-
-`import('http').IncomingMessage` __<a name="type-httpincomingmessage">`http.IncomingMessage`</a>__: The client request.
-
-`import('http').ServerResponse` __<a name="type-httpserverresponse">`http.ServerResponse`</a>__: The server response.
-
-__<a name="type-cookies">`Cookies`</a>__: The interface for Cookies: signed and unsigned cookies based on Keygrip.
-
-|   Name   |                                                                       Type                                                                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| keys     | <em><a href="#type-keygrip" title="Signing and verifying data (such as cookies or URLs) through a rotating credential system.">!Keygrip</a></em>  | The keys object constructed from passed keys (private, will be installed from options).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| secure   | <em>boolean</em>                                                                                                                                  | Explicitly specifies if the connection is secure (private, will be installed from options).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| __get*__ | <em>function(string, { signed: boolean }): (string \| undefined)</em>                                                                             | This extracts the cookie with the given name from the Cookie header in the request. If such a cookie exists, its value is returned. Otherwise, nothing is returned. `{ signed: true }` can optionally be passed as the second parameter options. In this case, a signature cookie (a cookie of same name ending with the .sig suffix appended) is fetched. If no such cookie exists, nothing is returned. If the signature cookie does exist, the provided Keygrip object is used to check whether the hash of cookie-name=cookie-value matches that of any registered key:<li>      If the signature cookie hash matches the first key, the original cookie value is returned.</li><li>      If the signature cookie hash matches any other key, the original cookie value is returned AND an outbound header is set to update the signature cookie's value to the hash of the first key. This enables automatic freshening of signature cookies that have become stale due to key rotation.</li><li>      If the signature cookie hash does not match any key, nothing is returned, and an outbound header with an expired date is used to delete the cookie.</li> |
-| __set*__ | <em>function(string, ?string=, <a href="#type-cookieattributes" title="Used to generate the outbound cookie header.">!CookieAttributes</a>=)</em> | This sets the given cookie in the response and returns the current context to allow chaining. If the value is omitted, an outbound header with an expired date is used to delete the cookie.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-
-__<a name="type-cookiesoptions">`CookiesOptions`</a>__: Options for the constructor.
-
-|  Name  |                                                                                   Type                                                                                    |                                         Description                                          |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| keys   | <em>!(Array&lt;string&gt; \| <a href="#type-keygrip" title="Signing and verifying data (such as cookies or URLs) through a rotating credential system.">Keygrip</a>)</em> | The array of keys, or the `Keygrip` object.                                                  |
-| secure | <em>boolean</em>                                                                                                                                                          | Explicitly specifies if the connection is secure, rather than this module examining request. |
-
-__<a name="type-cookiesetoptions">`CookieSetOptions`</a>__: How the cookie will be set.
-
-|  Name  |       Type       |                                                                                                                                                                          Description                                                                                                                                                                           | Default |
-| ------ | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| signed | <em>boolean</em> | Indicating whether the cookie is to be signed. If this is true, another cookie of the same name with the .sig suffix appended will also be sent, with a 27-byte url-safe base64 SHA1 value representing the hash of cookie-name=cookie-value against the first Keygrip key. This signature key is used to detect tampering the next time a cookie is received. | `false` |
 
 __<a name="type-cookieattributes">`CookieAttributes`</a>__: Used to generate the outbound cookie header.
 
@@ -268,10 +258,10 @@ const server = app.listen(0, async () => {
 <tr><td>
 
 ```
-http://localhost:50528
-Welcome, first time visitor! LastVisit=2019-07-19T22:56:14.654Z; path=/; httponly
-LastVisit.sig=xihLkXgQ4sIQ7TyJ4hKYpoMnnAQ; path=/; httponly
-Welcome back! Nothing much changed since your last visit at 2019-07-19T22:56:14.654Z.
+http://localhost:51941
+Welcome, first time visitor! LastVisit=2019-07-19T23:26:17.246Z; path=/; httponly
+LastVisit.sig=a0PqbzAJcr-e-5joK6FqOGygKsM; path=/; httponly
+Welcome back! Nothing much changed since your last visit at 2019-07-19T23:26:17.246Z.
 ```
 </td></tr>
 </table>

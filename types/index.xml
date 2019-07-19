@@ -1,7 +1,4 @@
 <types namespace="_goa">
-  <import from="http" name="IncomingMessage" desc="The client request."/>
-  <import from="http" name="ServerResponse" desc="The server response."/>
-
   <type interface name="Cookies" desc="The interface for Cookies: signed and unsigned cookies based on Keygrip.">
     <prop type="!_goa.Keygrip" name="keys" opt>
       The keys object constructed from passed keys (private, will be installed from options).

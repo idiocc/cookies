@@ -111,6 +111,12 @@ module.exports.connect = connect
  * @typedef {Object} _goa.$CookieSetOptions How the cookie will be set.
  * @prop {boolean} [signed=false] Indicating whether the cookie is to be signed. If this is true, another cookie of the same name with the .sig suffix appended will also be sent, with a 27-byte url-safe base64 SHA1 value representing the hash of cookie-name=cookie-value against the first Keygrip key. This signature key is used to detect tampering the next time a cookie is received. Default `false`.
  */
+/**
+ * @typedef {import('http').IncomingMessage} http.IncomingMessage
+ */
+/**
+ * @typedef {import('http').ServerResponse} http.ServerResponse
+ */
 
 /* typal types/attributes.xml noSuppress  */
 /**

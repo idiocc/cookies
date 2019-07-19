@@ -18,7 +18,10 @@
     "d": "yarn-s d1 externs",
     "externs": "typal types/externs/*",
     "build": "yarn-s d b doc",
-    "e": "alanode"
+    "e": "alanode",
+    "w": "yarn-s w1 w2",
+    "w1": "doc wiki/Cookies.md -o ../cookies.wiki/Cookies-Class.md -n _goa",
+    "w2": "doc wiki/_Footer.md -o ../cookies.wiki/_Footer.md"
   },
   "files": [
     "compile",
