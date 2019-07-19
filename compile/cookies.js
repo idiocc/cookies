@@ -1,7 +1,7 @@
+#!/usr/bin/env node
 'use strict';
-let DEPACK_EXPORT;
 const http = require('http');
-const _crypto = require('crypto');'use strict';
+const _crypto = require('crypto');             
 const {createHmac:g} = _crypto;
 /*
  keygrip
@@ -172,7 +172,7 @@ const x = a => (b, c, d) => {
   b.cookies = c.cookies = new v(b, c, {keys:a});
   d();
 };
-DEPACK_EXPORT = {Cookies:v, Keygrip:k, express:x, connect:x};
+module.exports = {Cookies:v, Keygrip:k, express:x, connect:x};
 
 
-module.exports = DEPACK_EXPORT
+//# sourceMappingURL=cookies.js.map
