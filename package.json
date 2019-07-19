@@ -14,7 +14,7 @@
     "lint": "eslint .",
     "doc": "NODE_DEBUG=doc doc -o README.md -n _goa",
     "b": "alamode src -o build -s",
-    "d1": "typal types/index.js compile/index.js src/index.js -t types/index.xml -c",
+    "d1": "typal types/index.js compile/index.js src/index.js -t types/index.xml,types/attributes.xml,types/keygrip.xml -c",
     "d": "yarn-s d1 externs",
     "externs": "typal types/externs/*",
     "build": "yarn-s d b doc",
@@ -25,7 +25,11 @@
     "src",
     "types"
   ],
-  "externs": "types/externs.js",
+  "externs": [
+    "types/externs/attributes.js",
+    "types/externs/cookies.js",
+    "types/externs/keygrip.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/idiocc/cookies.git"

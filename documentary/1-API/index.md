@@ -47,4 +47,8 @@ Note that since this only saves parameters without any other processing, it is v
 
 %TYPEDEF types/index.xml%
 
+%TYPEDEF types/options.xml%
+
+%TYPEDEF types/attributes.xml%
+
 %~%

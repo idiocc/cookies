@@ -7,8 +7,7 @@ class Cookies extends _Cookies.Cookies {
    * @param {!http.ServerResponse} response
    * @param {!_goa.CookiesOptions} [options] Options for the constructor.
    * @param {!(Array<string>|_goa.Keygrip)} [options.keys] The array of keys, or the `Keygrip` object.
-   * @param {boolean} [options.secure] Explicitly specifies if the connection is secure, rather than this module
-      examining request.
+   * @param {boolean} [options.secure] Explicitly specifies if the connection is secure, rather than this module examining request.
    */
   constructor(request, response, options) {
     super(request, response, options)
@@ -23,32 +22,14 @@ class Cookies extends _Cookies.Cookies {
     return super.get(name, opts)
   }
   /**
+   * This sets the given cookie in the response and returns the current context to allow chaining. If the value is omitted, an outbound header with an expired date is used to delete the cookie.
    * @param {string} name The name of the cookie to set.
    * @param {String} [value] The value of the cookie to set.
-   * @param {!_goa.CookieAttributes} [opts] Used to generate the outbound cookie header.
-   * @param {number} [opts.maxAge] Represents the milliseconds from Date.now() for expiry.
-   * @param {!Date} [opts.expires] Indicates the cookie's expiration date (expires at the end of session by
-      default).
-   * @param {string} [opts.path="/"] Indicates the path of the cookie. Default `/`.
-   * @param {string} [opts.domain] Indicates the domain of the cookie.
-   * @param {boolean} [opts.secure] Indicates whether the cookie is only to be sent over HTTPS (false by default
-      for HTTP, true by default for HTTPS).
-   * @param {number} [opts.httpOnly=true] Indicates whether the cookie is only to be sent over HTTP(S), and not made
-      available to client JavaScript. Default `true`.
-   * @param {boolean|string} [opts.sameSite=false] Indicates whether the cookie is a "same site" cookie. This can be set to
-      `'strict'`, `'lax'`, or `true` (which maps to `'strict'`). Default `false`.
-   * @param {boolean} [opts.signed=false] Indicating whether the cookie is to be signed. If this is true, another cookie
-      of the same name with the .sig suffix appended will also be sent, with a
-      27-byte url-safe base64 SHA1 value representing the hash of
-      cookie-name=cookie-value against the first Keygrip key. This signature
-      key is used to detect tampering the next time a cookie is received. Default `false`.
-   * @param {boolean} [opts.overwrite=false] Indicates whether to overwrite previously set cookies of the same name. If
-      this is true, all cookies set during the same request with the same name
-      (regardless of path or domain) are filtered out of the Set-Cookie header
-      when setting this cookie. Default `false`.
+   * @param {!_goa.CookieSetOptions} [opts] How the cookie will be set.
+   * @param {boolean} [opts.signed=false] Indicating whether the cookie is to be signed. If this is true, another cookie of the same name with the .sig suffix appended will also be sent, with a 27-byte url-safe base64 SHA1 value representing the hash of cookie-name=cookie-value against the first Keygrip key. This signature key is used to detect tampering the next time a cookie is received. Default `false`.
    */
-  set(name, value, options) {
-    return super.set(name, value, options)
+  set(name, value, opts) {
+    return super.set(name, value, opts)
   }
 }
 
@@ -111,23 +92,56 @@ module.exports.Keygrip = Keygrip
 module.exports.express = express
 module.exports.connect = connect
 
+/* typal types/options.xml noSuppress  */
 /**
- * @suppress {nonStandardJsDocs}
+ * @typedef {_goa.CookiesOptions} CookiesOptions `＠record` Options for the constructor.
+ */
+/**
+ * @typedef {Object} _goa.CookiesOptions `＠record` Options for the constructor.
+ * @prop {!(Array<string>|_goa.Keygrip)} [keys] The array of keys, or the `Keygrip` object.
+ * @prop {boolean} [secure] Explicitly specifies if the connection is secure, rather than this module examining request.
+ */
+/**
+ * @typedef {_goa.CookieSetOptions} CookieSetOptions How the cookie will be set.
+ */
+/**
+ * @typedef {_goa.CookieAttributes & _goa.$CookieSetOptions} _goa.CookieSetOptions How the cookie will be set.
+ */
+/**
+ * @typedef {Object} _goa.$CookieSetOptions How the cookie will be set.
+ * @prop {boolean} [signed=false] Indicating whether the cookie is to be signed. If this is true, another cookie of the same name with the .sig suffix appended will also be sent, with a 27-byte url-safe base64 SHA1 value representing the hash of cookie-name=cookie-value against the first Keygrip key. This signature key is used to detect tampering the next time a cookie is received. Default `false`.
+ */
+
+/* typal types/attributes.xml noSuppress  */
+/**
+ * @typedef {_goa.CookieAttributes} CookieAttributes `＠record` Used to generate the outbound cookie header.
+ */
+/**
+ * @typedef {Object} _goa.CookieAttributes `＠record` Used to generate the outbound cookie header.
+ * @prop {number} [maxAge] Represents the milliseconds from `Date.now()` for expiry.
+ * @prop {!Date} [expires] Indicates the cookie's expiration date (expires at the end of session by default).
+ * @prop {string} [path="/"] Indicates the path of the cookie. Default `/`.
+ * @prop {string} [domain] Indicates the domain of the cookie.
+ * @prop {boolean} [secure] Indicates whether the cookie is only to be sent over HTTPS (false by default for HTTP, true by default for HTTPS).
+ * @prop {boolean} [httpOnly=true] Indicates whether the cookie is only to be sent over HTTP(S), and not made available to client JavaScript. Default `true`.
+ * @prop {boolean|string} [sameSite=false] Indicates whether the cookie is a "same site" cookie. This can be set to `'strict'`, `'lax'`, or `true` (which maps to `'strict'`). Default `false`.
+ * @prop {boolean} [overwrite=false] Indicates whether to overwrite previously set cookies of the same name. If this is true, all cookies set during the same request with the same name (regardless of path or domain) are filtered out of the Set-Cookie header when setting this cookie. Default `false`.
+ */
+
+/* typal types/keygrip.xml noSuppress  */
+/**
+ * @typedef {_goa.Keygrip} Keygrip `＠interface` Signing and verifying data (such as cookies or URLs) through a rotating credential system.
+ */
+/**
+ * @typedef {Object} _goa.Keygrip `＠interface` Signing and verifying data (such as cookies or URLs) through a rotating credential system.
+ * @prop {function(?): string} sign This creates a SHA1 HMAC based on the _first_ key in the keylist, and outputs it as a 27-byte url-safe base64 digest (base64 without padding, replacing `+` with `-` and `/` with `_`).
+ * @prop {function(?, string): number} index This loops through all of the keys currently in the keylist until the digest of the current key matches the given digest, at which point the current index is returned. If no key is matched, -1 is returned. The idea is that if the index returned is greater than `0`, the data should be re-signed to prevent premature credential invalidation, and enable better performance for subsequent challenges.
+ * @prop {function(?, string): boolean} verify This uses `index` to return true if the digest matches any existing keys, and false otherwise.
+ */
+
+/**
  * @typedef {import('http').IncomingMessage} http.IncomingMessage
- */
-/**
- * @suppress {nonStandardJsDocs}
  * @typedef {import('http').ServerResponse} http.ServerResponse
- */
-/**
- * @suppress {nonStandardJsDocs}
- * @typedef {import('../types').CookieAttributes} _goa.CookieAttributes
- */
-/**
- * @suppress {nonStandardJsDocs}
- * @typedef {import('../types').CookiesOptions} _goa.CookiesOptions
- */
-/**
- * @suppress {nonStandardJsDocs}
- * @typedef {import('../types').Keygrip} _goa.Keygrip
+ * @typedef {http.IncomingMessage} IncomingMessage
+ * @typedef {http.ServerResponse} ServerResponse
  */

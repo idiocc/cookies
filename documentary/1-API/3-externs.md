@@ -13,7 +13,26 @@ The externs are provided via the `types/externs.js` file.
 %EXAMPLE: types/externs/cookies.js%
 </td></tr>
 <tr><td><md2html>
-The externs provide the Cookies interface, the Cookies Options and the Cookies Attribute Records. Those are needed to ensure the contract implementation, configurable inputs and to ensure correct serialisation of cookies when writing the response.
+The externs provide the Cookies interface with the get and set methods.
+
+</md2html></td></tr>
+
+<!-- block-start -->
+<!-- block-start -->
+<tr><td>
+
+%EXAMPLE: types/externs/options.js%
+</td></tr>
+<tr><td><md2html>
+The Cookies Options can be used in the constructor method of the _Cookies_ class.
+</md2html></td></tr>
+<!-- block-start -->
+<tr><td>
+
+%EXAMPLE: types/externs/attributes.js%
+</td></tr>
+<tr><td><md2html>
+The Cookies Attribute Records are the key-value pairs that are used to create string representation of the cookie, e.g., `httpOnly=true`.
 </md2html></td></tr>
 
 <!-- block-start -->

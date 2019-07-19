@@ -21,8 +21,7 @@ export default class Cookies {
    * @param {!http.ServerResponse} response
    * @param {!_goa.CookiesOptions} [options] Options for the constructor.
    * @param {!(Array<string>|_goa.Keygrip)} [options.keys] The array of keys, or the `Keygrip` object.
-   * @param {boolean} [options.secure] Explicitly specifies if the connection is secure, rather than this module
-      examining request.
+   * @param {boolean} [options.secure] Explicitly specifies if the connection is secure, rather than this module examining request.
    */
   constructor(request, response, options) {
     this.secure = undefined
@@ -70,29 +69,9 @@ export default class Cookies {
   /**
    * @param {string} name The name of the cookie to set.
    * @param {?string} [value] The value of the cookie to set.
-   * @param {!_goa.CookieAttributes} [opts] Used to generate the outbound cookie header.
-   * @param {number} [opts.maxAge] Represents the milliseconds from Date.now() for expiry.
-   * @param {!Date} [opts.expires] Indicates the cookie's expiration date (expires at the end of session by
-      default).
-   * @param {string} [opts.path="/"] Indicates the path of the cookie. Default `/`.
-   * @param {string} [opts.domain] Indicates the domain of the cookie.
-   * @param {boolean} [opts.secure] Indicates whether the cookie is only to be sent over HTTPS (false by default
-      for HTTP, true by default for HTTPS).
-   * @param {number} [opts.httpOnly=true] Indicates whether the cookie is only to be sent over HTTP(S), and not made
-      available to client JavaScript. Default `true`.
-   * @param {boolean|string} [opts.sameSite=false] Indicates whether the cookie is a "same site" cookie. This can be set to
-      `'strict'`, `'lax'`, or `true` (which maps to `'strict'`). Default `false`.
-   * @param {boolean} [opts.signed=false] Indicating whether the cookie is to be signed. If this is true, another cookie
-      of the same name with the .sig suffix appended will also be sent, with a
-      27-byte url-safe base64 SHA1 value representing the hash of
-      cookie-name=cookie-value against the first Keygrip key. This signature
-      key is used to detect tampering the next time a cookie is received. Default `false`.
-   * @param {boolean} [opts.overwrite=false] Indicates whether to overwrite previously set cookies of the same name. If
-      this is true, all cookies set during the same request with the same name
-      (regardless of path or domain) are filtered out of the Set-Cookie header
-      when setting this cookie. Default `false`.
+   * @param {!_goa.CookieSetOptions} [opts] Used to generate the outbound cookie header.
    */
-  set(name, value, opts) {
+  set(name, value, opts = {}) {
     const { response: res, request: req } = this
     let headers = /** @type {!Array<string>} */ (res.getHeader('Set-Cookie')) || []
     if (typeof headers == 'string') headers = [headers]
@@ -103,15 +82,15 @@ export default class Cookies {
     const encrypted = req.connection['encrypted']
     let secure = this.secure !== undefined ? !!this.secure : proto == 'https' || encrypted
 
-    const cookie = new Cookie(name, value, opts)
-    const signed = opts && opts.signed !== undefined ? opts.signed : !!this.keys
+    const { signed = !!this.keys, ...rest } = opts
+    const cookie = new Cookie(name, value, rest)
 
-    if (!secure && opts && opts.secure) {
+    if (!secure && opts.secure) {
       throw new Error('Cannot send secure cookie over unencrypted connection')
     }
 
     cookie.secure = secure
-    if (opts && 'secure' in opts) cookie.secure = opts.secure
+    if (!('secure' in opts)) cookie.secure = secure
 
     pushCookie(headers, cookie)
 
@@ -164,24 +143,27 @@ export const connect = (keys) => {
 }
 export const express = connect
 
-
 /**
  * @suppress {nonStandardJsDocs}
- * @typedef {import('http').IncomingMessage} http.IncomingMessage
+ * @typedef {import('..').IncomingMessage} http.IncomingMessage
  */
 /**
  * @suppress {nonStandardJsDocs}
- * @typedef {import('http').ServerResponse} http.ServerResponse
+ * @typedef {import('..').ServerResponse} http.ServerResponse
  */
 /**
  * @suppress {nonStandardJsDocs}
- * @typedef {import('../types').CookieAttributes} _goa.CookieAttributes
+ * @typedef {import('..').CookieAttributes} _goa.CookieAttributes
  */
 /**
  * @suppress {nonStandardJsDocs}
- * @typedef {import('../types').Keygrip} _goa.Keygrip
+ * @typedef {import('..').Keygrip} _goa.Keygrip
  */
 /**
  * @suppress {nonStandardJsDocs}
- * @typedef {import('../types').CookiesOptions} _goa.CookiesOptions
+ * @typedef {import('..').CookiesOptions} _goa.CookiesOptions
+ */
+/**
+ * @suppress {nonStandardJsDocs}
+ * @typedef {import('..').CookieSetOptions} _goa.CookieSetOptions
  */

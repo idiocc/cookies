@@ -1,0 +1,28 @@
+<types namespace="_goa">
+  <type record name="CookieAttributes" desc="Used to generate the outbound cookie header.">
+    <prop opt number name="maxAge">
+      Represents the milliseconds from `Date.now()` for expiry.
+    </prop>
+    <prop opt type="!Date" name="expires">
+      Indicates the cookie's expiration date (expires at the end of session by default).
+    </prop>
+    <prop opt string name="path" default="/">
+      Indicates the path of the cookie.
+    </prop>
+    <prop opt string name="domain">
+      Indicates the domain of the cookie.
+    </prop>
+    <prop opt boolean name="secure">
+      Indicates whether the cookie is only to be sent over HTTPS (false by default for HTTP, true by default for HTTPS).
+    </prop>
+    <prop opt boolean name="httpOnly" default="true">
+      Indicates whether the cookie is only to be sent over HTTP(S), and not made available to client JavaScript.
+    </prop>
+    <prop type="boolean|string" name="sameSite" default="false">
+      Indicates whether the cookie is a "same site" cookie. This can be set to `'strict'`, `'lax'`, or `true` (which maps to `'strict'`).
+    </prop>
+    <prop boolean name="overwrite" default="false">
+      Indicates whether to overwrite previously set cookies of the same name. If this is true, all cookies set during the same request with the same name (regardless of path or domain) are filtered out of the Set-Cookie header when setting this cookie.
+    </prop>
+  </type>
+</types>
