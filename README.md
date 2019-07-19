@@ -27,7 +27,7 @@ yarn add @goa/cookies
   * [Externs](#externs)
 - [Copyright](#copyright)
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/0.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/0.svg?sanitize=true"></a></p>
 
 ## API
 
@@ -39,7 +39,7 @@ import Cookies, { Keygrip, express, connect } from '@goa/cookies'
 
 The deprecated `secureProxy`, `maxage` attributes of a cookie have been removed. The constructor only accepts the `{ keys: Array<string>|Keygrip }` option, without being able to pass keys as an array, or _Keygrip_ as an object. Please make sure no middleware is using these options.
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/1.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/1.svg?sanitize=true"></a></p>
 
 ## class Cookies
 
@@ -106,10 +106,10 @@ server.listen(async () => {
 <tr><td>
 
 ```
-http://localhost:62647
-Welcome, first time visitor! LastVisit=2019-07-19T21:22:55.548Z; path=/; httponly
-LastVisit.sig=O3YHLZ3hSVQ2BVmYkT7IbQatxG8; path=/; httponly
-Welcome back! Nothing much changed since your last visit at 2019-07-19T21:22:55.548Z.
+http://localhost:63821
+Welcome, first time visitor! LastVisit=2019-07-19T21:48:17.981Z; path=/; httponly
+LastVisit.sig=aXEzfJ70dSg1_6EPjV-MEp-e7Ms; path=/; httponly
+Welcome back! Nothing much changed since your last visit at 2019-07-19T21:48:17.981Z.
 ```
 </td></tr>
 </table>
@@ -120,12 +120,12 @@ Welcome back! Nothing much changed since your last visit at 2019-07-19T21:22:55.
 
 __<a name="type-cookies">`Cookies`</a>__: The interface for Cookies: signed and unsigned cookies based on Keygrip.
 
-|   Name   |                                                                       Type                                                                       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| keys     | <em><a href="#type-keygrip" title="Signing and verifying data (such as cookies or URLs) through a rotating credential system.">!Keygrip</a></em> | The keys object constructed from passed keys (private, will be installed from options).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| secure   | <em>boolean</em>                                                                                                                                 | Explicitly specifies if the connection is secure (private, will be installed from options).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| __get*__ | <em>function(string, { signed: boolean }): (string \| undefined)</em>                                                                            | This extracts the cookie with the given name from the Cookie header in the request. If such a cookie exists, its value is returned. Otherwise, nothing is returned. `{ signed: true }` can optionally be passed as the second parameter options. In this case, a signature cookie (a cookie of same name ending with the .sig suffix appended) is fetched. If no such cookie exists, nothing is returned.<br/>      If the signature cookie does exist, the provided Keygrip object is used to check whether the hash of cookie-name=cookie-value matches that of any registered key:<li>      If the signature cookie hash matches the first key, the original cookie value is returned.</li><li>      If the signature cookie hash matches any other key, the original cookie value is returned AND an outbound header is set to update the signature cookie's value to the hash of the first key. This enables automatic freshening of signature cookies that have become stale due to key rotation.</li><li>      If the signature cookie hash does not match any key, nothing is returned, and an outbound header with an expired date is used to delete the cookie.</li> |
-| __set*__ | <em>function(string, ?string=, <a href="#type-cookieattributes" title="Used to generate the outbound cookie header.">CookieAttributes</a>=)</em> | This sets the given cookie in the response and returns the current context to allow chaining. If the value is omitted, an outbound header with an expired date is used to delete the cookie.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+|   Name   |                                                                       Type                                                                       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| keys     | <em><a href="#type-keygrip" title="Signing and verifying data (such as cookies or URLs) through a rotating credential system.">!Keygrip</a></em> | The keys object constructed from passed keys (private, will be installed from options).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| secure   | <em>boolean</em>                                                                                                                                 | Explicitly specifies if the connection is secure (private, will be installed from options).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| __get*__ | <em>function(string, { signed: boolean }): (string \| undefined)</em>                                                                            | ** This extracts the cookie with the given name from the Cookie header in<br/>      the request. If such a cookie exists, its value is returned. Otherwise,<br/>      nothing is returned. `{ signed: true }` can optionally be passed as the<br/>      second parameter options. In this case, a signature cookie (a cookie of same<br/>      name ending with the .sig suffix appended) is fetched. If no such cookie<br/>      exists, nothing is returned.<br/>      If the signature cookie does exist, the provided Keygrip object is used to<br/>      check whether the hash of cookie-name=cookie-value matches that of any<br/>      registered key:<li>      If the signature cookie hash matches the first key, the original cookie</li>      value is returned.<li>      If the signature cookie hash matches any other key, the original cookie</li>      value is returned AND an outbound header is set to update the signature<br/>      cookie's value to the hash of the first key. This enables automatic<br/>      freshening of signature cookies that have become stale due to key rotation.<li>      If the signature cookie hash does not match any key, nothing is returned,</li>      and an outbound header with an expired date is used to delete the cookie. |
+| __set*__ | <em>function(string, ?string=, <a href="#type-cookieattributes" title="Used to generate the outbound cookie header.">CookieAttributes</a>=)</em> | This sets the given cookie in the response and returns the current context to allow chaining. If the value is omitted, an outbound header with an expired date is used to delete the cookie.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 
 __<a name="type-cookiesoptions">`CookiesOptions`</a>__: Options for the constructor.
 
@@ -148,7 +148,7 @@ __<a name="type-cookieattributes">`CookieAttributes`</a>__: Used to generate the
 | signed    | <em>boolean</em>             | Indicating whether the cookie is to be signed. If this is true, another cookie of the same name with the .sig suffix appended will also be sent, with a 27-byte url-safe base64 SHA1 value representing the hash of cookie-name=cookie-value against the first Keygrip key. This signature key is used to detect tampering the next time a cookie is received. | `false` |
 | overwrite | <em>boolean</em>             | Indicates whether to overwrite previously set cookies of the same name. If this is true, all cookies set during the same request with the same name (regardless of path or domain) are filtered out of the Set-Cookie header when setting this cookie.                                                                                                         | `false` |
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/2.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/2.svg?sanitize=true"></a></p>
 
 ## class Keygrip
 
@@ -158,11 +158,11 @@ This module already comes with [_Keygrip_](https://www.npmjs.com/package/keygrip
 
 __<a name="type-keygrip">`Keygrip`</a>__: Signing and verifying data (such as cookies or URLs) through a rotating credential system.
 
-|    Name     |                 Type                  |                                                                                                                                                                                                       Description                                                                                                                                                                                                       |
-| ----------- | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| __sign*__   | <em>function(?): string</em>          | This creates a SHA1 HMAC based on the _first_ key in the keylist, and outputs it as a 27-byte url-safe base64 digest (base64 without padding, replacing `+` with `-` and `/` with `_`).                                                                                                                                                                                                                                 |
-| __index*__  | <em>function(?, string): number</em>  | This loops through all of the keys currently in the keylist until the digest of the current key matches the given digest, at which point the current index is returned. If no key is matched, -1 is returned.<br/>      The idea is that if the index returned is greater than `0`, the data should be re-signed to prevent premature credential invalidation, and enable better performance for subsequent challenges. |
-| __verify*__ | <em>function(?, string): boolean</em> | This uses `index` to return true if the digest matches any existing keys, and false otherwise.                                                                                                                                                                                                                                                                                                                          |
+|    Name     |                 Type                  |                                                                                                                                                                                                                           Description                                                                                                                                                                                                                           |
+| ----------- | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| __sign*__   | <em>function(?): string</em>          | This creates a SHA1 HMAC based on the _first_ key in the keylist, and outputs<br/>      it as a 27-byte url-safe base64 digest (base64 without padding, replacing `+`<br/>      with `-` and `/` with `_`).                                                                                                                                                                                                                                                     |
+| __index*__  | <em>function(?, string): number</em>  | This loops through all of the keys currently in the keylist until the<br/>      digest of the current key matches the given digest, at which point the<br/>      current index is returned. If no key is matched, -1 is returned.<br/>      The idea is that if the index returned is greater than `0`, the data<br/>      should be re-signed to prevent premature credential invalidation, and<br/>      enable better performance for subsequent challenges. |
+| __verify*__ | <em>function(?, string): boolean</em> | This uses `index` to return true if the digest matches any existing keys,<br/>      and false otherwise.                                                                                                                                                                                                                                                                                                                                                        |
 
 The API is exposed so that custom validation algorithms can be implemented by extending the _Keygrip_ class.
 
@@ -209,7 +209,7 @@ export default class Keygrip {
 
 </details>
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/3.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/3.svg?sanitize=true"></a></p>
 
 ## Express/Connect
 
@@ -262,15 +262,15 @@ const server = app.listen(0, async () => {
 <tr><td>
 
 ```
-http://localhost:62651
-Welcome, first time visitor! LastVisit=2019-07-19T21:22:56.165Z; path=/; httponly
-LastVisit.sig=zeonmDJ9TaFD4JUCaXGln0o2jA8; path=/; httponly
-Welcome back! Nothing much changed since your last visit at 2019-07-19T21:22:56.165Z.
+http://localhost:63825
+Welcome, first time visitor! LastVisit=2019-07-19T21:48:18.509Z; path=/; httponly
+LastVisit.sig=y2Ti3xelCcaCRE9pL47NYu6gBfs; path=/; httponly
+Welcome back! Nothing much changed since your last visit at 2019-07-19T21:48:18.509Z.
 ```
 </td></tr>
 </table>
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/4.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/4.svg?sanitize=true"></a></p>
 
 ## Externs
 
@@ -307,11 +307,23 @@ _goa.Cookies.prototype.keys
  */
 _goa.Cookies.prototype.secure
 /**
- * This extracts the cookie with the given name from the Cookie header in the request. If such a cookie exists, its value is returned. Otherwise, nothing is returned. `{ signed: true }` can optionally be passed as the second parameter options. In this case, a signature cookie (a cookie of same name ending with the .sig suffix appended) is fetched. If no such cookie exists, nothing is returned.
-      If the signature cookie does exist, the provided Keygrip object is used to check whether the hash of cookie-name=cookie-value matches that of any registered key:
-      - If the signature cookie hash matches the first key, the original cookie value is returned.
-      - If the signature cookie hash matches any other key, the original cookie value is returned AND an outbound header is set to update the signature cookie's value to the hash of the first key. This enables automatic freshening of signature cookies that have become stale due to key rotation.
-      - If the signature cookie hash does not match any key, nothing is returned, and an outbound header with an expired date is used to delete the cookie.
+ * ** This extracts the cookie with the given name from the Cookie header in
+      the request. If such a cookie exists, its value is returned. Otherwise,
+      nothing is returned. `{ signed: true }` can optionally be passed as the
+      second parameter options. In this case, a signature cookie (a cookie of same
+      name ending with the .sig suffix appended) is fetched. If no such cookie
+      exists, nothing is returned.
+      If the signature cookie does exist, the provided Keygrip object is used to
+      check whether the hash of cookie-name=cookie-value matches that of any
+      registered key:
+      - If the signature cookie hash matches the first key, the original cookie
+      value is returned.
+      - If the signature cookie hash matches any other key, the original cookie
+      value is returned AND an outbound header is set to update the signature
+      cookie's value to the hash of the first key. This enables automatic
+      freshening of signature cookies that have become stale due to key rotation.
+      - If the signature cookie hash does not match any key, nothing is returned,
+      and an outbound header with an expired date is used to delete the cookie.
  * @type {function(string, { signed: boolean }): (string|undefined)}
  */
 _goa.Cookies.prototype.get
@@ -337,9 +349,54 @@ _goa.CookiesOptions.prototype.keys
 _goa.CookiesOptions.prototype.secure
 /**
  * Used to generate the outbound cookie header.
- * @typedef {{ maxAge: (number|undefined), expires: ((!Date)|undefined), path: (string|undefined), domain: (string|undefined), secure: (boolean|undefined), httpOnly: (number|undefined), sameSite: ((boolean|string)|undefined), signed: (boolean|undefined), overwrite: (boolean|undefined) }}
+ * @record
  */
 _goa.CookieAttributes
+/**
+ * Represents the milliseconds from Date.now() for expiry.
+ * @type {number|undefined}
+ */
+_goa.CookieAttributes.prototype.maxAge
+/**
+ * Indicates the cookie's expiration date (expires at the end of session by default).
+ * @type {(!Date)|undefined}
+ */
+_goa.CookieAttributes.prototype.expires
+/**
+ * Indicates the path of the cookie. Default `/`.
+ * @type {string|undefined}
+ */
+_goa.CookieAttributes.prototype.path
+/**
+ * Indicates the domain of the cookie.
+ * @type {string|undefined}
+ */
+_goa.CookieAttributes.prototype.domain
+/**
+ * Indicates whether the cookie is only to be sent over HTTPS (false by default for HTTP, true by default for HTTPS).
+ * @type {boolean|undefined}
+ */
+_goa.CookieAttributes.prototype.secure
+/**
+ * Indicates whether the cookie is only to be sent over HTTP(S), and not made available to client JavaScript. Default `true`.
+ * @type {number|undefined}
+ */
+_goa.CookieAttributes.prototype.httpOnly
+/**
+ * Indicates whether the cookie is a "same site" cookie. This can be set to `'strict'`, `'lax'`, or `true` (which maps to `'strict'`).
+ * @type {(boolean|string)|undefined}
+ */
+_goa.CookieAttributes.prototype.sameSite
+/**
+ * Indicating whether the cookie is to be signed. If this is true, another cookie of the same name with the .sig suffix appended will also be sent, with a 27-byte url-safe base64 SHA1 value representing the hash of cookie-name=cookie-value against the first Keygrip key. This signature key is used to detect tampering the next time a cookie is received.
+ * @type {boolean|undefined}
+ */
+_goa.CookieAttributes.prototype.signed
+/**
+ * Indicates whether to overwrite previously set cookies of the same name. If this is true, all cookies set during the same request with the same name (regardless of path or domain) are filtered out of the Set-Cookie header when setting this cookie.
+ * @type {boolean|undefined}
+ */
+_goa.CookieAttributes.prototype.overwrite
 ```
 </td></tr>
 <tr><td>The externs provide the Cookies interface, the Cookies Options and the Cookies Attribute Records. Those are needed to ensure the contract implementation, configurable inputs and to ensure correct serialisation of cookies when writing the response.</td></tr>
@@ -356,18 +413,25 @@ var _goa = {}
  */
 _goa.Keygrip
 /**
- * This creates a SHA1 HMAC based on the _first_ key in the keylist, and outputs it as a 27-byte url-safe base64 digest (base64 without padding, replacing `+` with `-` and `/` with `_`).
+ * This creates a SHA1 HMAC based on the _first_ key in the keylist, and outputs
+      it as a 27-byte url-safe base64 digest (base64 without padding, replacing `+`
+      with `-` and `/` with `_`).
  * @type {function(?): string}
  */
 _goa.Keygrip.prototype.sign
 /**
- * This loops through all of the keys currently in the keylist until the digest of the current key matches the given digest, at which point the current index is returned. If no key is matched, -1 is returned.
-      The idea is that if the index returned is greater than `0`, the data should be re-signed to prevent premature credential invalidation, and enable better performance for subsequent challenges.
+ * This loops through all of the keys currently in the keylist until the
+      digest of the current key matches the given digest, at which point the
+      current index is returned. If no key is matched, -1 is returned.
+      The idea is that if the index returned is greater than `0`, the data
+      should be re-signed to prevent premature credential invalidation, and
+      enable better performance for subsequent challenges.
  * @type {function(?, string): number}
  */
 _goa.Keygrip.prototype.index
 /**
- * This uses `index` to return true if the digest matches any existing keys, and false otherwise.
+ * This uses `index` to return true if the digest matches any existing keys,
+      and false otherwise.
  * @type {function(?, string): boolean}
  */
 _goa.Keygrip.prototype.verify
@@ -380,7 +444,7 @@ _goa.Keygrip.prototype.verify
 
 </details>
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/5.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/5.svg?sanitize=true"></a></p>
 
 ## Copyright
 
@@ -392,23 +456,23 @@ Original [source, documentation and testing](https://github.com/pillarjs/cookies
   <tr>
     <th>
       <a href="https://artd.eco">
-        <img src="https://raw.githubusercontent.com/wrote/wrote/master/images/artdeco.png" alt="Art Deco" />
+        <img src="https://raw.githubusercontent.com/wrote/wrote/master/images/artdeco.png" alt="Art Deco">
       </a>
     </th>
     <th>© <a href="https://artd.eco">Art Deco</a> for <a href="https://idio.cc">Idio</a> 2019</th>
     <th>
       <a href="https://idio.cc">
-        <img src="https://avatars3.githubusercontent.com/u/40834161?s=100" width="100" alt="Idio" />
+        <img src="https://avatars3.githubusercontent.com/u/40834161?s=100" width="100" alt="Idio">
       </a>
     </th>
     <th>
       <a href="https://www.technation.sucks" title="Tech Nation Visa">
         <img src="https://raw.githubusercontent.com/artdecoweb/www.technation.sucks/master/anim.gif"
-          alt="Tech Nation Visa" />
+          alt="Tech Nation Visa">
       </a>
     </th>
     <th><a href="https://www.technation.sucks">Tech Nation Visa Sucks</a></th>
   </tr>
 </table>
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/-1.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/-1.svg?sanitize=true"></a></p>

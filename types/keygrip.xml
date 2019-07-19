@@ -1,14 +1,21 @@
 <types namespace="_goa">
   <type interface name="Keygrip" desc="Signing and verifying data (such as cookies or URLs) through a rotating credential system.">
     <prop type="function(?): string" name="sign">
-      This creates a SHA1 HMAC based on the _first_ key in the keylist, and outputs it as a 27-byte url-safe base64 digest (base64 without padding, replacing `+` with `-` and `/` with `_`).
+      This creates a SHA1 HMAC based on the _first_ key in the keylist, and outputs
+      it as a 27-byte url-safe base64 digest (base64 without padding, replacing `+`
+      with `-` and `/` with `_`).
     </prop>
     <prop type="function(?, string): number" name="index">
-      This loops through all of the keys currently in the keylist until the digest of the current key matches the given digest, at which point the current index is returned. If no key is matched, -1 is returned.
-      The idea is that if the index returned is greater than `0`, the data should be re-signed to prevent premature credential invalidation, and enable better performance for subsequent challenges.
+      This loops through all of the keys currently in the keylist until the
+      digest of the current key matches the given digest, at which point the
+      current index is returned. If no key is matched, -1 is returned.
+      The idea is that if the index returned is greater than `0`, the data
+      should be re-signed to prevent premature credential invalidation, and
+      enable better performance for subsequent challenges.
     </prop>
     <prop type="function(?, string): boolean" name="verify">
-      This uses `index` to return true if the digest matches any existing keys, and false otherwise.
+      This uses `index` to return true if the digest matches any existing keys,
+      and false otherwise.
     </prop>
   </type>
 </types>
