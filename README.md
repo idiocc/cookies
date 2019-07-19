@@ -19,7 +19,6 @@ yarn add @goa/cookies
   * [`CookiesOptions`](#type-cookiesoptions)
 - [`async set(name: string, value: ?, opts: CookieSetOptions?): void`](#async-setname-stringvalue-opts-cookiesetoptions-void)
   * [`CookieSetOptions`](#type-cookiesetoptions)
-  * [`CookieAttributes`](#type-cookieattributes)
 - [class Keygrip](#class-keygrip)
   * [`Keygrip`](#type-keygrip)
   * [Keygrip Implementation](#keygrip-implementation)
@@ -140,20 +139,9 @@ __<a name="type-cookiesetoptions">`CookieSetOptions`</a>__: How the cookie will 
 | ------ | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | signed | <em>boolean</em> | Indicating whether the cookie is to be signed. If this is true, another cookie of the same name with the .sig suffix appended will also be sent, with a 27-byte url-safe base64 SHA1 value representing the hash of cookie-name=cookie-value against the first Keygrip key. This signature key is used to detect tampering the next time a cookie is received. | `false` |
 
-The attributes that can be set are displayed below:
+The attributes accepted by the cookie instance are listed in wiki.
 
-__<a name="type-cookieattributes">`CookieAttributes`</a>__: Used to generate the outbound cookie header.
-
-|   Name    |             Type             |                                                                                                                      Description                                                                                                                       | Default |
-| --------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| maxAge    | <em>number</em>              | Represents the milliseconds from `Date.now()` for expiry.                                                                                                                                                                                              | -       |
-| expires   | <em>!Date</em>               | Indicates the cookie's expiration date (expires at the end of session by default).                                                                                                                                                                     | -       |
-| path      | <em>string</em>              | Indicates the path of the cookie.                                                                                                                                                                                                                      | `/`     |
-| domain    | <em>string</em>              | Indicates the domain of the cookie.                                                                                                                                                                                                                    | -       |
-| secure    | <em>boolean</em>             | Indicates whether the cookie is only to be sent over HTTPS (false by default for HTTP, true by default for HTTPS).                                                                                                                                     | -       |
-| httpOnly  | <em>boolean</em>             | Indicates whether the cookie is only to be sent over HTTP(S), and not made available to client JavaScript.                                                                                                                                             | `true`  |
-| sameSite  | <em>(boolean \| string)</em> | Indicates whether the cookie is a "same site" cookie. This can be set to `'strict'`, `'lax'`, or `true` (which maps to `'strict'`).                                                                                                                    | `false` |
-| overwrite | <em>boolean</em>             | Indicates whether to overwrite previously set cookies of the same name. If this is true, all cookies set during the same request with the same name (regardless of path or domain) are filtered out of the Set-Cookie header when setting this cookie. | `false` |
+<kbd>🍪 <a href="/wiki/Cookie-Attributes">Cookie Attributes</a></kbd>
 
 <p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/3.svg?sanitize=true"></a></p>
 
