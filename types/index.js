@@ -5,7 +5,7 @@ export {}
  */
 /**
  * @typedef {Object} _goa.Cookies `@interface` The interface for Cookies: signed and unsigned cookies based on Keygrip.
- * @prop {!_goa.Keygrip} keys The keys object constructed from passed keys (private, will be installed from options).
+ * @prop {!_goa.Keygrip} [keys] The keys object constructed from passed keys (private, will be installed from options).
  * @prop {boolean} [secure] Explicitly specifies if the connection is secure (private, will be installed from options).
  * @prop {function(string, { signed: boolean }): (string|undefined)} get This extracts the cookie with the given name from the Cookie header in the request. If such a cookie exists, its value is returned. Otherwise, nothing is returned. `{ signed: true }` can optionally be passed as the second parameter options. In this case, a signature cookie (a cookie of same name ending with the .sig suffix appended) is fetched. If no such cookie exists, nothing is returned.
       If the signature cookie does exist, the provided Keygrip object is used to check whether the hash of cookie-name=cookie-value matches that of any registered key:
@@ -36,6 +36,12 @@ export {}
  * @prop {boolean|string} [sameSite=false] Indicates whether the cookie is a "same site" cookie. This can be set to `'strict'`, `'lax'`, or `true` (which maps to `'strict'`). Default `false`.
  * @prop {boolean} [signed=false] Indicating whether the cookie is to be signed. If this is true, another cookie of the same name with the .sig suffix appended will also be sent, with a 27-byte url-safe base64 SHA1 value representing the hash of cookie-name=cookie-value against the first Keygrip key. This signature key is used to detect tampering the next time a cookie is received. Default `false`.
  * @prop {boolean} [overwrite=false] Indicates whether to overwrite previously set cookies of the same name. If this is true, all cookies set during the same request with the same name (regardless of path or domain) are filtered out of the Set-Cookie header when setting this cookie. Default `false`.
+ */
+/**
+ * @typedef {import('http').IncomingMessage} http.IncomingMessage
+ */
+/**
+ * @typedef {import('http').ServerResponse} http.ServerResponse
  */
 
 /* typal types/keygrip.xml closure noSuppress */

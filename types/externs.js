@@ -12,7 +12,7 @@ var _goa = {}
 _goa.Cookies
 /**
  * The keys object constructed from passed keys (private, will be installed from options).
- * @type {!_goa.Keygrip}
+ * @type {(!_goa.Keygrip)|undefined}
  */
 _goa.Cookies.prototype.keys
 /**
