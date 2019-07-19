@@ -280,40 +280,101 @@ The externs are provided via the `types/externs.js` file.
 <summary>Show <a name="externs">Externs</a></summary>
 
 <table>
-<tr><th><a href="types/externs.js">Cookies Externs</a></th></tr>
+<tr><th><a href="https://compiler.page">Compiler</a> <a href="types/externs.js">Externs</a></th></tr>
 <tr><td>
 
 ```js
 /**
- * @implements {_goa.Keygrip}
+ * @fileoverview
+ * @externs
  */
-export default class Keygrip {
-  constructor(keys, algorithm = 'sha1', encoding = 'base64') {
-    if (!keys || !(0 in keys)) {
-      throw new Error('Keys must be provided.')
-    }
-    this.algorithm = algorithm
-    this.encoding = encoding
-    this.keys = keys
-  }
-  sign(data) {
-    return sign(data, this.algorithm, this.keys[0], this.encoding)
-  }
-  verify(data, digest) {
-    return this.index(data, digest) > -1
-  }
-  index(data, digest) {
-    for (let i = 0, l = this.keys.length; i < l; i++) {
-      const sig = sign(data, this.algorithm, this.keys[i], this.encoding)
-      if (constantTimeCompare(digest, sig)) return i
-    }
-
-    return -1
-  }
-}
+/* typal types/index.xml externs */
+/** @const */
+var _goa = {}
+/**
+ * The interface for Cookies: signed and unsigned cookies based on Keygrip.
+ * @interface
+ */
+_goa.Cookies
+/**
+ * The keys object constructed from passed keys (private, will be installed from options).
+ * @type {(!_goa.Keygrip)|undefined}
+ */
+_goa.Cookies.prototype.keys
+/**
+ * Explicitly specifies if the connection is secure (private, will be installed from options).
+ * @type {boolean|undefined}
+ */
+_goa.Cookies.prototype.secure
+/**
+ * This extracts the cookie with the given name from the Cookie header in the request. If such a cookie exists, its value is returned. Otherwise, nothing is returned. `{ signed: true }` can optionally be passed as the second parameter options. In this case, a signature cookie (a cookie of same name ending with the .sig suffix appended) is fetched. If no such cookie exists, nothing is returned.
+      If the signature cookie does exist, the provided Keygrip object is used to check whether the hash of cookie-name=cookie-value matches that of any registered key:
+      - If the signature cookie hash matches the first key, the original cookie value is returned.
+      - If the signature cookie hash matches any other key, the original cookie value is returned AND an outbound header is set to update the signature cookie's value to the hash of the first key. This enables automatic freshening of signature cookies that have become stale due to key rotation.
+      - If the signature cookie hash does not match any key, nothing is returned, and an outbound header with an expired date is used to delete the cookie.
+ * @type {function(string, { signed: boolean }): (string|undefined)}
+ */
+_goa.Cookies.prototype.get
+/**
+ * This sets the given cookie in the response and returns the current context to allow chaining. If the value is omitted, an outbound header with an expired date is used to delete the cookie.
+ * @type {function(string, ?string=, _goa.CookieAttributes=)}
+ */
+_goa.Cookies.prototype.set
+/**
+ * Options for the constructor.
+ * @record
+ */
+_goa.CookiesOptions
+/**
+ * The array of keys, or the `Keygrip` object.
+ * @type {(!(Array<string>|_goa.Keygrip))|undefined}
+ */
+_goa.CookiesOptions.prototype.keys
+/**
+ * Explicitly specifies if the connection is secure, rather than this module examining request.
+ * @type {boolean|undefined}
+ */
+_goa.CookiesOptions.prototype.secure
+/**
+ * Used to generate the outbound cookie header.
+ * @typedef {{ maxAge: (number|undefined), expires: ((!Date)|undefined), path: (string|undefined), domain: (string|undefined), secure: (boolean|undefined), httpOnly: (number|undefined), sameSite: ((boolean|string)|undefined), signed: (boolean|undefined), overwrite: (boolean|undefined) }}
+ */
+_goa.CookieAttributes
 ```
 </td></tr>
-<tr><td>The implementation provides the <em>sign</em>, <em>verify</em> and <em>index</em> methods. The <em>Keygrip</em> instances provide mechanisms to rotate credentials by modifying the <strong>keys</strong> array. Since cookies' encoding and decoding will be based on the keys, it's important to maintain them across server restarts, however when required, their rotation can be performed with <code>keylist.unshift("SEKRIT4"); keylist.pop()</code> without having to restart the server.</td></tr>
+<tr><td>The externs provide the Cookies interface, the Cookies Options and the Cookies Attribute Records. Those are needed to ensure the contract implementation, configurable inputs and to ensure correct serialisation of cookies when writing the response.</td></tr>
+
+<tr><td>
+
+```js
+/* typal types/keygrip.xml externs */
+/** @const */
+var _goa = {}
+/**
+ * Signing and verifying data (such as cookies or URLs) through a rotating credential system.
+ * @interface
+ */
+_goa.Keygrip
+/**
+ * This creates a SHA1 HMAC based on the _first_ key in the keylist, and outputs it as a 27-byte url-safe base64 digest (base64 without padding, replacing `+` with `-` and `/` with `_`).
+ * @type {function(?): string}
+ */
+_goa.Keygrip.prototype.sign
+/**
+ * This loops through all of the keys currently in the keylist until the digest of the current key matches the given digest, at which point the current index is returned. If no key is matched, -1 is returned.
+      The idea is that if the index returned is greater than `0`, the data should be re-signed to prevent premature credential invalidation, and enable better performance for subsequent challenges.
+ * @type {function(?, string): number}
+ */
+_goa.Keygrip.prototype.index
+/**
+ * This uses `index` to return true if the digest matches any existing keys, and false otherwise.
+ * @type {function(?, string): boolean}
+ */
+_goa.Keygrip.prototype.verify
+```
+</td></tr>
+<tr><td><em>Keygrip</em> is the class that implements _goa.Keygrip interface with the 3 methods declared in the API. It is then called by the
+<em>Cookies</em> instances to verify correct decoding of signed cookies.</td></tr>
 
 </table>
 

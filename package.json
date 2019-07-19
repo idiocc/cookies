@@ -16,7 +16,7 @@
     "b": "alamode src -o build -s",
     "d1": "typal types/index.js compile/index.js src/index.js -t types/index.xml -c",
     "d": "yarn-s d1 externs",
-    "externs": "typal types/externs.js",
+    "externs": "typal types/externs/*",
     "build": "yarn-s d b doc",
     "e": "alanode"
   },

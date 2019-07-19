@@ -6,14 +6,24 @@ The externs are provided via the `types/externs.js` file.
 <summary>Show [Externs](t)</summary>
 
 <table>
-<tr><th><a href="types/externs.js">Cookies Externs</a></th></tr>
+<tr><th><a href="https://compiler.page">Compiler</a> <a href="types/externs.js">Externs</a></th></tr>
 <!-- block-start -->
 <tr><td>
 
-%EXAMPLE: src/Keygrip%
+%EXAMPLE: types/externs/cookies.js%
 </td></tr>
 <tr><td><md2html>
-The implementation provides the _sign_, _verify_ and _index_ methods. The _Keygrip_ instances provide mechanisms to rotate credentials by modifying the **keys** array. Since cookies' encoding and decoding will be based on the keys, it's important to maintain them across server restarts, however when required, their rotation can be performed with `keylist.unshift("SEKRIT4"); keylist.pop()` without having to restart the server.
+The externs provide the Cookies interface, the Cookies Options and the Cookies Attribute Records. Those are needed to ensure the contract implementation, configurable inputs and to ensure correct serialisation of cookies when writing the response.
+</md2html></td></tr>
+
+<!-- block-start -->
+<tr><td>
+
+%EXAMPLE: types/externs/keygrip.js%
+</td></tr>
+<tr><td><md2html>
+_Keygrip_ is the class that implements _goa.Keygrip interface with the 3 methods declared in the API. It is then called by the
+_Cookies_ instances to verify correct decoding of signed cookies.
 </md2html></td></tr>
 
 </table>
