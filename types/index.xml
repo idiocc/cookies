@@ -1,4 +1,7 @@
 <types namespace="_goa">
+  <import from="http" name="IncomingMessage" desc="The client request."/>
+  <import from="http" name="ServerResponse" desc="The server response."/>
+
   <type interface name="Cookies" desc="The interface for Cookies: signed and unsigned cookies based on Keygrip.">
     <prop type="!_goa.Keygrip" name="keys">
       The keys object constructed from passed keys (private, will be installed from options).
@@ -17,8 +20,8 @@
       This sets the given cookie in the response and returns the current context to allow chaining. If the value is omitted, an outbound header with an expired date is used to delete the cookie.
     </prop>
   </type>
-  <type name="CookiesOptions" desc="Options for the constructor.">
-    <prop type="!(Array<string>|_goa.Keygrip)" name="keys">
+  <type record name="CookiesOptions" desc="Options for the constructor.">
+    <prop opt type="!(Array<string>|_goa.Keygrip)" name="keys">
       The array of keys, or the `Keygrip` object.
     </prop>
     <prop opt type="boolean" name="secure">

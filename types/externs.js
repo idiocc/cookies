@@ -1,3 +1,7 @@
+/**
+ * @fileoverview
+ * @externs
+ */
 /* typal types/index.xml externs */
 /** @const */
 var _goa = {}
@@ -32,9 +36,19 @@ _goa.Cookies.prototype.get
 _goa.Cookies.prototype.set
 /**
  * Options for the constructor.
- * @typedef {{ keys: !(Array<string>|_goa.Keygrip), secure: (boolean|undefined) }}
+ * @record
  */
 _goa.CookiesOptions
+/**
+ * The array of keys, or the `Keygrip` object.
+ * @type {(!(Array<string>|_goa.Keygrip))|undefined}
+ */
+_goa.CookiesOptions.prototype.keys
+/**
+ * Explicitly specifies if the connection is secure, rather than this module examining request.
+ * @type {boolean|undefined}
+ */
+_goa.CookiesOptions.prototype.secure
 /**
  * Used to generate the outbound cookie header.
  * @typedef {{ maxAge: (number|undefined), expires: ((!Date)|undefined), path: (string|undefined), domain: (string|undefined), secure: (boolean|undefined), httpOnly: (number|undefined), sameSite: ((boolean|string)|undefined), signed: (boolean|undefined), overwrite: (boolean|undefined) }}

@@ -103,13 +103,17 @@ server.listen(async () => {
 <tr><td>
 
 ```
-http://localhost:55742
-Welcome, first time visitor! LastVisit=2019-05-09T05:42:30.260Z; path=/; httponly
-LastVisit.sig=KV30bjBIk4sLsxUtn-YBU09ua5Y; path=/; httponly
-Welcome back! Nothing much changed since your last visit at 2019-05-09T05:42:30.260Z.
+http://localhost:61823
+Welcome, first time visitor! LastVisit=2019-07-19T21:11:17.170Z; path=/; httponly
+LastVisit.sig=r6MbfVHnwtCc7JbseY_R34Q9U5A; path=/; httponly
+Welcome back! Nothing much changed since your last visit at 2019-07-19T21:11:17.170Z.
 ```
 </td></tr>
 </table>
+
+`import('http').IncomingMessage` __<a name="type-httpincomingmessage">`http.IncomingMessage`</a>__: The client request.
+
+`import('http').ServerResponse` __<a name="type-httpserverresponse">`http.ServerResponse`</a>__: The server response.
 
 __<a name="type-_goacookies">`_goa.Cookies`</a>__: The interface for Cookies: signed and unsigned cookies based on Keygrip.
 
@@ -122,10 +126,10 @@ __<a name="type-_goacookies">`_goa.Cookies`</a>__: The interface for Cookies: si
 
 __<a name="type-_goacookiesoptions">`_goa.CookiesOptions`</a>__: Options for the constructor.
 
-|   Name    |                                                                                        Type                                                                                        |                                         Description                                          |
-| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| __keys*__ | <em>!(Array&lt;string&gt; \| <a href="#type-_goakeygrip" title="Signing and verifying data (such as cookies or URLs) through a rotating credential system.">_goa.Keygrip</a>)</em> | The array of keys, or the `Keygrip` object.                                                  |
-| secure    | <em>boolean</em>                                                                                                                                                                   | Explicitly specifies if the connection is secure, rather than this module examining request. |
+|  Name  |                                                                                        Type                                                                                        |                                         Description                                          |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| keys   | <em>!(Array&lt;string&gt; \| <a href="#type-_goakeygrip" title="Signing and verifying data (such as cookies or URLs) through a rotating credential system.">_goa.Keygrip</a>)</em> | The array of keys, or the `Keygrip` object.                                                  |
+| secure | <em>boolean</em>                                                                                                                                                                   | Explicitly specifies if the connection is secure, rather than this module examining request. |
 
 __<a name="type-_goacookieattributes">`_goa.CookieAttributes`</a>__: Used to generate the outbound cookie header.
 
@@ -208,10 +212,10 @@ const server = app.listen(0, async () => {
 <tr><td>
 
 ```
-http://localhost:55745
-Welcome, first time visitor! LastVisit=2019-05-09T05:42:30.712Z; path=/; httponly
-LastVisit.sig=bQky416CEV9lfB9ZXJUd0fc0ocM; path=/; httponly
-Welcome back! Nothing much changed since your last visit at 2019-05-09T05:42:30.712Z.
+http://localhost:61826
+Welcome, first time visitor! LastVisit=2019-07-19T21:11:17.971Z; path=/; httponly
+LastVisit.sig=u03OXGlGyF9f2cGg3P1NRyTmjxw; path=/; httponly
+Welcome back! Nothing much changed since your last visit at 2019-07-19T21:11:17.971Z.
 ```
 </td></tr>
 </table>

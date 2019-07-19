@@ -110,8 +110,14 @@ const TS = {
         .attribute('foo', 'expires')
         .assert((res) => {
           const cookie = getCookieForName('foo')
-          const expected = new Date(Date.parse(res.headers.date) + maxAge).toUTCString()
-          strictEqual(cookie.expires, expected)
+          const d = Date.parse(res.headers.date)
+          try {
+            const expected = new Date(d + maxAge).toUTCString()
+            strictEqual(cookie.expires, expected)
+          } catch (err) {
+            const expected = new Date(d - 1000 + maxAge).toUTCString()
+            strictEqual(cookie.expires, expected)
+          }
         })
     },
     async 'does not set the "maxAge" attribute'({ start, c }) {

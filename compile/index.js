@@ -1,11 +1,11 @@
-const _Cookies = require('./depack')
+const _Cookies = require('./cookies')
 
 class Cookies extends _Cookies.Cookies {
   /**
    * @param {!http.IncomingMessage} request
    * @param {!http.ServerResponse} response
    * @param {!_goa.CookiesOptions} [options] Options for the constructor.
-   * @param {!(Array<string>|_goa.Keygrip)} options.keys The array of keys, or the `Keygrip` object.
+   * @param {!(Array<string>|_goa.Keygrip)} [options.keys] The array of keys, or the `Keygrip` object.
    * @param {boolean} [options.secure] Explicitly specifies if the connection is secure, rather than this module examining request.
    */
   constructor(request, response, options) {

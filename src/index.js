@@ -19,7 +19,7 @@ export default class Cookies {
    * @param {!http.IncomingMessage} request
    * @param {!http.ServerResponse} response
    * @param {!_goa.CookiesOptions} [options] Options for the constructor.
-   * @param {!(Array<string>|_goa.Keygrip)} options.keys The array of keys, or the `Keygrip` object.
+   * @param {!(Array<string>|_goa.Keygrip)} [options.keys] The array of keys, or the `Keygrip` object.
    * @param {boolean} [options.secure] Explicitly specifies if the connection is secure, rather than this module examining request.
    */
   constructor(request, response, options) {
@@ -27,7 +27,7 @@ export default class Cookies {
     this.request = request
     this.response = response
     if (options) {
-      /** @type {!_goa.Keygrip} */
+      /** @type {!_goa.Keygrip|undefined} */
       this.keys = Array.isArray(options.keys) ? new Keygrip(options.keys) : options.keys
       this.secure = options.secure
     }

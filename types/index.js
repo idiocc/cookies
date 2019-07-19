@@ -15,11 +15,11 @@ export {}
  * @prop {function(string, ?string=, _goa.CookieAttributes=)} set This sets the given cookie in the response and returns the current context to allow chaining. If the value is omitted, an outbound header with an expired date is used to delete the cookie.
  */
 /**
- * @typedef {_goa.CookiesOptions} CookiesOptions Options for the constructor.
+ * @typedef {_goa.CookiesOptions} CookiesOptions `@record` Options for the constructor.
  */
 /**
- * @typedef {Object} _goa.CookiesOptions Options for the constructor.
- * @prop {!(Array<string>|_goa.Keygrip)} keys The array of keys, or the `Keygrip` object.
+ * @typedef {Object} _goa.CookiesOptions `@record` Options for the constructor.
+ * @prop {!(Array<string>|_goa.Keygrip)} [keys] The array of keys, or the `Keygrip` object.
  * @prop {boolean} [secure] Explicitly specifies if the connection is secure, rather than this module examining request.
  */
 /**
