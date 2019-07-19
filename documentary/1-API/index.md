@@ -47,6 +47,6 @@ Note that since this only saves parameters without any other processing, it is v
 </td></tr>
 </table>
 
-%TYPEDEF types/attributes.xml%
+The overview of the _Cookies_ interface is found [in wiki](/wiki/Cookies-Class).
 
 %~%

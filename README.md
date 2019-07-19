@@ -17,6 +17,7 @@ yarn add @goa/cookies
 - [class Cookies](#class-cookies)
 - [`constructor(request: IncomingMessage, response: ServerResponse, options: CookiesOptions): Cookies`](#constructorrequest-incomingmessageresponse-serverresponseoptions-cookiesoptions-cookies)
   * [`CookiesOptions`](#type-cookiesoptions)
+- [`async set(name: string, value: ?, opts: CookieSetOptions?): void`](#async-setname-stringvalue-opts-cookiesetoptions-void)
   * [`CookieSetOptions`](#type-cookiesetoptions)
   * [`CookieAttributes`](#type-cookieattributes)
 - [class Keygrip](#class-keygrip)
@@ -65,12 +66,6 @@ __<a name="type-cookiesoptions">`CookiesOptions`</a>__: Options for the construc
 | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | keys   | <em>!(Array&lt;string&gt; \| <a href="#type-keygrip" title="Signing and verifying data (such as cookies or URLs) through a rotating credential system.">Keygrip</a>)</em> | The array of keys, or the `Keygrip` object.                                                  |
 | secure | <em>boolean</em>                                                                                                                                                          | Explicitly specifies if the connection is secure, rather than this module examining request. |
-
-__<a name="type-cookiesetoptions">`CookieSetOptions`</a>__: How the cookie will be set.
-
-|  Name  |       Type       |                                                                                                                                                                          Description                                                                                                                                                                           | Default |
-| ------ | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| signed | <em>boolean</em> | Indicating whether the cookie is to be signed. If this is true, another cookie of the same name with the .sig suffix appended will also be sent, with a 27-byte url-safe base64 SHA1 value representing the hash of cookie-name=cookie-value against the first Keygrip key. This signature key is used to detect tampering the next time a cookie is received. | `false` |
 
 <table>
 <tr><th>Node.JS HTTP Server Example</th></tr>
@@ -123,13 +118,29 @@ server.listen(async () => {
 <tr><td>
 
 ```
-http://localhost:51937
-Welcome, first time visitor! LastVisit=2019-07-19T23:26:16.706Z; path=/; httponly
-LastVisit.sig=uGKJSVGJn2r29CcoaaIaCvHcPoY; path=/; httponly
-Welcome back! Nothing much changed since your last visit at 2019-07-19T23:26:16.706Z.
+http://localhost:52300
+Welcome, first time visitor! LastVisit=2019-07-19T23:33:16.481Z; path=/; httponly
+LastVisit.sig=pGJqx5mfYbdnHFP4goSOsWkvomk; path=/; httponly
+Welcome back! Nothing much changed since your last visit at 2019-07-19T23:33:16.481Z.
 ```
 </td></tr>
 </table>
+
+The overview of the _Cookies_ interface is found [in wiki](/wiki/Cookies-Class).
+
+<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/2.svg?sanitize=true"></a></p>
+
+## `async set(`<br/>&nbsp;&nbsp;`name: string,`<br/>&nbsp;&nbsp;`value: ?,`<br/>&nbsp;&nbsp;`opts: CookieSetOptions?,`<br/>`): void`
+
+This sets the given cookie in the response and returns the current context to allow chaining. If the value is omitted, an outbound header with an expired date is used to delete the cookie.
+
+__<a name="type-cookiesetoptions">`CookieSetOptions`</a>__: How the cookie will be set.
+
+|  Name  |       Type       |                                                                                                                                                                          Description                                                                                                                                                                           | Default |
+| ------ | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| signed | <em>boolean</em> | Indicating whether the cookie is to be signed. If this is true, another cookie of the same name with the .sig suffix appended will also be sent, with a 27-byte url-safe base64 SHA1 value representing the hash of cookie-name=cookie-value against the first Keygrip key. This signature key is used to detect tampering the next time a cookie is received. | `false` |
+
+The attributes that can be set are displayed below:
 
 __<a name="type-cookieattributes">`CookieAttributes`</a>__: Used to generate the outbound cookie header.
 
@@ -144,7 +155,7 @@ __<a name="type-cookieattributes">`CookieAttributes`</a>__: Used to generate the
 | sameSite  | <em>(boolean \| string)</em> | Indicates whether the cookie is a "same site" cookie. This can be set to `'strict'`, `'lax'`, or `true` (which maps to `'strict'`).                                                                                                                    | `false` |
 | overwrite | <em>boolean</em>             | Indicates whether to overwrite previously set cookies of the same name. If this is true, all cookies set during the same request with the same name (regardless of path or domain) are filtered out of the Set-Cookie header when setting this cookie. | `false` |
 
-<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/2.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/3.svg?sanitize=true"></a></p>
 
 ## class Keygrip
 
@@ -205,7 +216,7 @@ export default class Keygrip {
 
 </details>
 
-<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/3.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/4.svg?sanitize=true"></a></p>
 
 ## Express/Connect
 
@@ -258,15 +269,15 @@ const server = app.listen(0, async () => {
 <tr><td>
 
 ```
-http://localhost:51941
-Welcome, first time visitor! LastVisit=2019-07-19T23:26:17.246Z; path=/; httponly
-LastVisit.sig=a0PqbzAJcr-e-5joK6FqOGygKsM; path=/; httponly
-Welcome back! Nothing much changed since your last visit at 2019-07-19T23:26:17.246Z.
+http://localhost:52303
+Welcome, first time visitor! LastVisit=2019-07-19T23:33:17.021Z; path=/; httponly
+LastVisit.sig=7ivYqjdJp5w9as0NmFKZZ8DCZ6c; path=/; httponly
+Welcome back! Nothing much changed since your last visit at 2019-07-19T23:33:17.021Z.
 ```
 </td></tr>
 </table>
 
-<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/4.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/5.svg?sanitize=true"></a></p>
 
 ## Externs
 
@@ -344,6 +355,8 @@ _goa.CookiesOptions.prototype.keys
  * @type {boolean|undefined}
  */
 _goa.CookiesOptions.prototype.secure
+
+/* typal types/set.xml externs */
 /**
  * How the cookie will be set.
  * @typedef {{ signed: (boolean|undefined) }}
@@ -450,7 +463,7 @@ _goa.Keygrip.prototype.verify
 
 </details>
 
-<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/5.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/6.svg?sanitize=true"></a></p>
 
 ## Copyright
 

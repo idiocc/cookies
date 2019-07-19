@@ -102,16 +102,6 @@ module.exports.connect = connect
  * @prop {boolean} [secure] Explicitly specifies if the connection is secure, rather than this module examining request.
  */
 /**
- * @typedef {_goa.CookieSetOptions} CookieSetOptions How the cookie will be set.
- */
-/**
- * @typedef {_goa.CookieAttributes & _goa.$CookieSetOptions} _goa.CookieSetOptions How the cookie will be set.
- */
-/**
- * @typedef {Object} _goa.$CookieSetOptions How the cookie will be set.
- * @prop {boolean} [signed=false] Indicating whether the cookie is to be signed. If this is true, another cookie of the same name with the .sig suffix appended will also be sent, with a 27-byte url-safe base64 SHA1 value representing the hash of cookie-name=cookie-value against the first Keygrip key. This signature key is used to detect tampering the next time a cookie is received. Default `false`.
- */
-/**
  * @typedef {import('http').IncomingMessage} http.IncomingMessage
  */
 /**
@@ -143,6 +133,18 @@ module.exports.connect = connect
  * @prop {function(?): string} sign This creates a SHA1 HMAC based on the _first_ key in the keylist, and outputs it as a 27-byte url-safe base64 digest (base64 without padding, replacing `+` with `-` and `/` with `_`).
  * @prop {function(?, string): number} index This loops through all of the keys currently in the keylist until the digest of the current key matches the given digest, at which point the current index is returned. If no key is matched, -1 is returned. The idea is that if the index returned is greater than `0`, the data should be re-signed to prevent premature credential invalidation, and enable better performance for subsequent challenges.
  * @prop {function(?, string): boolean} verify This uses `index` to return true if the digest matches any existing keys, and false otherwise.
+ */
+
+/* typal types/set.xml noSuppress  */
+/**
+ * @typedef {_goa.CookieSetOptions} CookieSetOptions How the cookie will be set.
+ */
+/**
+ * @typedef {_goa.CookieAttributes & _goa.$CookieSetOptions} _goa.CookieSetOptions How the cookie will be set.
+ */
+/**
+ * @typedef {Object} _goa.$CookieSetOptions How the cookie will be set.
+ * @prop {boolean} [signed=false] Indicating whether the cookie is to be signed. If this is true, another cookie of the same name with the .sig suffix appended will also be sent, with a 27-byte url-safe base64 SHA1 value representing the hash of cookie-name=cookie-value against the first Keygrip key. This signature key is used to detect tampering the next time a cookie is received. Default `false`.
  */
 
 /**

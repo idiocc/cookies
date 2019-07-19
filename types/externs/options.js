@@ -20,6 +20,8 @@ _goa.CookiesOptions.prototype.keys
  * @type {boolean|undefined}
  */
 _goa.CookiesOptions.prototype.secure
+
+/* typal types/set.xml externs */
 /**
  * How the cookie will be set.
  * @typedef {{ signed: (boolean|undefined) }}
