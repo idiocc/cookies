@@ -8,8 +8,8 @@ This sets the given cookie in the response and returns the current context to al
 
 %TYPEDEF types/set.xml%
 
-The attributes that can be set are displayed below:
+The attributes accepted by the cookie instance are listed in wiki.
 
-%TYPEDEF types/attributes.xml%
+<kbd>🍪 <a href="/wiki/Cookie-Attributes">Cookie Attributes</a></kbd>
 
 %~%
