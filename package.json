@@ -42,12 +42,12 @@
   },
   "homepage": "https://github.com/idiocc/cookies#readme",
   "devDependencies": {
-    "@contexts/http": "^1.0.0",
-    "alamode": "^2.1.1",
-    "connect": "^3.6.6",
-    "documentary": "^1.26.5",
+    "@contexts/http": "^1.5.1",
+    "alamode": "^2.3.4",
+    "connect": "^3.7.0",
+    "documentary": "^1.27.5",
     "eslint-config-artdeco": "1.0.1",
     "yarn-s": "1.1.0",
-    "zoroaster": "^4.1.0-alpha"
+    "zoroaster": "^4.1.1-alpha"
   }
 }

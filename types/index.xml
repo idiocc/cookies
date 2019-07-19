@@ -4,13 +4,15 @@
 
   <type interface name="Cookies" desc="The interface for Cookies: signed and unsigned cookies based on Keygrip.">
     <prop type="!_goa.Keygrip" name="keys" opt>
-      The keys object constructed from passed keys (private, will be installed from options).
+      The keys object constructed from passed keys (private, will be installed
+      from options).
     </prop>
     <prop opt boolean name="secure">
-      Explicitly specifies if the connection is secure (private, will be installed from options).
+      Explicitly specifies if the connection is secure (private, will be installed
+      from options).
     </prop>
     <prop type="function(string, { signed: boolean }): (string|undefined)" name="get">
-      ** This extracts the cookie with the given name from the Cookie header in
+      This extracts the cookie with the given name from the Cookie header in
       the request. If such a cookie exists, its value is returned. Otherwise,
       nothing is returned. `{ signed: true }` can optionally be passed as the
       second parameter options. In this case, a signature cookie (a cookie of same
@@ -29,7 +31,9 @@
       and an outbound header with an expired date is used to delete the cookie.
     </prop>
     <prop type="function(string, ?string=, _goa.CookieAttributes=)" name="set">
-      This sets the given cookie in the response and returns the current context to allow chaining. If the value is omitted, an outbound header with an expired date is used to delete the cookie.
+      This sets the given cookie in the response and returns the current context
+      to allow chaining. If the value is omitted, an outbound header with an
+      expired date is used to delete the cookie.
     </prop>
   </type>
   <type record name="CookiesOptions" desc="Options for the constructor.">
@@ -37,7 +41,8 @@
       The array of keys, or the `Keygrip` object.
     </prop>
     <prop opt type="boolean" name="secure">
-      Explicitly specifies if the connection is secure, rather than this module examining request.
+      Explicitly specifies if the connection is secure, rather than this module
+      examining request.
     </prop>
   </type>
   <type record name="CookieAttributes" desc="Used to generate the outbound cookie header.">
@@ -45,7 +50,8 @@
       Represents the milliseconds from Date.now() for expiry.
     </prop>
     <prop opt type="!Date" name="expires">
-      Indicates the cookie's expiration date (expires at the end of session by default).
+      Indicates the cookie's expiration date (expires at the end of session by
+      default).
     </prop>
     <prop opt string name="path" default="/">
       Indicates the path of the cookie.
@@ -54,19 +60,29 @@
       Indicates the domain of the cookie.
     </prop>
     <prop opt boolean name="secure">
-      Indicates whether the cookie is only to be sent over HTTPS (false by default for HTTP, true by default for HTTPS).
+      Indicates whether the cookie is only to be sent over HTTPS (false by default
+      for HTTP, true by default for HTTPS).
     </prop>
     <prop opt number name="httpOnly" default="true">
-      Indicates whether the cookie is only to be sent over HTTP(S), and not made available to client JavaScript.
+      Indicates whether the cookie is only to be sent over HTTP(S), and not made
+      available to client JavaScript.
     </prop>
     <prop type="boolean|string" name="sameSite" default="false">
-      Indicates whether the cookie is a "same site" cookie. This can be set to `'strict'`, `'lax'`, or `true` (which maps to `'strict'`).
+      Indicates whether the cookie is a "same site" cookie. This can be set to
+      `'strict'`, `'lax'`, or `true` (which maps to `'strict'`).
     </prop>
     <prop boolean name="signed" default="false">
-      Indicating whether the cookie is to be signed. If this is true, another cookie of the same name with the .sig suffix appended will also be sent, with a 27-byte url-safe base64 SHA1 value representing the hash of cookie-name=cookie-value against the first Keygrip key. This signature key is used to detect tampering the next time a cookie is received.
+      Indicating whether the cookie is to be signed. If this is true, another cookie
+      of the same name with the .sig suffix appended will also be sent, with a
+      27-byte url-safe base64 SHA1 value representing the hash of
+      cookie-name=cookie-value against the first Keygrip key. This signature
+      key is used to detect tampering the next time a cookie is received.
     </prop>
     <prop boolean name="overwrite" default="false">
-      Indicates whether to overwrite previously set cookies of the same name. If this is true, all cookies set during the same request with the same name (regardless of path or domain) are filtered out of the Set-Cookie header when setting this cookie.
+      Indicates whether to overwrite previously set cookies of the same name. If
+      this is true, all cookies set during the same request with the same name
+      (regardless of path or domain) are filtered out of the Set-Cookie header
+      when setting this cookie.
     </prop>
   </type>
 </types>

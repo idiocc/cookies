@@ -106,10 +106,10 @@ server.listen(async () => {
 <tr><td>
 
 ```
-http://localhost:63821
-Welcome, first time visitor! LastVisit=2019-07-19T21:48:17.981Z; path=/; httponly
-LastVisit.sig=aXEzfJ70dSg1_6EPjV-MEp-e7Ms; path=/; httponly
-Welcome back! Nothing much changed since your last visit at 2019-07-19T21:48:17.981Z.
+http://localhost:63994
+Welcome, first time visitor! LastVisit=2019-07-19T21:52:08.991Z; path=/; httponly
+LastVisit.sig=GG5WtfwnerDtI1R3xsbqMC-QElU; path=/; httponly
+Welcome back! Nothing much changed since your last visit at 2019-07-19T21:52:08.991Z.
 ```
 </td></tr>
 </table>
@@ -120,33 +120,33 @@ Welcome back! Nothing much changed since your last visit at 2019-07-19T21:48:17.
 
 __<a name="type-cookies">`Cookies`</a>__: The interface for Cookies: signed and unsigned cookies based on Keygrip.
 
-|   Name   |                                                                       Type                                                                       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| keys     | <em><a href="#type-keygrip" title="Signing and verifying data (such as cookies or URLs) through a rotating credential system.">!Keygrip</a></em> | The keys object constructed from passed keys (private, will be installed from options).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| secure   | <em>boolean</em>                                                                                                                                 | Explicitly specifies if the connection is secure (private, will be installed from options).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| __get*__ | <em>function(string, { signed: boolean }): (string \| undefined)</em>                                                                            | ** This extracts the cookie with the given name from the Cookie header in<br/>      the request. If such a cookie exists, its value is returned. Otherwise,<br/>      nothing is returned. `{ signed: true }` can optionally be passed as the<br/>      second parameter options. In this case, a signature cookie (a cookie of same<br/>      name ending with the .sig suffix appended) is fetched. If no such cookie<br/>      exists, nothing is returned.<br/>      If the signature cookie does exist, the provided Keygrip object is used to<br/>      check whether the hash of cookie-name=cookie-value matches that of any<br/>      registered key:<li>      If the signature cookie hash matches the first key, the original cookie</li>      value is returned.<li>      If the signature cookie hash matches any other key, the original cookie</li>      value is returned AND an outbound header is set to update the signature<br/>      cookie's value to the hash of the first key. This enables automatic<br/>      freshening of signature cookies that have become stale due to key rotation.<li>      If the signature cookie hash does not match any key, nothing is returned,</li>      and an outbound header with an expired date is used to delete the cookie. |
-| __set*__ | <em>function(string, ?string=, <a href="#type-cookieattributes" title="Used to generate the outbound cookie header.">CookieAttributes</a>=)</em> | This sets the given cookie in the response and returns the current context to allow chaining. If the value is omitted, an outbound header with an expired date is used to delete the cookie.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+|   Name   |                                                                       Type                                                                       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| keys     | <em><a href="#type-keygrip" title="Signing and verifying data (such as cookies or URLs) through a rotating credential system.">!Keygrip</a></em> | The keys object constructed from passed keys (private, will be installed<br/>      from options).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| secure   | <em>boolean</em>                                                                                                                                 | Explicitly specifies if the connection is secure (private, will be installed<br/>      from options).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| __get*__ | <em>function(string, { signed: boolean }): (string \| undefined)</em>                                                                            | This extracts the cookie with the given name from the Cookie header in<br/>      the request. If such a cookie exists, its value is returned. Otherwise,<br/>      nothing is returned. `{ signed: true }` can optionally be passed as the<br/>      second parameter options. In this case, a signature cookie (a cookie of same<br/>      name ending with the .sig suffix appended) is fetched. If no such cookie<br/>      exists, nothing is returned.<br/>      If the signature cookie does exist, the provided Keygrip object is used to<br/>      check whether the hash of cookie-name=cookie-value matches that of any<br/>      registered key:<li>      If the signature cookie hash matches the first key, the original cookie</li>      value is returned.<li>      If the signature cookie hash matches any other key, the original cookie</li>      value is returned AND an outbound header is set to update the signature<br/>      cookie's value to the hash of the first key. This enables automatic<br/>      freshening of signature cookies that have become stale due to key rotation.<li>      If the signature cookie hash does not match any key, nothing is returned,</li>      and an outbound header with an expired date is used to delete the cookie. |
+| __set*__ | <em>function(string, ?string=, <a href="#type-cookieattributes" title="Used to generate the outbound cookie header.">CookieAttributes</a>=)</em> | This sets the given cookie in the response and returns the current context<br/>      to allow chaining. If the value is omitted, an outbound header with an<br/>      expired date is used to delete the cookie.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 
 __<a name="type-cookiesoptions">`CookiesOptions`</a>__: Options for the constructor.
 
-|  Name  |                                                                                   Type                                                                                    |                                         Description                                          |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| keys   | <em>!(Array&lt;string&gt; \| <a href="#type-keygrip" title="Signing and verifying data (such as cookies or URLs) through a rotating credential system.">Keygrip</a>)</em> | The array of keys, or the `Keygrip` object.                                                  |
-| secure | <em>boolean</em>                                                                                                                                                          | Explicitly specifies if the connection is secure, rather than this module examining request. |
+|  Name  |                                                                                   Type                                                                                    |                                              Description                                               |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| keys   | <em>!(Array&lt;string&gt; \| <a href="#type-keygrip" title="Signing and verifying data (such as cookies or URLs) through a rotating credential system.">Keygrip</a>)</em> | The array of keys, or the `Keygrip` object.                                                            |
+| secure | <em>boolean</em>                                                                                                                                                          | Explicitly specifies if the connection is secure, rather than this module<br/>      examining request. |
 
 __<a name="type-cookieattributes">`CookieAttributes`</a>__: Used to generate the outbound cookie header.
 
-|   Name    |             Type             |                                                                                                                                                                          Description                                                                                                                                                                           | Default |
-| --------- | ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| maxAge    | <em>number</em>              | Represents the milliseconds from Date.now() for expiry.                                                                                                                                                                                                                                                                                                        | -       |
-| expires   | <em>!Date</em>               | Indicates the cookie's expiration date (expires at the end of session by default).                                                                                                                                                                                                                                                                             | -       |
-| path      | <em>string</em>              | Indicates the path of the cookie.                                                                                                                                                                                                                                                                                                                              | `/`     |
-| domain    | <em>string</em>              | Indicates the domain of the cookie.                                                                                                                                                                                                                                                                                                                            | -       |
-| secure    | <em>boolean</em>             | Indicates whether the cookie is only to be sent over HTTPS (false by default for HTTP, true by default for HTTPS).                                                                                                                                                                                                                                             | -       |
-| httpOnly  | <em>number</em>              | Indicates whether the cookie is only to be sent over HTTP(S), and not made available to client JavaScript.                                                                                                                                                                                                                                                     | `true`  |
-| sameSite  | <em>(boolean \| string)</em> | Indicates whether the cookie is a "same site" cookie. This can be set to `'strict'`, `'lax'`, or `true` (which maps to `'strict'`).                                                                                                                                                                                                                            | `false` |
-| signed    | <em>boolean</em>             | Indicating whether the cookie is to be signed. If this is true, another cookie of the same name with the .sig suffix appended will also be sent, with a 27-byte url-safe base64 SHA1 value representing the hash of cookie-name=cookie-value against the first Keygrip key. This signature key is used to detect tampering the next time a cookie is received. | `false` |
-| overwrite | <em>boolean</em>             | Indicates whether to overwrite previously set cookies of the same name. If this is true, all cookies set during the same request with the same name (regardless of path or domain) are filtered out of the Set-Cookie header when setting this cookie.                                                                                                         | `false` |
+|   Name    |             Type             |                                                                                                                                                                                              Description                                                                                                                                                                                               | Default |
+| --------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| maxAge    | <em>number</em>              | Represents the milliseconds from Date.now() for expiry.                                                                                                                                                                                                                                                                                                                                                | -       |
+| expires   | <em>!Date</em>               | Indicates the cookie's expiration date (expires at the end of session by<br/>      default).                                                                                                                                                                                                                                                                                                           | -       |
+| path      | <em>string</em>              | Indicates the path of the cookie.                                                                                                                                                                                                                                                                                                                                                                      | `/`     |
+| domain    | <em>string</em>              | Indicates the domain of the cookie.                                                                                                                                                                                                                                                                                                                                                                    | -       |
+| secure    | <em>boolean</em>             | Indicates whether the cookie is only to be sent over HTTPS (false by default<br/>      for HTTP, true by default for HTTPS).                                                                                                                                                                                                                                                                           | -       |
+| httpOnly  | <em>number</em>              | Indicates whether the cookie is only to be sent over HTTP(S), and not made<br/>      available to client JavaScript.                                                                                                                                                                                                                                                                                   | `true`  |
+| sameSite  | <em>(boolean \| string)</em> | Indicates whether the cookie is a "same site" cookie. This can be set to<br/>      `'strict'`, `'lax'`, or `true` (which maps to `'strict'`).                                                                                                                                                                                                                                                          | `false` |
+| signed    | <em>boolean</em>             | Indicating whether the cookie is to be signed. If this is true, another cookie<br/>      of the same name with the .sig suffix appended will also be sent, with a<br/>      27-byte url-safe base64 SHA1 value representing the hash of<br/>      cookie-name=cookie-value against the first Keygrip key. This signature<br/>      key is used to detect tampering the next time a cookie is received. | `false` |
+| overwrite | <em>boolean</em>             | Indicates whether to overwrite previously set cookies of the same name. If<br/>      this is true, all cookies set during the same request with the same name<br/>      (regardless of path or domain) are filtered out of the Set-Cookie header<br/>      when setting this cookie.                                                                                                                   | `false` |
 
 <p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/2.svg?sanitize=true"></a></p>
 
@@ -262,10 +262,10 @@ const server = app.listen(0, async () => {
 <tr><td>
 
 ```
-http://localhost:63825
-Welcome, first time visitor! LastVisit=2019-07-19T21:48:18.509Z; path=/; httponly
-LastVisit.sig=y2Ti3xelCcaCRE9pL47NYu6gBfs; path=/; httponly
-Welcome back! Nothing much changed since your last visit at 2019-07-19T21:48:18.509Z.
+http://localhost:63997
+Welcome, first time visitor! LastVisit=2019-07-19T21:52:09.884Z; path=/; httponly
+LastVisit.sig=KlDphItPnKedHQPKDfzhCHrA80A; path=/; httponly
+Welcome back! Nothing much changed since your last visit at 2019-07-19T21:52:09.884Z.
 ```
 </td></tr>
 </table>
@@ -297,17 +297,19 @@ var _goa = {}
  */
 _goa.Cookies
 /**
- * The keys object constructed from passed keys (private, will be installed from options).
+ * The keys object constructed from passed keys (private, will be installed
+      from options).
  * @type {(!_goa.Keygrip)|undefined}
  */
 _goa.Cookies.prototype.keys
 /**
- * Explicitly specifies if the connection is secure (private, will be installed from options).
+ * Explicitly specifies if the connection is secure (private, will be installed
+      from options).
  * @type {boolean|undefined}
  */
 _goa.Cookies.prototype.secure
 /**
- * ** This extracts the cookie with the given name from the Cookie header in
+ * This extracts the cookie with the given name from the Cookie header in
       the request. If such a cookie exists, its value is returned. Otherwise,
       nothing is returned. `{ signed: true }` can optionally be passed as the
       second parameter options. In this case, a signature cookie (a cookie of same
@@ -328,7 +330,9 @@ _goa.Cookies.prototype.secure
  */
 _goa.Cookies.prototype.get
 /**
- * This sets the given cookie in the response and returns the current context to allow chaining. If the value is omitted, an outbound header with an expired date is used to delete the cookie.
+ * This sets the given cookie in the response and returns the current context
+      to allow chaining. If the value is omitted, an outbound header with an
+      expired date is used to delete the cookie.
  * @type {function(string, ?string=, _goa.CookieAttributes=)}
  */
 _goa.Cookies.prototype.set
@@ -343,7 +347,8 @@ _goa.CookiesOptions
  */
 _goa.CookiesOptions.prototype.keys
 /**
- * Explicitly specifies if the connection is secure, rather than this module examining request.
+ * Explicitly specifies if the connection is secure, rather than this module
+      examining request.
  * @type {boolean|undefined}
  */
 _goa.CookiesOptions.prototype.secure
@@ -358,7 +363,8 @@ _goa.CookieAttributes
  */
 _goa.CookieAttributes.prototype.maxAge
 /**
- * Indicates the cookie's expiration date (expires at the end of session by default).
+ * Indicates the cookie's expiration date (expires at the end of session by
+      default).
  * @type {(!Date)|undefined}
  */
 _goa.CookieAttributes.prototype.expires
@@ -373,27 +379,37 @@ _goa.CookieAttributes.prototype.path
  */
 _goa.CookieAttributes.prototype.domain
 /**
- * Indicates whether the cookie is only to be sent over HTTPS (false by default for HTTP, true by default for HTTPS).
+ * Indicates whether the cookie is only to be sent over HTTPS (false by default
+      for HTTP, true by default for HTTPS).
  * @type {boolean|undefined}
  */
 _goa.CookieAttributes.prototype.secure
 /**
- * Indicates whether the cookie is only to be sent over HTTP(S), and not made available to client JavaScript. Default `true`.
+ * Indicates whether the cookie is only to be sent over HTTP(S), and not made
+      available to client JavaScript. Default `true`.
  * @type {number|undefined}
  */
 _goa.CookieAttributes.prototype.httpOnly
 /**
- * Indicates whether the cookie is a "same site" cookie. This can be set to `'strict'`, `'lax'`, or `true` (which maps to `'strict'`).
+ * Indicates whether the cookie is a "same site" cookie. This can be set to
+      `'strict'`, `'lax'`, or `true` (which maps to `'strict'`).
  * @type {(boolean|string)|undefined}
  */
 _goa.CookieAttributes.prototype.sameSite
 /**
- * Indicating whether the cookie is to be signed. If this is true, another cookie of the same name with the .sig suffix appended will also be sent, with a 27-byte url-safe base64 SHA1 value representing the hash of cookie-name=cookie-value against the first Keygrip key. This signature key is used to detect tampering the next time a cookie is received.
+ * Indicating whether the cookie is to be signed. If this is true, another cookie
+      of the same name with the .sig suffix appended will also be sent, with a
+      27-byte url-safe base64 SHA1 value representing the hash of
+      cookie-name=cookie-value against the first Keygrip key. This signature
+      key is used to detect tampering the next time a cookie is received.
  * @type {boolean|undefined}
  */
 _goa.CookieAttributes.prototype.signed
 /**
- * Indicates whether to overwrite previously set cookies of the same name. If this is true, all cookies set during the same request with the same name (regardless of path or domain) are filtered out of the Set-Cookie header when setting this cookie.
+ * Indicates whether to overwrite previously set cookies of the same name. If
+      this is true, all cookies set during the same request with the same name
+      (regardless of path or domain) are filtered out of the Set-Cookie header
+      when setting this cookie.
  * @type {boolean|undefined}
  */
 _goa.CookieAttributes.prototype.overwrite
