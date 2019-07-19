@@ -21,17 +21,7 @@ The API is exposed so that custom validation algorithms can be implemented by ex
 <tr><td><md2html>
 The implementation provides the _sign_, _verify_ and _index_ methods. The _Keygrip_ instances provide mechanisms to rotate credentials by modifying the **keys** array. Since cookies' encoding and decoding will be based on the keys, it's important to maintain them across server restarts, however when required, their rotation can be performed with `keylist.unshift("SEKRIT4"); keylist.pop()` without having to restart the server.
 </md2html></td></tr>
-<!-- /block-end -->
-<!-- block-start -->
-<!-- <tr><td>
 
-%FORK %
-</td></tr>
-<tr><td><md2html>
-
-
-</md2html></td></tr> -->
-<!-- /block-end -->
 </table>
 
 </details>
