@@ -21,6 +21,7 @@ yarn add @goa/cookies
   * [`CookieAttributes`](#type-cookieattributes)
 - [class Keygrip](#class-keygrip)
   * [`Keygrip`](#type-keygrip)
+  * [Keygrip Implementation](#keygrip-implementation)
 - [Express/Connect](#expressconnect)
 - [Copyright](#copyright)
 
@@ -103,10 +104,10 @@ server.listen(async () => {
 <tr><td>
 
 ```
-http://localhost:62447
-Welcome, first time visitor! LastVisit=2019-07-19T21:18:18.954Z; path=/; httponly
-LastVisit.sig=GFdbBrzlGgz95ZMmeDT11AOl7yw; path=/; httponly
-Welcome back! Nothing much changed since your last visit at 2019-07-19T21:18:18.954Z.
+http://localhost:62647
+Welcome, first time visitor! LastVisit=2019-07-19T21:22:55.548Z; path=/; httponly
+LastVisit.sig=O3YHLZ3hSVQ2BVmYkT7IbQatxG8; path=/; httponly
+Welcome back! Nothing much changed since your last visit at 2019-07-19T21:22:55.548Z.
 ```
 </td></tr>
 </table>
@@ -151,6 +152,8 @@ __<a name="type-cookieattributes">`CookieAttributes`</a>__: Used to generate the
 
 This module already comes with [_Keygrip_](https://www.npmjs.com/package/keygrip) built in. This is because they are meant to be used together, so they were optimised together as well. The API is the same.
 
+> _In cookies, there is no need to use instantiate Keygrip manually, when the keys can just be passed, i.e., if the keys are array, the `new Keygrip(array)` will be called by the constructor._
+
 __<a name="type-keygrip">`Keygrip`</a>__: Signing and verifying data (such as cookies or URLs) through a rotating credential system.
 
 |    Name     |                 Type                  |                                                                                                                                                                                                       Description                                                                                                                                                                                                       |
@@ -158,6 +161,50 @@ __<a name="type-keygrip">`Keygrip`</a>__: Signing and verifying data (such as co
 | __sign*__   | <em>function(?): string</em>          | This creates a SHA1 HMAC based on the _first_ key in the keylist, and outputs it as a 27-byte url-safe base64 digest (base64 without padding, replacing `+` with `-` and `/` with `_`).                                                                                                                                                                                                                                 |
 | __index*__  | <em>function(?, string): number</em>  | This loops through all of the keys currently in the keylist until the digest of the current key matches the given digest, at which point the current index is returned. If no key is matched, -1 is returned.<br/>      The idea is that if the index returned is greater than `0`, the data should be re-signed to prevent premature credential invalidation, and enable better performance for subsequent challenges. |
 | __verify*__ | <em>function(?, string): boolean</em> | This uses `index` to return true if the digest matches any existing keys, and false otherwise.                                                                                                                                                                                                                                                                                                                          |
+
+The API is exposed so that custom validation algorithms can be implemented by extending the _Keygrip_ class.
+
+<details>
+<summary>Show <a name="keygrip-implementation">Keygrip Implementation</a></summary>
+
+<table>
+<tr><th><a href="src/Keygrip.js">Keygrip Class</a></th></tr>
+<tr><td>
+
+```js
+/**
+ * @implements {_goa.Keygrip}
+ */
+export default class Keygrip {
+  constructor(keys, algorithm = 'sha1', encoding = 'base64') {
+    if (!keys || !(0 in keys)) {
+      throw new Error('Keys must be provided.')
+    }
+    this.algorithm = algorithm
+    this.encoding = encoding
+    this.keys = keys
+  }
+  sign(data) {
+    return sign(data, this.algorithm, this.keys[0], this.encoding)
+  }
+  verify(data, digest) {
+    return this.index(data, digest) > -1
+  }
+  index(data, digest) {
+    for (let i = 0, l = this.keys.length; i < l; i++) {
+      const sig = sign(data, this.algorithm, this.keys[i], this.encoding)
+      if (constantTimeCompare(digest, sig)) return i
+    }
+
+    return -1
+  }
+}
+```
+</td></tr>
+<tr><td>The implementation provides the <em>sign</em>, <em>verify</em> and <em>index</em> methods. The <em>Keygrip</em> instances provide mechanisms to rotate credentials by modifying the <strong>keys</strong> array. Since cookies' encoding and decoding will be based on the keys, it's important to maintain them across server restarts, however when required, their rotation can be performed with <code>keylist.unshift("SEKRIT4"); keylist.pop()</code> without having to restart the server.</td></tr>
+</table>
+
+</details>
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/3.svg?sanitize=true"></a></p>
 
@@ -212,10 +259,10 @@ const server = app.listen(0, async () => {
 <tr><td>
 
 ```
-http://localhost:62450
-Welcome, first time visitor! LastVisit=2019-07-19T21:18:19.490Z; path=/; httponly
-LastVisit.sig=YLfLjQ0O3bUHnX9qV8A5StnV8dI; path=/; httponly
-Welcome back! Nothing much changed since your last visit at 2019-07-19T21:18:19.490Z.
+http://localhost:62651
+Welcome, first time visitor! LastVisit=2019-07-19T21:22:56.165Z; path=/; httponly
+LastVisit.sig=zeonmDJ9TaFD4JUCaXGln0o2jA8; path=/; httponly
+Welcome back! Nothing much changed since your last visit at 2019-07-19T21:22:56.165Z.
 ```
 </td></tr>
 </table>

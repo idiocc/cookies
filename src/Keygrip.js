@@ -6,6 +6,7 @@
 
 import { createHmac } from 'crypto'
 
+/* start example */
 /**
  * @implements {_goa.Keygrip}
  */
@@ -33,6 +34,7 @@ export default class Keygrip {
     return -1
   }
 }
+/* end example */
 
 function sign(data, algorithm, key, encoding) {
   return createHmac(algorithm, key)
