@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/%40goa%2Fcookies.svg)](https://npmjs.org/package/@goa/cookies)
 
-`@goa/cookies` is a fork of [Signed And Unsigned Cookies Based On Keygrip](https://github.com/pillarjs/cookies) Written In ES6, Annotated With Externs And Optimised With [JavaScript Compiler](https://compiler.page).
+`@goa/cookies` is a fork of <kbd>🗝 [Signed And Unsigned Cookies Based On Keygrip](https://github.com/pillarjs/cookies)</kbd> Written In ES6, Annotated With [Externs](/types/externs) And Optimised With [JavaScript Compiler](https://compiler.page).
 
 <table><tr><td>
   
@@ -14,14 +14,14 @@
 
   The package specifies the following entry points:
 
-  - <kbd>commonjs/main</kbd>: [compile/index.js](/compile/index.js); requirejs entry optimised with compiler. Used for individual consumption of the package's API.
+  - <kbd>[commonjs/main](/compile/index.js)</kbd>: the _require_ entry optimised with compiler. Used for individual consumption of the package's API.
       ```m
       compile
       ├── cookies.js
       ├── cookies.js.map
       └── index.js
       ```
-  - <kbd>es6/module</kbd>:    [src/index.js](/src/index.js); the source code that can be used in compilation of other packages, e.g., @goa/goa.
+  - <kbd>[es6/module](/src/index.js)</kbd>: the source code that can be used in compilation of other packages, e.g., `@goa/goa`.
       ```m
       src
       ├── Cookie.js
