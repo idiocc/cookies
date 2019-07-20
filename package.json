@@ -25,7 +25,7 @@
     "types"
   ],
   "externs": [
-    "types/externs"
+    "types/externs/index.js"
   ],
   "repository": {
     "type": "git",
