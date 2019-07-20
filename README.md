@@ -465,9 +465,10 @@ _goa.Keygrip.prototype.verify
 
 Original [source, documentation and testing](https://github.com/pillarjs/cookies) by [Jed Schmidt](http://jed.is/) & Douglas Christopher Wilson.
 
-[![npm version](https://badge.fury.io/js/cookies.svg)](https://npmjs.org/package/cookies)
-
 Forked Off `cookies` 0.7.3 _Apr 24_
+
+Current:
+[![npm version](https://badge.fury.io/js/cookies.svg)](https://npmjs.org/package/cookies)
 
 ---
 
