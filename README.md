@@ -79,10 +79,10 @@ yarn add @goa/cookies
   * [`CookieSetOptions`](#type-cookiesetoptions)
 - [`get(name: string, opts=: CookieSetOptions): string`](#getname-stringopts-cookiesetoptions-string)
 - [Wiki](#wiki)
-* [<kbd>🍪 Cookie Attributes</kbd>](#-cookie-attributes)
-* [<kbd>🚄 Express And Connect Middleware Constructor</kbd>](#-express-and-connect-middleware-constructor)
-* [<kbd>⚜️ Keygrip</kbd>](#-keygrip)
-* [<kbd>🔗 View Compiler Externs</kbd>](#-view-compiler-externs)
+  * [<kbd>🍪 Cookie Attributes</kbd>](#-cookie-attributes)
+  * [<kbd>🚄 Express And Connect Middleware Constructor</kbd>](#-express-and-connect-middleware-constructor)
+  * [<kbd>⚜️ Keygrip</kbd>](#-keygrip)
+  * [<kbd>🔗 View Compiler Externs</kbd>](#-view-compiler-externs)
 - [Copyright & Status](#copyright--status)
 
 <p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/0.svg?sanitize=true"></a></p>
