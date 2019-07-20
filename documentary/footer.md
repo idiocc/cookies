@@ -2,8 +2,13 @@
 
 - [ ] Add a new item to the todo list. -->
 
-<table>
-<tr><th><kbd>🍪 <a href="../../wiki/Express-And-Connect">Express And Connect Middleware Constructor</a></kbd></th></tr>
+<!-- <table> -->
+<!-- <tr><th> -->
+
+<kbd>🚄 [Express And Connect Middleware Constructor](../../wiki/Express-And-Connect)</a> ⚡️</kbd>
+---
+
+<!-- </th></tr> -->
 <!-- block-start -->
 <!-- <tr><td> -->
 <!-- <img src="/wiki/cookies.gif" alt="Cookies Attributes: domain, expires, httpOnly, maxAge, overwrite, path, sameSite, secure"> -->

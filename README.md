@@ -24,6 +24,7 @@ yarn add @goa/cookies
   * [Keygrip Implementation](#keygrip-implementation)
 - [Externs](#externs)
   * [Externs](#externs)
+- [<kbd>🚄 [Express And Connect Middleware Constructor](../../wiki/Express-And-Connect)</a> ⚡️</kbd>](#kbd-express-and-connect-middleware-constructorwikiexpress-and-connecta-kbd)
 - [Copyright](#copyright)
 
 <p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/0.svg?sanitize=true"></a></p>
@@ -396,8 +397,9 @@ _goa.Keygrip.prototype.verify
 
 <p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/5.svg?sanitize=true"></a></p>
 
-<table>
-<tr><th><kbd>🍪 <a href="../../wiki/Express-And-Connect">Express And Connect Middleware Constructor</a></kbd></th></tr>
+<kbd>🚄 [Express And Connect Middleware Constructor](../../wiki/Express-And-Connect)</a> ⚡️</kbd>
+---
+
 </table>
 
 
