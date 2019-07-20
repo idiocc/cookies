@@ -80,8 +80,8 @@ yarn add @goa/cookies
 - [class Keygrip](#class-keygrip)
   * [`Keygrip`](#type-keygrip)
   * [Keygrip Implementation](#keygrip-implementation)
-- [<kbd>🔗 View Compiler Externs</kbd>](#-view-compiler-externs)
-- [<kbd>🚄 Express And Connect Middleware Constructor</kbd>](#-express-and-connect-middleware-constructor)
+- [<kbd>🔗 [View Compiler Externs](../../wiki/Compiler-Externs)</kbd>](#kbd-view-compiler-externswikicompiler-externskbd)
+- [<kbd>🚄 [Express And Connect Middleware Constructor](../../wiki/Express-And-Connect)</kbd>](#kbd-express-and-connect-middleware-constructorwikiexpress-and-connectkbd)
 - [Copyright & Status](#copyright--status)
 
 <p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/0.svg?sanitize=true"></a></p>
