@@ -4,36 +4,33 @@
 
 `@goa/cookies` is a fork of [Signed And Unsigned Cookies Based On Keygrip](https://github.com/pillarjs/cookies) Written In ES6, Annotated With Externs And Optimised With [JavaScript Compiler](https://compiler.page).
 
-<table>
-<tr><td>
+<table><tr><td>
+  
+  The original module was edited with annotations and other changes required for it to be used in [`@goa/koa`](https://artdecocode.com/goa/): _Koa_ web server [compiled](https://compiler.page) with _Closure Compiler_ using [**Depack**](https://artdecocode.com/depack/) into a single file library (with 1 dependency such as mime-db).
 
-The original module was edited with annotations and other changes required for it to be used in [`@goa/koa`](https://artdecocode.com/goa/): _Koa_ web server [compiled](https://compiler.page) with _Closure Compiler_ using [**Depack**](https://artdecocode.com/depack/) into a single file library (with 1 dependency such as mime-db). The tests were rewritten using [context testing](https://contexttesting.com).
+  <details><summary>Read more about the compilation.</summary>
 
-<details><summary>Read more about the compilation.</summary>
+  All dependencies are specified as dev dependencies because they are flattened into a single JS file by the compiler, unless the special `require(/* depack ok */ 'modulejs')` was called, which will require the package at run-time, for instance this is how mime-db is required by Goa.
 
-All dependencies are specified as dev dependencies because they are flattened into a single JS file by the compiler, unless the special `require(/* depack ok */ 'modulejs')` was called, which will require the package at run-time, for instance this is how mime-db is required by Goa.
+  The package specifies the following entry points:
 
-The package specifies the following entry points:
+  - <kbd>commonjs/main</kbd>: [compile/index.js](/compile/index.js); requirejs entry optimised with compiler. Used for individual consumption of the package's API.
+      ```m
+      compile
+      ├── cookies.js
+      ├── cookies.js.map
+      └── index.js
+      ```
+  - <kbd>es6/module</kbd>:    [src/index.js](/src/index.js); the source code that can be used in compilation of other packages, e.g., @goa/goa.
+      ```m
+      src
+      ├── Cookie.js
+      ├── Keygrip.js
+      ├── depack.js
+      └── index.js
+      ```
 
-- <kbd>commonjs/main</kbd>: compile/index.js; requirejs entry optimised with compiler. Used for individual consumption of the package's API.
-    ```m
-    compile
-    ├── cookies.js
-    ├── cookies.js.map
-    └── index.js
-    ```
-- <kbd>es6/module</kbd>:    src/index.js; the source code that can be used in compilation of other packages, e.g., @goa/goa.
-    ```m
-    src
-    ├── Cookie.js
-    ├── Keygrip.js
-    ├── depack.js
-    └── index.js
-    ```
-
-</details>
-</td>
-<td>
+  </details></td><td>The tests were rewritten using [context testing](https://contexttesting.com). The [Http Context](https://npmjs.org/@contexts/http), in particular the Cookie Tester was used to assert on presence of entries, and their attributes.<details><summary>Show the tests.</summary>
 
 ```js
 'with "secure: true" constructor option': {
@@ -63,8 +60,7 @@ The package specifies the following entry points:
   },
 },
 ```
-</td></tr>
-</table>
+</details></td></tr></table>
 
 ```sh
 yarn add @goa/cookies
