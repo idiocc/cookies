@@ -4,6 +4,8 @@
 
 <!-- <table> -->
 <!-- <tr><th> -->
+<kbd>🔗 [View Compiler Externs](../../wiki/Compiler-Externs)</kbd>
+---
 
 <kbd>🚄 [Express And Connect Middleware Constructor](../../wiki/Express-And-Connect)</kbd>
 ---
