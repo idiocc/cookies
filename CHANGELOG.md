@@ -1,5 +1,9 @@
 ## 21 July 2019
 
+### [1.1.2](https://github.com/idiocc/cookies/compare/v1.1.1...v1.1.2)
+
+- [fix] Fix missing readme on npm?
+
 ### [1.1.1](https://github.com/idiocc/cookies/compare/v1.1.0...v1.1.1)
 
 - [docs] Adjust appearance for npm.
