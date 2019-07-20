@@ -223,8 +223,10 @@ const TS = {
           .assert(200)
           .attribute('foo', 'Secure')
       },
+      /* start example */
       'with "secure: true" constructor option': {
-        async 'sets secure attribute on unencrypted connection'({ start, c }) {
+        async 'sets secure attribute on unencrypted connection'(
+          { start, c }) {
           const opts = { secure: true }
           await start(c((req, res, cookies) => {
             cookies.set('foo', 'bar', { secure: true })
@@ -236,7 +238,8 @@ const TS = {
         },
       },
       'with req.protocol === "https"': {
-        async 'sets secure attribute on unencrypted connection'({ start, c }) {
+        async 'sets secure attribute on unencrypted connection'(
+          { start, c }) {
           await start(c((req, res, cookies) => {
             req.protocol = 'https'
             cookies.set('foo', 'bar', { secure: true })
@@ -247,6 +250,7 @@ const TS = {
             .attribute('foo', 'Secure')
         },
       },
+      /* end example */
     },
   },
   // '"secureProxy" option': {

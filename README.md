@@ -4,21 +4,25 @@
 
 `@goa/cookies` is a fork of [Signed And Unsigned Cookies Based On Keygrip](https://github.com/pillarjs/cookies) Written In ES6, Annotated With Externs And Optimised With [JavaScript Compiler](https://compiler.page).
 
-The original module was edited with annotations and other changes required for it to be used in [\`@goa/koa\`](https:/`+`/artdecocode.com/goa/): _Koa_ web server [compiled](https://compiler.page) with _Closure Compiler_ using [**Depack**](https://artdecocode.com/depack/) into a single file library (with 1 dependency such as mime-db). The tests were rewritten using [context testing](https://contexttesting.com). <details><summary>Read more about the compilation.</summary>
+<table>
+<tr><td>
 
+The original module was edited with annotations and other changes required for it to be used in [`@goa/koa`](https://artdecocode.com/goa/): _Koa_ web server [compiled](https://compiler.page) with _Closure Compiler_ using [**Depack**](https://artdecocode.com/depack/) into a single file library (with 1 dependency such as mime-db). The tests were rewritten using [context testing](https://contexttesting.com).
 
-All dependencies are specified as dev dependencies because they are flattened into a single JS file by the compiler, unless the special \`require(/* depack ok */ 'modulejs')\` was called, which will require the package at run-time, for instance this is how mime-db is required by Goa.
+<details><summary>Read more about the compilation.</summary>
+
+All dependencies are specified as dev dependencies because they are flattened into a single JS file by the compiler, unless the special `require(/* depack ok */ 'modulejs')` was called, which will require the package at run-time, for instance this is how mime-db is required by Goa.
 
 The package specifies the following entry points:
 
-- [commonjs/main]: compile/index.js; optimised with compiler. The package for individual consumption with declared features.
+- <kbd>commonjs/main</kbd>: compile/index.js; requirejs entry optimised with compiler. Used for individual consumption of the package's API.
     ```m
     compile
     ├── cookies.js
     ├── cookies.js.map
     └── index.js
     ```
-- [es6/module]:    src/index.js; the source code that can be used in compilation of other packages, e.g., @goa/goa.
+- <kbd>es6/module</kbd>:    src/index.js; the source code that can be used in compilation of other packages, e.g., @goa/goa.
     ```m
     src
     ├── Cookie.js
@@ -28,6 +32,39 @@ The package specifies the following entry points:
     ```
 
 </details>
+</td>
+<td>
+
+```js
+'with "secure: true" constructor option': {
+  async 'sets secure attribute on unencrypted connection'(
+    { start, c }) {
+    const opts = { secure: true }
+    await start(c((req, res, cookies) => {
+      cookies.set('foo', 'bar', { secure: true })
+      res.end()
+    }, opts))
+      .get('/')
+      .assert(200)
+      .attribute('foo', 'Secure')
+  },
+},
+'with req.protocol === "https"': {
+  async 'sets secure attribute on unencrypted connection'(
+    { start, c }) {
+    await start(c((req, res, cookies) => {
+      req.protocol = 'https'
+      cookies.set('foo', 'bar', { secure: true })
+      res.end()
+    }))
+      .get('/')
+      .assert(200)
+      .attribute('foo', 'Secure')
+  },
+},
+```
+</td></tr>
+</table>
 
 ```sh
 yarn add @goa/cookies
