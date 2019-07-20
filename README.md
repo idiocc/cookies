@@ -81,10 +81,6 @@ yarn add @goa/cookies
   * [`CookieSetOptions`](#type-cookiesetoptions)
 - [`get(name: string, opts=: CookieSetOptions): string`](#getname-stringopts-cookiesetoptions-string)
 - [Wiki](#wiki)
-  * [<kbd>🍪 Cookie Attributes</kbd>](#-cookie-attributes)
-  * [<kbd>🚄 Express And Connect Middleware Constructor</kbd>](#-express-and-connect-middleware-constructor)
-  * [<kbd>⚜️ Keygrip</kbd>](#-keygrip)
-  * [<kbd>🔗 View Compiler Externs</kbd>](#-view-compiler-externs)
 - [Copyright & Status](#copyright--status)
 
 <p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/0.svg?sanitize=true"></a></p>
@@ -199,7 +195,7 @@ __<a name="type-cookiesetoptions">`CookieSetOptions`</a>__: How the cookie will 
 | ------ | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | signed | <em>boolean</em> | Indicating whether the cookie is to be signed. If this is true, another cookie of the same name with the .sig suffix appended will also be sent, with a 27-byte url-safe base64 SHA1 value representing the hash of cookie-name=cookie-value against the first Keygrip key. This signature key is used to detect tampering the next time a cookie is received. | `false` |
 
-The attributes accepted by the cookie instance are listed in wiki.
+The [attributes](/wiki/Cookie-Attribute) accepted by the cookie instance are listed in wiki.
 
 <p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/3.svg?sanitize=true"></a></p>
 
