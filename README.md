@@ -32,7 +32,9 @@
 
   </details></td><td>
 
-The tests were rewritten using [context testing](https://contexttesting.com). The [Http Context](https://npmjs.org/@contexts/http), in particular the Cookie Tester was used to assert on presence of entries, and their attributes.<details><summary>Show the tests.</summary>
+The tests were rewritten using [context testing](https://contexttesting.com). The [Http Context](https://npmjs.org/@contexts/http), in particular the Cookie Tester was used to assert on presence of entries, and their attributes.
+
+<details><summary>Show the tests.</summary>
 
 ```js
 'with "secure: true" constructor option': {
@@ -212,50 +214,49 @@ Returns the cookie with the given name if it was previously set. The `signed` op
 Wiki contains the following pages with additional information about the package.
 
 <table>
-<tr><th>
+<tr><td>
 
 <kbd>🍪 [Cookie Attributes](../../wiki/Cookie-Attributes)</kbd>
 ===
-</th></tr>
+</td></tr>
 <tr><td>
 <a href="../../wiki/Cookie-Attributes"><img src="/wiki/cookies.gif" alt="Cookies Attributes: domain, expires, httpOnly, maxAge, overwrite, path, sameSite, secure"></a>
 </td></tr>
 </table>
 
 <table>
-<tr><th>
+<tr><td>
 
 <kbd>🚄 [Express And Connect Middleware Constructor](../../wiki/Express-And-Connect)</kbd>
 ===
-</th></tr>
+</td></tr>
 <tr><td>
 Cookies can be used via express and connect easily by calling the middleware constructor functions to get middleware that can be installed on the app.
 </td></tr>
 
-<tr><th>
+<tr><td>
 
 <kbd>⚜️ [Keygrip](../../wiki/Keygrip)</kbd>
 ===
-</th></tr>
+</td></tr>
 <tr><td>The <em>Keygrip</em> can be passed in the <em><code>keys</code></em> property of the constructor. By default, the new instance of <em>Keygrip</em> will be created when an array of keys is passed, but custom implementations of <em>Keygrip</em> which override the sign and verify functions can be passed to cookies.
 </td></tr>
 
-<tr><th>
+<tr><td>
 
 <kbd>🔗 [View Compiler Externs](../../wiki/Compiler-Externs)</kbd>
 ===
-</th></tr>
+</td></tr>
 <tr><td>
 The externs are required to compile the package yet keep the options' properties in tact, i.e. without renaming the properties. The API is preserved for 2nd level compilation in other packages, such as Goa, and is tested on the 1st level compilation of the package itself.
 </td></tr>
 </table>
 
 
-
 ---
 
-
 <p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/5.svg?sanitize=true"></a></p>
+
 
 ## Copyright & Status
 
