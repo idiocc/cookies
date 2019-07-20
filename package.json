@@ -54,7 +54,7 @@
     "@contexts/http": "^1.5.1",
     "alamode": "^2.3.4",
     "connect": "^3.7.0",
-    "documentary": "^1.27.5",
+    "documentary": "^1.27.6",
     "eslint-config-artdeco": "1.0.1",
     "yarn-s": "1.1.0",
     "zoroaster": "^4.1.1-alpha"

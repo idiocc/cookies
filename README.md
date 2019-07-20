@@ -83,7 +83,7 @@ yarn add @goa/cookies
 - [Externs](#externs)
   * [Externs](#externs)
 - [<kbd>🚄 [Express And Connect Middleware Constructor](../../wiki/Express-And-Connect)</a> ⚡️</kbd>](#kbd-express-and-connect-middleware-constructorwikiexpress-and-connecta-kbd)
-- [Copyright](#copyright)
+- [Copyright & Status](#copyright--status)
 
 <p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/0.svg?sanitize=true"></a></p>
 
@@ -461,9 +461,13 @@ _goa.Keygrip.prototype.verify
 </table>
 
 
-## Copyright
+## Copyright & Status
 
 Original [source, documentation and testing](https://github.com/pillarjs/cookies) by [Jed Schmidt](http://jed.is/) & Douglas Christopher Wilson.
+
+[![npm version](https://badge.fury.io/js/cookies.svg)](https://npmjs.org/package/cookies)
+
+Forked Off `cookies` 0.7.3 _Apr 24_
 
 ---
 

@@ -21,9 +21,13 @@
 </table>
 
 
-## Copyright
+## Copyright & Status
 
 Original [source, documentation and testing](https://github.com/pillarjs/cookies) by [Jed Schmidt](http://jed.is/) & Douglas Christopher Wilson.
+
+%NPM: cookies%
+
+Forked Off `cookies` 0.7.3 _Apr 24_
 
 ---
 
