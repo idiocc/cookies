@@ -214,18 +214,18 @@ Returns the cookie with the given name if it was previously set. The `signed` op
 Wiki contains the following pages with additional information about the package.
 
 <table>
-<tr><td>
+<tr><td align="center">
 
 <kbd>🍪 [Cookie Attributes](../../wiki/Cookie-Attributes)</kbd>
 ===
 </td></tr>
 <tr><td>
-<a href="../../wiki/Cookie-Attributes"><img src="/wiki/cookies.gif" alt="Cookies Attributes: domain, expires, httpOnly, maxAge, overwrite, path, sameSite, secure"></a>
+<a href="https://github.com/idiocc/cookies/wiki/Cookie-Attributes"><img src="/wiki/cookies.gif" alt="Cookies Attributes: domain, expires, httpOnly, maxAge, overwrite, path, sameSite, secure"></a>
 </td></tr>
 </table>
 
 <table>
-<tr><td>
+<tr><td align="center">
 
 <kbd>🚄 [Express And Connect Middleware Constructor](../../wiki/Express-And-Connect)</kbd>
 ===
@@ -234,7 +234,7 @@ Wiki contains the following pages with additional information about the package.
 Cookies can be used via express and connect easily by calling the middleware constructor functions to get middleware that can be installed on the app.
 </td></tr>
 
-<tr><td>
+<tr><td align="center">
 
 <kbd>⚜️ [Keygrip](../../wiki/Keygrip)</kbd>
 ===
@@ -242,7 +242,7 @@ Cookies can be used via express and connect easily by calling the middleware con
 <tr><td>The <em>Keygrip</em> can be passed in the <em><code>keys</code></em> property of the constructor. By default, the new instance of <em>Keygrip</em> will be created when an array of keys is passed, but custom implementations of <em>Keygrip</em> which override the sign and verify functions can be passed to cookies.
 </td></tr>
 
-<tr><td>
+<tr><td align="center">
 
 <kbd>🔗 [View Compiler Externs](../../wiki/Compiler-Externs)</kbd>
 ===
