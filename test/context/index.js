@@ -59,5 +59,5 @@ export default class Context extends CookieContext {
 
 /**
  * @suppress {nonStandardJsDocs}
- * @typedef {import('../../types').CookiesOptions} _goa.CookiesOptions
+ * @typedef {import('../..').CookiesOptions} _goa.CookiesOptions
  */

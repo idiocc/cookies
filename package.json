@@ -13,7 +13,6 @@
     "test-compile": "ALAMODE_ENV=test-compile yarn test",
     "lint": "eslint .",
     "doc": "NODE_DEBUG=doc doc -o README.md -n _goa",
-    "b": "alamode src -o build -s",
     "d1": "typal types/index.js compile/index.js src/index.js -t types/index.xml,types/attributes.xml,types/keygrip.xml -c",
     "d": "yarn-s d1 externs",
     "externs": "typal types/externs/*",
@@ -56,7 +55,7 @@
     "@contexts/http": "^1.5.1",
     "alamode": "^2.3.4",
     "connect": "^3.7.0",
-    "documentary": "^1.27.6",
+    "documentary": "^1.27.7",
     "eslint-config-artdeco": "1.0.1",
     "yarn-s": "1.1.0",
     "zoroaster": "^4.1.1-alpha"

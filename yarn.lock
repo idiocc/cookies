@@ -187,10 +187,10 @@ differently@^1.0.0:
   dependencies:
     erte "^1.2.0"
 
-documentary@^1.27.6:
-  version "1.27.6"
-  resolved "https://registry.yarnpkg.com/documentary/-/documentary-1.27.6.tgz#a9ce794c9b2b8f81611e814a08e2912a03fbd4fa"
-  integrity sha512-DYDdwRLnFk9nXLGSt1K7zrOJpYSAW+nfj1wUFp8zDqkYp5+tnvEaNjYUC8g0C99XMSxtuoqhpCE2rylTRLCxbQ==
+documentary@^1.27.7:
+  version "1.27.7"
+  resolved "https://registry.yarnpkg.com/documentary/-/documentary-1.27.7.tgz#b01b2296ef41b7a8e8f0e90f41c59e2e35372f1c"
+  integrity sha512-V/bZsNvq3kYqeuL2A1ZPPI9Wcm1lR5802elTYztW6aKzQlYAzhLx/sX6rZdR/XVfl3WN+JQJUTbWJttRU/1UcA==
   dependencies:
     "@depack/cache" "^1.0.0"
     "@depack/render" "^1.2.0"

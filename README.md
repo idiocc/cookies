@@ -38,7 +38,7 @@ The tests were rewritten using [context testing](https://contexttesting.com). Th
 'with "secure: true" constructor option': {
   async 'sets secure attribute on unencrypted connection'(
     { start, c }) {
-    const opts = { secure: true }
+    const opts = { secure: true } // constructor options
     await start(c((req, res, cookies) => {
       cookies.set('foo', 'bar', { secure: true })
       res.end()

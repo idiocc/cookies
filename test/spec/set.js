@@ -227,7 +227,7 @@ const TS = {
       'with "secure: true" constructor option': {
         async 'sets secure attribute on unencrypted connection'(
           { start, c }) {
-          const opts = { secure: true }
+          const opts = { secure: true } // constructor options
           await start(c((req, res, cookies) => {
             cookies.set('foo', 'bar', { secure: true })
             res.end()
