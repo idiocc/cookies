@@ -5,7 +5,7 @@
 <!-- <table> -->
 <!-- <tr><th> -->
 
-<kbd>🚄 [`Express` And `Connect` Middleware Constructor](../../wiki/Express-And-Connect) ⚡️</kbd>
+<kbd>🚄 [Express And Connect Middleware Constructor](../../wiki/Express-And-Connect)</kbd>
 ---
 
 <!-- </th></tr> -->
