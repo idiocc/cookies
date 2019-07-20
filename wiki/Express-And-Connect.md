@@ -10,13 +10,13 @@ The `express` and `connect` methods can be used to create middleware for the _Ex
 <tr><th>Connect Example</th></tr>
 <tr><td>
 
-%EXAMPLE: example/connect, ../src => @goa/cookies%
+%EXAMPLE: ../cookies/example/connect, ../src => @goa/cookies%
 </td></tr>
 <tr><td align="center">
 <em>The output</em>
 </td></tr>
 <tr><td>
 
-%FORK example/connect%
+%FORK ../cookies/example/connect%
 </td></tr>
 </table>

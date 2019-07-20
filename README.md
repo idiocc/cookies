@@ -77,11 +77,9 @@ yarn add @goa/cookies
   * [`CookiesOptions`](#type-cookiesoptions)
 - [`async set(name: string, value: ?, opts: CookieSetOptions?): void`](#async-setname-stringvalue-opts-cookiesetoptions-void)
   * [`CookieSetOptions`](#type-cookiesetoptions)
-- [class Keygrip](#class-keygrip)
-  * [`Keygrip`](#type-keygrip)
-  * [Keygrip Implementation](#keygrip-implementation)
-- [<kbd>🔗 View Compiler Externs</kbd>](#-view-compiler-externs)
 - [<kbd>🚄 Express And Connect Middleware Constructor</kbd>](#-express-and-connect-middleware-constructor)
+- [<kbd>⚜️ Keygrip</kbd>](#-keygrip)
+- [<kbd>🔗 View Compiler Externs</kbd>](#-view-compiler-externs)
 - [Copyright & Status](#copyright--status)
 
 <p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/0.svg?sanitize=true"></a></p>
@@ -118,10 +116,10 @@ Note that since this only saves parameters without any other processing, it is v
 
 __<a name="type-cookiesoptions">`CookiesOptions`</a>__: Options for the constructor.
 
-|  Name  |                                                                                   Type                                                                                    |                                         Description                                          |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| keys   | <em>!(Array&lt;string&gt; \| <a href="#type-keygrip" title="Signing and verifying data (such as cookies or URLs) through a rotating credential system.">Keygrip</a>)</em> | The array of keys, or the `Keygrip` object.                                                  |
-| secure | <em>boolean</em>                                                                                                                                                          | Explicitly specifies if the connection is secure, rather than this module examining request. |
+|  Name  |                    Type                    |                                         Description                                          |
+| ------ | ------------------------------------------ | -------------------------------------------------------------------------------------------- |
+| keys   | <em>!(Array&lt;string&gt; \| Keygrip)</em> | The array of keys, or the `Keygrip` object.                                                  |
+| secure | <em>boolean</em>                           | Explicitly specifies if the connection is secure, rather than this module examining request. |
 
 <table>
 <tr><th>Node.JS HTTP Server Example</th></tr>
@@ -207,72 +205,20 @@ The attributes accepted by the cookie instance are listed in wiki.
 
 <p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/3.svg?sanitize=true"></a></p>
 
-## class Keygrip
+<kbd>🚄 [Express And Connect Middleware Constructor](../../wiki/Express-And-Connect)</kbd>
+---
 
-This module already comes with [_Keygrip_](https://www.npmjs.com/package/keygrip) built in. This is because they are meant to be used together, so they were optimised together as well. The API is the same.
+Cookies can be used via express and connect easily by calling the middleware constructor functions to get middleware that can be installed on the app.
 
-> _In cookies, there is no need to use instantiate Keygrip manually, when the keys can just be passed, i.e., if the keys are array, the `new Keygrip(array)` will be called by the constructor._
+<kbd>⚜️ [Keygrip](../../wiki/Keygrip)</kbd>
+---
 
-__<a name="type-keygrip">`Keygrip`</a>__: Signing and verifying data (such as cookies or URLs) through a rotating credential system.
-
-|    Name     |                 Type                  |                                                                                                                                                                                                  Description                                                                                                                                                                                                  |
-| ----------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| __sign*__   | <em>function(?): string</em>          | This creates a SHA1 HMAC based on the _first_ key in the keylist, and outputs it as a 27-byte url-safe base64 digest (base64 without padding, replacing `+` with `-` and `/` with `_`).                                                                                                                                                                                                                       |
-| __index*__  | <em>function(?, string): number</em>  | This loops through all of the keys currently in the keylist until the digest of the current key matches the given digest, at which point the current index is returned. If no key is matched, -1 is returned. The idea is that if the index returned is greater than `0`, the data should be re-signed to prevent premature credential invalidation, and enable better performance for subsequent challenges. |
-| __verify*__ | <em>function(?, string): boolean</em> | This uses `index` to return true if the digest matches any existing keys, and false otherwise.                                                                                                                                                                                                                                                                                                                |
-
-The API is exposed so that custom validation algorithms can be implemented by extending the _Keygrip_ class.
-
-<details>
-<summary>Show <a name="keygrip-implementation">Keygrip Implementation</a></summary>
-
-<table>
-<tr><th><a href="src/Keygrip.js">Keygrip Class</a></th></tr>
-<tr><td>
-
-```js
-/**
- * @implements {_goa.Keygrip}
- */
-export default class Keygrip {
-  constructor(keys, algorithm = 'sha1', encoding = 'base64') {
-    if (!keys || !(0 in keys)) {
-      throw new Error('Keys must be provided.')
-    }
-    this.algorithm = algorithm
-    this.encoding = encoding
-    this.keys = keys
-  }
-  sign(data) {
-    return sign(data, this.algorithm, this.keys[0], this.encoding)
-  }
-  verify(data, digest) {
-    return this.index(data, digest) > -1
-  }
-  index(data, digest) {
-    for (let i = 0, l = this.keys.length; i < l; i++) {
-      const sig = sign(data, this.algorithm, this.keys[i], this.encoding)
-      if (constantTimeCompare(digest, sig)) return i
-    }
-
-    return -1
-  }
-}
-```
-</td></tr>
-<tr><td>The implementation provides the <em>sign</em>, <em>verify</em> and <em>index</em> methods. The <em>Keygrip</em> instances provide mechanisms to rotate credentials by modifying the <strong>keys</strong> array. Since cookies' encoding and decoding will be based on the keys, it's important to maintain them across server restarts, however when required, their rotation can be performed with <code>keylist.unshift("SEKRIT4"); keylist.pop()</code> without having to restart the server.</td></tr>
-
-</table>
-
-</details>
-
-<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/4.svg?sanitize=true"></a></p>
+The _Keygrip_ can be passed in the _`keys`_ property of the constructor. By default, the new instance of _Keygrip_ will be created when an array of keys is passed, but custom implementations of _Keygrip_ which override the sign and verify functions can be passed to cookies.
 
 <kbd>🔗 [View Compiler Externs](../../wiki/Compiler-Externs)</kbd>
 ---
 
-<kbd>🚄 [Express And Connect Middleware Constructor](../../wiki/Express-And-Connect)</kbd>
----
+The externs are required to compile the package yet keep the options' properties in tact, i.e. without renaming the properties. The API is preserved for 2nd level compilation in other packages, such as Goa, and is tested on the 1st level compilation of the package itself.
 
 </table>
 
