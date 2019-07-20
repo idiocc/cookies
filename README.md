@@ -125,7 +125,7 @@ Welcome back! Nothing much changed since your last visit at 2019-07-19T23:33:16.
 </td></tr>
 </table>
 
-The overview of the _Cookies_ interface is found [in wiki](/wiki/Cookies-Class).
+The overview of the _Cookies_ interface is found [in wiki](../../wiki/Cookies-Class).
 
 <p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/2.svg?sanitize=true"></a></p>
 
@@ -141,9 +141,13 @@ __<a name="type-cookiesetoptions">`CookieSetOptions`</a>__: How the cookie will 
 
 The attributes accepted by the cookie instance are listed in wiki.
 
-<kbd>🍪 <a href="/wiki/Cookie-Attributes">Cookie Attributes</a></kbd>
-
+<table>
+<tr><th><kbd>🍪 <a href="../../wiki/Cookie-Attributes">Cookie Attributes</a></kbd></th></tr>
+<tr><td>
 <img src="/wiki/cookies.gif" alt="Cookies Attributes: domain, expires, httpOnly, maxAge, overwrite, path, sameSite, secure">
+</td></tr>
+<tr><td></td></tr>
+</table>
 
 <p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/3.svg?sanitize=true"></a></p>
 
