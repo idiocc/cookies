@@ -12,4 +12,6 @@ The attributes accepted by the cookie instance are listed in wiki.
 
 <kbd>🍪 <a href="/wiki/Cookie-Attributes">Cookie Attributes</a></kbd>
 
+<img src="/wiki/cookies.gif" alt="Cookies Attributes: domain, expires, httpOnly, maxAge, overwrite, path, sameSite, secure">
+
 %~%
