@@ -1,4 +1,4 @@
-The middleware constructors are available for the express and connect frameworks.
+The middleware constructors are available for the web frameworks.
 
 ```js
 import { express, connect } from '@goa/cookies'
