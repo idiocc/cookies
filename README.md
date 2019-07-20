@@ -4,9 +4,10 @@
 
 `@goa/cookies` is a fork of [Signed And Unsigned Cookies Based On Keygrip](https://github.com/pillarjs/cookies) Written In ES6, Annotated With Externs And Optimised With [JavaScript Compiler](https://compiler.page).
 
-The original module was edited with annotations and other changes required for it to be used in [`@goa/koa`](https://artdecocode.com/goa/): _Koa_ web server [compiled](https://compiler.page) with _Closure Compiler_ using [**Depack**](https://artdecocode.com/depack/) into a single file library (with 1 dependency such as mime-db). The tests were rewritten using [context testing](https://contexttesting.com).
+The original module was edited with annotations and other changes required for it to be used in [\`@goa/koa\`](https:/`+`/artdecocode.com/goa/): _Koa_ web server [compiled](https://compiler.page) with _Closure Compiler_ using [**Depack**](https://artdecocode.com/depack/) into a single file library (with 1 dependency such as mime-db). The tests were rewritten using [context testing](https://contexttesting.com). <details><summary>Read more about the compilation.</summary>
 
-All dependencies are specified as dev dependencies because they are flattened into a single JS file by the compiler, unless the special `require(/* depack ok */ 'modulejs')` was called, which will require the package at run-time, for instance this is how mime-db is required by Goa.
+
+All dependencies are specified as dev dependencies because they are flattened into a single JS file by the compiler, unless the special \`require(/* depack ok */ 'modulejs')\` was called, which will require the package at run-time, for instance this is how mime-db is required by Goa.
 
 The package specifies the following entry points:
 
@@ -25,6 +26,8 @@ The package specifies the following entry points:
     ├── depack.js
     └── index.js
     ```
+
+</details>
 
 ```sh
 yarn add @goa/cookies
