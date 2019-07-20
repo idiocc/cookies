@@ -75,8 +75,9 @@ yarn add @goa/cookies
 - [class Cookies](#class-cookies)
 - [`constructor(request: IncomingMessage, response: ServerResponse, options: CookiesOptions): Cookies`](#constructorrequest-incomingmessageresponse-serverresponseoptions-cookiesoptions-cookies)
   * [`CookiesOptions`](#type-cookiesoptions)
-- [`async set(name: string, value: ?, opts: CookieSetOptions?): void`](#async-setname-stringvalue-opts-cookiesetoptions-void)
+- [`async set(name: string, value=: ?, opts=: CookieSetOptions&CookieAttributes): void`](#async-setname-stringvalue-opts-cookiesetoptionscookieattributes-void)
   * [`CookieSetOptions`](#type-cookiesetoptions)
+- [<kbd>🍪 Cookie Attributes</kbd>](#-cookie-attributes)
 - [<kbd>🚄 Express And Connect Middleware Constructor</kbd>](#-express-and-connect-middleware-constructor)
 - [<kbd>⚜️ Keygrip</kbd>](#-keygrip)
 - [<kbd>🔗 View Compiler Externs</kbd>](#-view-compiler-externs)
@@ -184,7 +185,7 @@ The overview of the _Cookies_ interface is found [in wiki](../../wiki/Cookies-Cl
 
 <p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/2.svg?sanitize=true"></a></p>
 
-## `async set(`<br/>&nbsp;&nbsp;`name: string,`<br/>&nbsp;&nbsp;`value: ?,`<br/>&nbsp;&nbsp;`opts: CookieSetOptions?,`<br/>`): void`
+## `async set(`<br/>&nbsp;&nbsp;`name: string,`<br/>&nbsp;&nbsp;`value=: ?,`<br/>&nbsp;&nbsp;`opts=: CookieSetOptions&CookieAttributes,`<br/>`): void`
 
 This sets the given cookie in the response and returns the current context to allow chaining. If the value is omitted, an outbound header with an expired date is used to delete the cookie.
 
@@ -196,14 +197,20 @@ __<a name="type-cookiesetoptions">`CookieSetOptions`</a>__: How the cookie will 
 
 The attributes accepted by the cookie instance are listed in wiki.
 
+<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/3.svg?sanitize=true"></a></p>
+
 <table>
-<tr><th><kbd>🍪 <a href="../../wiki/Cookie-Attributes">Cookie Attributes</a></kbd></th></tr>
+<tr><th>
+
+<kbd>🍪 [Cookie Attributes](../../wiki/Cookie-Attributes)</kbd>
+---
+</th></tr>
 <tr><td>
 <img src="/wiki/cookies.gif" alt="Cookies Attributes: domain, expires, httpOnly, maxAge, overwrite, path, sameSite, secure">
 </td></tr>
 </table>
 
-<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/3.svg?sanitize=true"></a></p>
+Cookies can be used via express and connect easily by calling the middleware constructor functions to get middleware that can be installed on the app.
 
 <kbd>🚄 [Express And Connect Middleware Constructor](../../wiki/Express-And-Connect)</kbd>
 ---
@@ -220,8 +227,7 @@ The _Keygrip_ can be passed in the _`keys`_ property of the constructor. By defa
 
 The externs are required to compile the package yet keep the options' properties in tact, i.e. without renaming the properties. The API is preserved for 2nd level compilation in other packages, such as Goa, and is tested on the 1st level compilation of the package itself.
 
-</table>
-
+<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/4.svg?sanitize=true"></a></p>
 
 ## Copyright & Status
 

@@ -5,6 +5,23 @@
 <!-- <table> -->
 <!-- <tr><th> -->
 
+<!-- <kbd>🚄 [Cookies' Attributes](../../wiki/Cookie-Attributes)</kbd> -->
+<!-- --- -->
+
+<table>
+<tr><th>
+
+<kbd>🍪 [Cookie Attributes](../../wiki/Cookie-Attributes)</kbd>
+---
+</th></tr>
+<!-- block-start -->
+<tr><td>
+<img src="/wiki/cookies.gif" alt="Cookies Attributes: domain, expires, httpOnly, maxAge, overwrite, path, sameSite, secure">
+</td></tr>
+</table>
+
+Cookies can be used via express and connect easily by calling the middleware constructor functions to get middleware that can be installed on the app.
+
 <kbd>🚄 [Express And Connect Middleware Constructor](../../wiki/Express-And-Connect)</kbd>
 ---
 
@@ -30,8 +47,9 @@ The externs are required to compile the package yet keep the options' properties
 
 <!-- </md2html></td></tr> -->
 <!-- /block-end -->
-</table>
+<!-- </table> -->
 
+%~%
 
 ## Copyright & Status
 
