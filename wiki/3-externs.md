@@ -4,7 +4,7 @@ The externs are provided via the `types/externs` directory.
 <summary>Show [Externs](t)</summary> -->
 
 <table>
-<tr><th><a href="https://compiler.page">Compiler</a> <a href="types/externs.js">Externs</a></th></tr>
+<tr><th><a href="https://compiler.page">Compiler</a> <a href="../blob/master/types/externs">Externs</a></th></tr>
 <!-- block-start -->
 <tr><td>
 
@@ -46,5 +46,3 @@ _Cookies_ instances to verify correct decoding of signed cookies.
 </table>
 
 <!-- </details> -->
-
-%~%
