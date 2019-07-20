@@ -75,12 +75,10 @@ yarn add @goa/cookies
 - [class Cookies](#class-cookies)
 - [`constructor(request: IncomingMessage, response: ServerResponse, options: CookiesOptions): Cookies`](#constructorrequest-incomingmessageresponse-serverresponseoptions-cookiesoptions-cookies)
   * [`CookiesOptions`](#type-cookiesoptions)
-- [`async set(name: string, value=: ?, opts=: CookieSetOptions&CookieAttributes): void`](#async-setname-stringvalue-opts-cookiesetoptionscookieattributes-void)
+- [`set(name: string, value=: ?, opts=: CookieSetOptions&CookieAttributes): void`](#setname-stringvalue-opts-cookiesetoptionscookieattributes-void)
   * [`CookieSetOptions`](#type-cookiesetoptions)
-- [<kbd>🍪 Cookie Attributes</kbd>](#-cookie-attributes)
-- [<kbd>🚄 Express And Connect Middleware Constructor</kbd>](#-express-and-connect-middleware-constructor)
-- [<kbd>⚜️ Keygrip</kbd>](#-keygrip)
-- [<kbd>🔗 View Compiler Externs</kbd>](#-view-compiler-externs)
+- [`get(name: string, opts=: CookieSetOptions): string`](#getname-stringopts-cookiesetoptions-string)
+- [Wiki](#wiki)
 - [Copyright & Status](#copyright--status)
 
 <p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/0.svg?sanitize=true"></a></p>
@@ -185,7 +183,7 @@ The overview of the _Cookies_ interface is found [in wiki](../../wiki/Cookies-Cl
 
 <p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/2.svg?sanitize=true"></a></p>
 
-## `async set(`<br/>&nbsp;&nbsp;`name: string,`<br/>&nbsp;&nbsp;`value=: ?,`<br/>&nbsp;&nbsp;`opts=: CookieSetOptions&CookieAttributes,`<br/>`): void`
+## `set(`<br/>&nbsp;&nbsp;`name: string,`<br/>&nbsp;&nbsp;`value=: ?,`<br/>&nbsp;&nbsp;`opts=: CookieSetOptions&CookieAttributes,`<br/>`): void`
 
 This sets the given cookie in the response and returns the current context to allow chaining. If the value is omitted, an outbound header with an expired date is used to delete the cookie.
 
@@ -199,35 +197,61 @@ The attributes accepted by the cookie instance are listed in wiki.
 
 <p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/3.svg?sanitize=true"></a></p>
 
+## `get(`<br/>&nbsp;&nbsp;`name: string,`<br/>&nbsp;&nbsp;`opts=: CookieSetOptions,`<br/>`): string`
+
+Returns the cookie with the given name if it was previously set. The `signed` option might be passed to specify if a signed cookie is being accessed.
+
+<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/4.svg?sanitize=true"></a></p>
+
+## Wiki
+
+Wiki contains the following pages with additional information about the package.
+
 <table>
 <tr><th>
 
 <kbd>🍪 [Cookie Attributes](../../wiki/Cookie-Attributes)</kbd>
----
+===
 </th></tr>
 <tr><td>
-<img src="/wiki/cookies.gif" alt="Cookies Attributes: domain, expires, httpOnly, maxAge, overwrite, path, sameSite, secure">
+<a href="../../wiki/Cookie-Attributes"><img src="/wiki/cookies.gif" alt="Cookies Attributes: domain, expires, httpOnly, maxAge, overwrite, path, sameSite, secure"></a>
 </td></tr>
 </table>
 
-Cookies can be used via express and connect easily by calling the middleware constructor functions to get middleware that can be installed on the app.
+<table>
+<tr><th>
 
 <kbd>🚄 [Express And Connect Middleware Constructor](../../wiki/Express-And-Connect)</kbd>
----
-
+===
+</th></tr>
+<tr><td>
 Cookies can be used via express and connect easily by calling the middleware constructor functions to get middleware that can be installed on the app.
+</td></tr>
+
+<tr><th>
 
 <kbd>⚜️ [Keygrip](../../wiki/Keygrip)</kbd>
----
+===
+</th></tr>
+<tr><td>The <em>Keygrip</em> can be passed in the <em><code>keys</code></em> property of the constructor. By default, the new instance of <em>Keygrip</em> will be created when an array of keys is passed, but custom implementations of <em>Keygrip</em> which override the sign and verify functions can be passed to cookies.
+</td></tr>
 
-The _Keygrip_ can be passed in the _`keys`_ property of the constructor. By default, the new instance of _Keygrip_ will be created when an array of keys is passed, but custom implementations of _Keygrip_ which override the sign and verify functions can be passed to cookies.
+<tr><th>
 
 <kbd>🔗 [View Compiler Externs](../../wiki/Compiler-Externs)</kbd>
+===
+</th></tr>
+<tr><td>
+The externs are required to compile the package yet keep the options' properties in tact, i.e. without renaming the properties. The API is preserved for 2nd level compilation in other packages, such as Goa, and is tested on the 1st level compilation of the package itself.
+</td></tr>
+</table>
+
+
+
 ---
 
-The externs are required to compile the package yet keep the options' properties in tact, i.e. without renaming the properties. The API is preserved for 2nd level compilation in other packages, such as Goa, and is tested on the 1st level compilation of the package itself.
 
-<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/4.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/5.svg?sanitize=true"></a></p>
 
 ## Copyright & Status
 

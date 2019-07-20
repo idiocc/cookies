@@ -1,4 +1,4 @@
-```## async set => void
+```## set => void
 [["name","string"],
 ["value=", "?"],
 ["opts=", "CookieSetOptions&CookieAttributes"]]
