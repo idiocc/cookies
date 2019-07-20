@@ -1,4 +1,4 @@
-<img src="../master/wiki/cookies-attributes.jpeg">
+<img src="https://github.com/idiocc/cookies/blob/master/wiki/cookies-attributes.jpeg">
 
 When using the `set` method, the following attributes can be passed to be added to the cookie:
 
