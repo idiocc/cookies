@@ -30,7 +30,9 @@
       └── index.js
       ```
 
-  </details></td><td>The tests were rewritten using [context testing](https://contexttesting.com). The [Http Context](https://npmjs.org/@contexts/http), in particular the Cookie Tester was used to assert on presence of entries, and their attributes.<details><summary>Show the tests.</summary>
+  </details></td><td>
+
+The tests were rewritten using [context testing](https://contexttesting.com). The [Http Context](https://npmjs.org/@contexts/http), in particular the Cookie Tester was used to assert on presence of entries, and their attributes.<details><summary>Show the tests.</summary>
 
 ```js
 'with "secure: true" constructor option': {
