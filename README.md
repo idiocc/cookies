@@ -2,9 +2,29 @@
 
 [![npm version](https://badge.fury.io/js/%40goa%2Fcookies.svg)](https://npmjs.org/package/@goa/cookies)
 
-`@goa/cookies` is a [fork](https://github.com/pillarjs/cookies) of Signed And Unsigned Cookies Based On Keygrip Written In ES6 And Optimised With JavaScript Compiler.
+`@goa/cookies` is a fork of [Signed And Unsigned Cookies Based On Keygrip](https://github.com/pillarjs/cookies) Written In ES6, Annotated With Externs And Optimised With [JavaScript Compiler](https://compiler.page).
 
-The original module has been updated to be used in [`@goa/koa`](https://artdecocode.com/goa/): _Koa_ web server compiled with _Google Closure Compiler_ using [**Depack**](https://artdecocode.com/depack/) into a single file library (0 dependencies).
+The original module was edited with annotations and other changes required for it to be used in [`@goa/koa`](https://artdecocode.com/goa/): _Koa_ web server [compiled](https://compiler.page) with _Closure Compiler_ using [**Depack**](https://artdecocode.com/depack/) into a single file library (with 1 dependency such as mime-db). The tests were rewritten using [context testing](https://contexttesting.com).
+
+All dependencies are specified as dev dependencies because they are flattened into a single JS file by the compiler, unless the special `require(/* depack ok */ 'modulejs')` was called, which will require the package at run-time, for instance this is how mime-db is required by Goa.
+
+The package specifies the following entry points:
+
+- [commonjs/main]: compile/index.js; optimised with compiler. The package for individual consumption with declared features.
+    ```m
+    compile
+    ├── cookies.js
+    ├── cookies.js.map
+    └── index.js
+    ```
+- [es6/module]:    src/index.js; the source code that can be used in compilation of other packages, e.g., @goa/goa.
+    ```m
+    src
+    ├── Cookie.js
+    ├── Keygrip.js
+    ├── depack.js
+    └── index.js
+    ```
 
 ```sh
 yarn add @goa/cookies

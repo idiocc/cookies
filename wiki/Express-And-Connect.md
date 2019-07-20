@@ -20,5 +20,3 @@ The `express` and `connect` methods can be used to create middleware for the _Ex
 %FORK example/connect%
 </td></tr>
 </table>
-
-%~%

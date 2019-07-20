@@ -2,9 +2,9 @@
 
 %NPM: @goa/cookies%
 
-`@goa/cookies` is a [fork](https://github.com/pillarjs/cookies) of Signed And Unsigned Cookies Based On Keygrip Written In ES6 And Optimised With JavaScript Compiler.
+`@goa/cookies` is a fork of [Signed And Unsigned Cookies Based On Keygrip](https://github.com/pillarjs/cookies) Written In ES6, Annotated With Externs And Optimised With [JavaScript Compiler](https://compiler.page).
 
-<Goa />
+<goa />
 
 ```sh
 yarn add @goa/cookies

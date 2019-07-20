@@ -19,7 +19,7 @@
     "externs": "typal types/externs/*",
     "build": "yarn-s d b doc",
     "e": "alanode",
-    "w": "yarn-s w1 wf",
+    "w": "yarn-s w1 w2 w3 wf",
     "w1": "doc wiki/Cookies.md -o ../cookies.wiki/Cookies-Class.md -n _goa",
     "w2": "doc wiki/Attributes.md -o ../cookies.wiki/Cookie-Attributes.md",
     "w3": "doc wiki/Express-And-Connect.md -o ../cookies.wiki/Express-And-Connect.md",
