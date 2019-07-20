@@ -1,5 +1,9 @@
 ## 21 July 2019
 
+### [1.1.4](https://github.com/idiocc/cookies/compare/v1.1.3...v1.1.4)
+
+- [doc] Wiki in the README file.
+
 ### [1.1.3](https://github.com/idiocc/cookies/compare/v1.1.2...v1.1.3)
 
 - [doc] README file.
