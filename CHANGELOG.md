@@ -1,5 +1,9 @@
 ## 21 July 2019
 
+### [1.1.5](https://github.com/idiocc/cookies/compare/v1.1.4...v1.1.5)
+
+- [externs] Correctly specify externs as individual files.
+
 ### [1.1.4](https://github.com/idiocc/cookies/compare/v1.1.3...v1.1.4)
 
 - [doc] Wiki in the README file.

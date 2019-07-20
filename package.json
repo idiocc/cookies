@@ -25,7 +25,10 @@
     "types"
   ],
   "externs": [
-    "types/externs/index.js"
+    "types/externs/attributes.js",
+    "types/externs/cookies.js",
+    "types/externs/keygrip.js",
+    "types/externs/options.js"
   ],
   "repository": {
     "type": "git",
