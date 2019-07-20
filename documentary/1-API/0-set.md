@@ -16,10 +16,10 @@ The attributes accepted by the cookie instance are listed in wiki.
 <tr><td>
 <img src="/wiki/cookies.gif" alt="Cookies Attributes: domain, expires, httpOnly, maxAge, overwrite, path, sameSite, secure">
 </td></tr>
-<tr><td><md2html>
+<!-- <tr><td><md2html>
 
 
-</md2html></td></tr>
+</md2html></td></tr> -->
 <!-- /block-end -->
 </table>
 

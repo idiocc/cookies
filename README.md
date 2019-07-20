@@ -22,7 +22,6 @@ yarn add @goa/cookies
 - [class Keygrip](#class-keygrip)
   * [`Keygrip`](#type-keygrip)
   * [Keygrip Implementation](#keygrip-implementation)
-- [Express/Connect](#expressconnect)
 - [Externs](#externs)
   * [Externs](#externs)
 - [Copyright](#copyright)
@@ -146,7 +145,6 @@ The attributes accepted by the cookie instance are listed in wiki.
 <tr><td>
 <img src="/wiki/cookies.gif" alt="Cookies Attributes: domain, expires, httpOnly, maxAge, overwrite, path, sameSite, secure">
 </td></tr>
-<tr><td></td></tr>
 </table>
 
 <p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/3.svg?sanitize=true"></a></p>
@@ -211,67 +209,6 @@ export default class Keygrip {
 </details>
 
 <p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/4.svg?sanitize=true"></a></p>
-
-## Express/Connect
-
-The `express` and `connect` methods can be used to create middleware for the _Express_ and _Connect_ servers.
-
-<table>
-<tr><th>Connect Example</th></tr>
-<tr><td>
-
-```js
-import connect from 'connect'
-import aqt from '@rqt/aqt'
-import { express as cookies } from '@goa/cookies'
-
-const app = connect()
-
-app.use(cookies(['keyboard cat']))
-app.use('/', (req, res) => {
-  // Get a cookie
-  const lastVisit = req.cookies.get('LastVisit', { signed: true })
-
-  // Set the cookie to a value
-  res.cookies.set('LastVisit', new Date().toISOString(), { signed: true })
-
-  if (!lastVisit) {
-    res.setHeader('Content-Type', 'text/plain')
-    res.end('Welcome, first time visitor!')
-  } else {
-    res.setHeader('Content-Type', 'text/plain')
-    res.end('Welcome back! Nothing much changed since your last visit at ' + lastVisit + '.')
-  }
-})
-
-const server = app.listen(0, async () => {
-  const url = `http://localhost:${server.address().port}`
-  console.log(url)
-  let { body, headers } = await aqt(url)
-  console.log(body, headers['set-cookie'].join('\n'))
-  ;({ body } = await aqt(url, {
-    headers: { Cookie: headers['set-cookie'] },
-  }))
-  console.log(body)
-  server.close()
-})
-```
-</td></tr>
-<tr><td align="center">
-<em>The output</em>
-</td></tr>
-<tr><td>
-
-```
-http://localhost:52303
-Welcome, first time visitor! LastVisit=2019-07-19T23:33:17.021Z; path=/; httponly
-LastVisit.sig=7ivYqjdJp5w9as0NmFKZZ8DCZ6c; path=/; httponly
-Welcome back! Nothing much changed since your last visit at 2019-07-19T23:33:17.021Z.
-```
-</td></tr>
-</table>
-
-<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/5.svg?sanitize=true"></a></p>
 
 ## Externs
 
@@ -457,7 +394,12 @@ _goa.Keygrip.prototype.verify
 
 </details>
 
-<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/6.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/5.svg?sanitize=true"></a></p>
+
+<table>
+<tr><th><kbd>🍪 <a href="../../wiki/Express-And-Connect">Express And Connect Middleware Constructor</a></kbd></th></tr>
+</table>
+
 
 ## Copyright
 
@@ -480,7 +422,7 @@ Original [source, documentation and testing](https://github.com/pillarjs/cookies
     </th>
     <th>
       <a href="https://www.technation.sucks" title="Tech Nation Visa">
-        <img src="https://raw.githubusercontent.com/artdecoweb/www.technation.sucks/master/anim.gif"
+        <img src="https://raw.githubusercontent.com/idiocc/cookies/master/wiki/arch4.jpg"
           alt="Tech Nation Visa">
       </a>
     </th>

@@ -1,4 +1,8 @@
-## Express/Connect
+The middleware constructors are available for the express and connect frameworks.
+
+```js
+import { express, connect } from '@goa/cookies'
+```
 
 The `express` and `connect` methods can be used to create middleware for the _Express_ and _Connect_ servers.
 
