@@ -12,7 +12,7 @@
     "compile": "depack-dev src/depack -o compile/cookies.js -c -a -p",
     "test-compile": "ALAMODE_ENV=test-compile yarn test",
     "lint": "eslint .",
-    "doc": "NODE_DEBUG=doc doc -o README.md -n _goa",
+    "doc": "NODE_DEBUG=doc doc -o README.md -n _goa -T types/attributes.xml",
     "d1": "typal types/index.js compile/index.js src/index.js -t types/index.xml,types/attributes.xml,types/keygrip.xml -c",
     "d": "yarn-s d1 externs",
     "externs": "typal types/externs/*",

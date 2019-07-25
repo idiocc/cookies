@@ -113,9 +113,9 @@ A Boolean can optionally be passed as _options.secure_ to explicitly specify if 
 
 Note that since this only saves parameters without any other processing, it is very lightweight. Cookies are only parsed on demand when they are accessed.
 
-[`import('http').IncomingMessage`](https://nodejs.org/api/http.html#http_class_http_incomingmessage) __<a name="type-httpincomingmessage">`http.IncomingMessage`</a>__: The client request.
+[`import('http').IncomingMessage`](https://nodejs.org/api/http.html#http_class_http_incomingmessage) __<a name="type-httpincomingmessage">`http.IncomingMessage`</a>__: The first argument to the "request" event.
 
-[`import('http').ServerResponse`](https://nodejs.org/api/http.html#http_class_http_serverresponse) __<a name="type-httpserverresponse">`http.ServerResponse`</a>__: The server response.
+[`import('http').ServerResponse`](https://nodejs.org/api/http.html#http_class_http_serverresponse) __<a name="type-httpserverresponse">`http.ServerResponse`</a>__: The second parameter to the "request" event.
 
 __<a name="type-cookiesoptions">`CookiesOptions`</a>__: Options for the constructor.
 
@@ -191,13 +191,13 @@ The overview of the _Cookies_ interface is found [in wiki](../../wiki/Cookies).
 
 This sets the given cookie in the response and returns the current context to allow chaining. If the value is omitted, an outbound header with an expired date is used to delete the cookie.
 
-<strong><a name="type-cookiesetoptions">`CookieSetOptions`</a> extends `_goa.CookieAttributes`</strong>: How the cookie will be set.
+__<a name="type-cookiesetoptions">`CookieSetOptions`</a> extends <a title="Used to generate the outbound cookie header." href="https://github.com/idiocc/cookies/wiki/Attributes">`CookieAttributes`</a>__: How the cookie will be set.
 
 |  Name  |       Type       |                                                                                                                                                                          Description                                                                                                                                                                           | Default |
 | ------ | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | signed | <em>boolean</em> | Indicating whether the cookie is to be signed. If this is true, another cookie of the same name with the .sig suffix appended will also be sent, with a 27-byte url-safe base64 SHA1 value representing the hash of cookie-name=cookie-value against the first Keygrip key. This signature key is used to detect tampering the next time a cookie is received. | `false` |
 
-The [attributes](/wiki/Cookie-Attribute) accepted by the cookie instance are listed in wiki.
+The [attributes](/wiki/Attributes) accepted by the cookie instance are listed in wiki.
 
 <p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/3.svg?sanitize=true"></a></p>
 

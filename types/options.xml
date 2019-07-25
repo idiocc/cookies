@@ -1,6 +1,6 @@
 <types namespace="_goa">
-  <import from="http" name="IncomingMessage" desc="The client request."/>
-  <import from="http" name="ServerResponse" desc="The server response."/>
+  <import from="http" name="IncomingMessage" />
+  <import from="http" name="ServerResponse" />
 
   <type record name="CookiesOptions" desc="Options for the constructor.">
     <prop opt type="!(Array<string>|_goa.Keygrip)" name="keys">
