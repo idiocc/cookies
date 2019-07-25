@@ -2,7 +2,7 @@ Keygrip is a tool to encrypt sessions using a set of keys. This module already c
 
 > _In cookies, there is no need to use instantiate Keygrip manually, when the keys can just be passed, i.e., if the keys are array, the `new Keygrip(array)` will be called by the constructor._
 
-<typedef>../cookies/types/keygrip.xml</typedef>
+<typedef narrow flatten>../cookies/types/keygrip.xml</typedef>
 
 The API is exposed so that custom signing and validation algorithms can be implemented by extending the _Keygrip_ class.
 
