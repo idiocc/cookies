@@ -1,3 +1,9 @@
+## 26 July 2019
+
+### [1.1.6](https://github.com/idiocc/cookies/compare/v1.1.5...v1.1.6)
+
+- [docs] Update wiki.
+
 ## 21 July 2019
 
 ### [1.1.5](https://github.com/idiocc/cookies/compare/v1.1.4...v1.1.5)
