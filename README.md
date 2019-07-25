@@ -176,10 +176,10 @@ server.listen(async () => {
 <tr><td>
 
 ```
-http://localhost:55843
-Welcome, first time visitor! LastVisit=2019-07-25T21:51:28.286Z; path=/; httponly
-LastVisit.sig=ZfsaLTVg67KXi92aorXVNKxa-as; path=/; httponly
-Welcome back! Nothing much changed since your last visit at 2019-07-25T21:51:28.286Z.
+http://localhost:56593
+Welcome, first time visitor! LastVisit=2019-07-25T22:53:04.827Z; path=/; httponly
+LastVisit.sig=zvL2h3aYesSL-t8sk35FJgrsxg0; path=/; httponly
+Welcome back! Nothing much changed since your last visit at 2019-07-25T22:53:04.827Z.
 ```
 </td></tr>
 </table>
@@ -243,7 +243,7 @@ Cookies can be used via express and connect easily by calling the middleware con
 
 <tr><td align="center">
 
-<kbd>🔗 [View Compiler Externs](../../wiki/Compiler-Externs)</kbd>
+<kbd>🔗 [View Compiler Externs](../../wiki/Externs)</kbd>
 ===
 </td></tr>
 <tr><td>

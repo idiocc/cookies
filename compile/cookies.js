@@ -3,40 +3,10 @@
 const http = require('http');
 const _crypto = require('crypto');             
 const {createHmac:k} = _crypto;
-/*
- keygrip
- Copyright(c) 2011-2014 Jed Schmidt
- MIT Licensed
-*/
-class m {
-  constructor(a, b = "sha1", c = "base64") {
-    if (!(a && 0 in a)) {
-      throw Error("Keys must be provided.");
-    }
-    this.a = b;
-    this.encoding = c;
-    this.keys = a;
-  }
-  sign(a) {
-    return n(a, this.a, this.keys[0], this.encoding);
-  }
-  verify(a, b) {
-    return -1 < this.index(a, b);
-  }
-  index(a, b) {
-    for (let c = 0, d = this.keys.length; c < d; c++) {
-      const e = n(a, this.a, this.keys[c], this.encoding);
-      if (p(b, e)) {
-        return c;
-      }
-    }
-    return -1;
-  }
-}
-function n(a, b, c, d) {
+function m(a, b, c, d) {
   return k(b, c).update(a).digest(d).replace(/\/|\+|=/g, e => ({"/":"_", "+":"-", "=":""})[e]);
 }
-function p(a, b) {
+;function n(a, b) {
   if (null == a && null != b || null == b && null != a) {
     return !1;
   }
@@ -50,6 +20,36 @@ function p(a, b) {
     c |= a.charCodeAt(d) ^ b.charCodeAt(d);
   }
   return 0 === c;
+}
+;/*
+ keygrip
+ Copyright(c) 2011-2014 Jed Schmidt
+ MIT Licensed
+*/
+class p {
+  constructor(a, b = "sha1", c = "base64") {
+    if (!(a && 0 in a)) {
+      throw Error("Keys must be provided.");
+    }
+    this.a = b;
+    this.encoding = c;
+    this.keys = a;
+  }
+  sign(a) {
+    return m(a, this.a, this.keys[0], this.encoding);
+  }
+  verify(a, b) {
+    return -1 < this.index(a, b);
+  }
+  index(a, b) {
+    for (let c = 0, d = this.keys.length; c < d; c++) {
+      const e = m(a, this.a, this.keys[c], this.encoding);
+      if (n(b, e)) {
+        return c;
+      }
+    }
+    return -1;
+  }
 }
 ;const {OutgoingMessage:q} = http;
 const r = /^[\u0009\u0020-\u007e\u0080-\u00ff]+$/, t = /^(?:lax|strict)$/i;
@@ -108,7 +108,7 @@ class x {
     this.secure = void 0;
     this.request = a;
     this.a = b;
-    c && (this.keys = Array.isArray(c.keys) ? new m(c.keys) : c.keys, this.secure = c.secure);
+    c && (this.keys = Array.isArray(c.keys) ? new p(c.keys) : c.keys, this.secure = c.secure);
   }
   get(a, b) {
     var c = a + ".sig", d, e = b && void 0 !== b.signed ? b.signed : !!this.keys;
@@ -175,7 +175,7 @@ const z = a => (b, c, d) => {
   b.cookies = c.cookies = new x(b, c, {keys:a});
   d();
 };
-module.exports = {Cookies:x, Keygrip:m, express:z, connect:z};
+module.exports = {Cookies:x, Keygrip:p, express:z, connect:z};
 
 
 //# sourceMappingURL=cookies.js.map

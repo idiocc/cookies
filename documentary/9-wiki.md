@@ -38,7 +38,7 @@ The _Keygrip_ can be passed in the _`keys`_ property of the constructor. By defa
 
 <tr><td align="center">
 
-<kbd>🔗 [View Compiler Externs](../../wiki/Compiler-Externs)</kbd>
+<kbd>🔗 [View Compiler Externs](../../wiki/Externs)</kbd>
 ===
 </td></tr>
 <!-- block-start -->

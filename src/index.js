@@ -69,7 +69,8 @@ export default class Cookies {
   /**
    * @param {string} name The name of the cookie to set.
    * @param {?string} [value] The value of the cookie to set.
-   * @param {!_goa.CookieSetOptions} [opts] Used to generate the outbound cookie header.
+   * @param {!_goa.CookieSetOptions} [opts] How the cookie will be set.
+   * @param {boolean} [opts.signed=false] Indicating whether the cookie is to be signed. If this is true, another cookie of the same name with the .sig suffix appended will also be sent, with a 27-byte url-safe base64 SHA1 value representing the hash of cookie-name=cookie-value against the first Keygrip key. This signature key is used to detect tampering the next time a cookie is received. Default `false`.
    */
   set(name, value, opts = {}) {
     const { response: res, request: req } = this
