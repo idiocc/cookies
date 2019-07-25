@@ -5,32 +5,34 @@
 `@goa/cookies` is a fork of <kbd>🗝 [Signed And Unsigned Cookies Based On Keygrip](https://github.com/pillarjs/cookies)</kbd> Written In ES6, Annotated With [Externs](/types/externs) And Optimised With [JavaScript Compiler](https://compiler.page).
 
 <table><tr><td>
-  
-  The original module was edited with annotations and other changes required for it to be used in [`@goa/koa`](https://artdecocode.com/goa/): _Koa_ web server [compiled](https://compiler.page) with _Closure Compiler_ using [**Depack**](https://artdecocode.com/depack/) into a single file library (with 1 dependency such as mime-db).
+The original module was edited with annotations and other changes required for it to be used in [`@goa/koa`](https://artdecocode.com/goa/): _Koa_ web server [compiled](https://compiler.page) with _Closure Compiler_ using [**Depack**](https://artdecocode.com/depack/) into a single file library (with 1 dependency such as mime-db).
 
-  <details><summary>Read more about the compilation.</summary>
+<details><summary>Read more about the compilation.</summary>
 
-  All dependencies are specified as dev dependencies because they are flattened into a single JS file by the compiler, unless the special `require(/* depack ok */ 'modulejs')` was called, which will require the package at run-time, for instance this is how mime-db is required by Goa.
+All dependencies are specified as dev dependencies because they are flattened into a single JS file by the compiler, unless the special `require(/* depack ok */ 'modulejs')` was called, which will require the package at run-time, for instance this is how mime-db is required by Goa.
 
-  The package specifies the following entry points:
+The package specifies the following entry points:
 
-  - <kbd>[commonjs/main](/compile/index.js)</kbd>: the _require_ entry optimised with compiler. Used for individual consumption of the package's API.
-      ```m
-      compile
-      ├── cookies.js
-      ├── cookies.js.map
-      └── index.js
-      ```
-  - <kbd>[es6/module](/src/index.js)</kbd>: the source code that can be used in compilation of other packages, e.g., `@goa/goa`.
-      ```m
-      src
-      ├── Cookie.js
-      ├── Keygrip.js
-      ├── depack.js
-      └── index.js
-      ```
+- <kbd>[commonjs/main](/compile/index.js)</kbd>: the _require_ entry optimised with compiler. Used for individual consumption of the package's API.
+    ```m
+    compile
+    ├── cookies.js
+    ├── cookies.js.map
+    └── index.js
+    ```
+- <kbd>[es6/module](/src/index.js)</kbd>: the source code that can be used in compilation of other packages, e.g., `@goa/goa`.
+    ```m
+    src
+    ├── Cookie.js
+    ├── Keygrip.js
+    ├── depack.js
+    ├── index.js
+    └── keygrip-lib
+        ├── ctc.js
+        └── sign.js
+    ```
 
-  </details></td><td>
+</details></td><td>
 
 The tests were rewritten using [context testing](https://contexttesting.com). The [Http Context](https://npmjs.org/@contexts/http), in particular the Cookie Tester was used to assert on presence of entries, and their attributes.
 
@@ -111,9 +113,9 @@ A Boolean can optionally be passed as _options.secure_ to explicitly specify if 
 
 Note that since this only saves parameters without any other processing, it is very lightweight. Cookies are only parsed on demand when they are accessed.
 
-`import('http').IncomingMessage` __<a name="type-httpincomingmessage">`http.IncomingMessage`</a>__: The client request.
+[`import('http').IncomingMessage`](https://nodejs.org/api/http.html#http_class_http_incomingmessage) __<a name="type-httpincomingmessage">`http.IncomingMessage`</a>__: The client request.
 
-`import('http').ServerResponse` __<a name="type-httpserverresponse">`http.ServerResponse`</a>__: The server response.
+[`import('http').ServerResponse`](https://nodejs.org/api/http.html#http_class_http_serverresponse) __<a name="type-httpserverresponse">`http.ServerResponse`</a>__: The server response.
 
 __<a name="type-cookiesoptions">`CookiesOptions`</a>__: Options for the constructor.
 
@@ -173,15 +175,15 @@ server.listen(async () => {
 <tr><td>
 
 ```
-http://localhost:52300
-Welcome, first time visitor! LastVisit=2019-07-19T23:33:16.481Z; path=/; httponly
-LastVisit.sig=pGJqx5mfYbdnHFP4goSOsWkvomk; path=/; httponly
-Welcome back! Nothing much changed since your last visit at 2019-07-19T23:33:16.481Z.
+http://localhost:55843
+Welcome, first time visitor! LastVisit=2019-07-25T21:51:28.286Z; path=/; httponly
+LastVisit.sig=ZfsaLTVg67KXi92aorXVNKxa-as; path=/; httponly
+Welcome back! Nothing much changed since your last visit at 2019-07-25T21:51:28.286Z.
 ```
 </td></tr>
 </table>
 
-The overview of the _Cookies_ interface is found [in wiki](../../wiki/Cookies-Class).
+The overview of the _Cookies_ interface is found [in wiki](../../wiki/Cookies).
 
 <p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/2.svg?sanitize=true"></a></p>
 
@@ -189,7 +191,7 @@ The overview of the _Cookies_ interface is found [in wiki](../../wiki/Cookies-Cl
 
 This sets the given cookie in the response and returns the current context to allow chaining. If the value is omitted, an outbound header with an expired date is used to delete the cookie.
 
-__<a name="type-cookiesetoptions">`CookieSetOptions`</a>__: How the cookie will be set.
+<strong><a name="type-cookiesetoptions">`CookieSetOptions`</a> extends `_goa.CookieAttributes`</strong>: How the cookie will be set.
 
 |  Name  |       Type       |                                                                                                                                                                          Description                                                                                                                                                                           | Default |
 | ------ | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -212,7 +214,7 @@ Wiki contains the following pages with additional information about the package.
 <table>
 <tr><td align="center">
 
-<kbd>🍪 [Cookie Attributes](../../wiki/Cookie-Attributes)</kbd>
+<kbd>🍪 [Cookie Attributes](../../wiki/Attributes)</kbd>
 ===
 </td></tr>
 <tr><td>

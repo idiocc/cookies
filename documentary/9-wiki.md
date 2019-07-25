@@ -5,7 +5,7 @@ Wiki contains the following pages with additional information about the package.
 <table>
 <tr><td align="center">
 
-<kbd>🍪 [Cookie Attributes](../../wiki/Cookie-Attributes)</kbd>
+<kbd>🍪 [Cookie Attributes](../../wiki/Attributes)</kbd>
 ===
 </td></tr>
 <!-- block-start -->
