@@ -13,11 +13,11 @@ yarn add @goa/cookies
 - [Table Of Contents](#table-of-contents)
 - [API](#api)
 - [class Cookies](#class-cookies)
-  * [`constructor(request, response, options=)`](#constructorrequest-httpincomingmessageresponse-httpserverresponseoptions-cookiesoptions-void)
+  * [`constructor(request, response, options=): Cookies`](#constructorrequest-httpincomingmessageresponse-httpserverresponseoptions-cookiesoptions-cookies)
     * [`CookiesOptions`](#type-cookiesoptions)
-  * [`set(name, value=, attributes=)`](#setname-stringvalue-stringattributes-cookiesetoptions-void)
+  * [`set(name, value=, attributes=): void`](#setname-stringvalue-stringattributes-cookiesetoptions-void)
     * [`CookieSetOptions`](#type-cookiesetoptions)
-  * [`get(name, opts)`](#getname-stringopts--signed-boolean--void)
+  * [`get(name, opts): string|undefined`](#getname-stringopts--signed-boolean--stringundefined)
 - [Wiki](#wiki)
 - [Copyright & Status](#copyright--status)
 
@@ -43,7 +43,7 @@ The deprecated `secureProxy`, `maxage` attributes of a cookie have been removed.
 
 _Cookies_ is a Node.JS module for getting and setting HTTP(S) cookies. Cookies can be signed to prevent tampering, using Keygrip. It can be used with the built-in _Node.JS_ HTTP library, or as _Connect/Express_ middleware.
 
-### <code><ins>constructor</ins>(</code><sub><br/>&nbsp;&nbsp;`request: !http.IncomingMessage,`<br/>&nbsp;&nbsp;`response: !http.ServerResponse,`<br/>&nbsp;&nbsp;`options=: !CookiesOptions,`<br/></sub><code>): <i>void</i></code>
+### <code><ins>constructor</ins>(</code><sub><br/>&nbsp;&nbsp;`request: !http.IncomingMessage,`<br/>&nbsp;&nbsp;`response: !http.ServerResponse,`<br/>&nbsp;&nbsp;`options=: !CookiesOptions,`<br/></sub><code>): <i>Cookies</i></code>
 
 This creates a cookie jar corresponding to the current _request_ and _response_, additionally passing an object options.
 
@@ -142,7 +142,7 @@ The [attributes](/wiki/Attributes) accepted by the cookie instance are listed in
   <img src="/.documentary/section-breaks/3.svg?sanitize=true">
 </a></p>
 
-### <code><ins>get</ins>(</code><sub><br/>&nbsp;&nbsp;`name: string,`<br/>&nbsp;&nbsp;`opts: { signed: boolean },`<br/></sub><code>): <i>void</i></code>
+### <code><ins>get</ins>(</code><sub><br/>&nbsp;&nbsp;`name: string,`<br/>&nbsp;&nbsp;`opts: { signed: boolean },`<br/></sub><code>): <i>string|undefined</i></code>
 
 Returns the cookie with the given name if it was previously set. The `signed` option might be passed to specify if a signed cookie is being accessed.
 
