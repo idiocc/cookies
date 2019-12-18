@@ -1,0 +1,8 @@
+{
+  "meta": {
+    "Cookies": {
+      "desc": "The interface for Cookies: signed and unsigned cookies based on Keygrip.",
+      "link": "https://github.com/idiocc/cookies/wiki/Cookies-Class"
+    }
+  }
+}

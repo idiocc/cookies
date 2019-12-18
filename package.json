@@ -12,8 +12,9 @@
     "compile": "depack-dev src/depack -o compile/cookies.js -c -a -p",
     "test-compile": "ALAMODE_ENV=test-compile yarn test",
     "lint": "eslint .",
-    "doc": "NODE_DEBUG=doc doc -o README.md -n _goa -T types/attributes.xml",
-    "d1": "typal types/index.js compile/index.js src/index.js -t types/index.xml,types/attributes.xml,types/keygrip.xml,types/options.xml,types/set.xml -c",
+    "doc": "doc -o README.md -n _goa -T types/attributes.xml -d",
+    "wiki": "doc wiki -W wiki.git -n _goa -d",
+    "d1": "typal types/index.js compile/index.js src/index.js -t types -c",
     "d": "yarn-s d1 externs",
     "externs": "typal types/externs/*",
     "build": "yarn-s d b doc",
@@ -46,12 +47,12 @@
   },
   "homepage": "https://github.com/idiocc/cookies#readme",
   "devDependencies": {
-    "@contexts/http": "^1.5.1",
-    "alamode": "^2.3.4",
+    "@contexts/http": "^1.6.1",
+    "alamode": "^3.3.0",
     "connect": "^3.7.0",
-    "documentary": "^1.27.7",
+    "documentary": "^1.34.9",
     "eslint-config-artdeco": "1.0.1",
-    "yarn-s": "1.1.0",
-    "zoroaster": "^4.1.1-alpha"
+    "yarn-s": "1.2.1",
+    "zoroaster": "^4.1.2"
   }
 }

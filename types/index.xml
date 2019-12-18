@@ -1,19 +1,24 @@
 <types namespace="_goa">
-  <type interface name="Cookies" desc="The interface for Cookies: signed and unsigned cookies based on Keygrip.">
+  <interface name="Cookies" desc="The interface for Cookies: signed and unsigned cookies based on Keygrip.">
     <prop type="!_goa.Keygrip" name="keys" opt>
       The keys object constructed from passed keys (private, will be installed from options).
     </prop>
     <prop opt boolean name="secure">
       Explicitly specifies if the connection is secure (private, will be installed from options).
     </prop>
-    <prop type="function(string, { signed: boolean }): (string|undefined)" name="get">
+    <fn return="string|undefined" name="get">
+      <arg string name="name">The name of the cookie to get.</arg>
+      <arg type="{ signed: boolean }" name="opts">The options.</arg>
       This extracts the cookie with the given name from the Cookie header in the request. If such a cookie exists, its value is returned. Otherwise, nothing is returned. `{ signed: true }` can optionally be passed as the second parameter options. In this case, a signature cookie (a cookie of same name ending with the .sig suffix appended) is fetched. If no such cookie exists, nothing is returned. If the signature cookie does exist, the provided Keygrip object is used to check whether the hash of cookie-name=cookie-value matches that of any registered key:
       - If the signature cookie hash matches the first key, the original cookie value is returned.
       - If the signature cookie hash matches any other key, the original cookie value is returned AND an outbound header is set to update the signature cookie's value to the hash of the first key. This enables automatic freshening of signature cookies that have become stale due to key rotation.
       - If the signature cookie hash does not match any key, nothing is returned, and an outbound header with an expired date is used to delete the cookie.
-    </prop>
-    <prop type="function(string, ?string=, !_goa.CookieAttributes=)" name="set">
+    </fn>
+    <fn void name="set">
+      <arg string name="name">The name of the cookie to set.</arg>
+      <arg type="?string" name="value" opt>The value to set.</arg>
+      <arg type="!_goa.CookieAttributes" name="attributes" opt>The attributes.</arg>
       This sets the given cookie in the response and returns the current context to allow chaining. If the value is omitted, an outbound header with an expired date is used to delete the cookie.
-    </prop>
-  </type>
+    </fn>
+  </interface>
 </types>

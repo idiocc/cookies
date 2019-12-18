@@ -9,7 +9,7 @@ var _goa = {}
  * The interface for Cookies: signed and unsigned cookies based on Keygrip.
  * @interface
  */
-_goa.Cookies
+_goa.Cookies = function() {}
 /**
  * The keys object constructed from passed keys (private, will be installed from options).
  * @type {(!_goa.Keygrip)|undefined}
@@ -25,11 +25,15 @@ _goa.Cookies.prototype.secure
  * - If the signature cookie hash matches the first key, the original cookie value is returned.
  * - If the signature cookie hash matches any other key, the original cookie value is returned AND an outbound header is set to update the signature cookie's value to the hash of the first key. This enables automatic freshening of signature cookies that have become stale due to key rotation.
  * - If the signature cookie hash does not match any key, nothing is returned, and an outbound header with an expired date is used to delete the cookie.
- * @type {function(string, { signed: boolean }): (string|undefined)}
+ * @param {string} name The name of the cookie to get.
+ * @param {{ signed: boolean }} opts The options.
+ * @return {(string|undefined)}
  */
-_goa.Cookies.prototype.get
+_goa.Cookies.prototype.get = function(name, opts) {}
 /**
  * This sets the given cookie in the response and returns the current context to allow chaining. If the value is omitted, an outbound header with an expired date is used to delete the cookie.
- * @type {function(string, ?string=, !_goa.CookieAttributes=)}
+ * @param {string} name The name of the cookie to set.
+ * @param {?string=} [value] The value to set.
+ * @param {!_goa.CookieAttributes=} [attributes] The attributes.
  */
-_goa.Cookies.prototype.set
+_goa.Cookies.prototype.set = function(name, value, attributes) {}

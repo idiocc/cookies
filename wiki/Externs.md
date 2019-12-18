@@ -4,11 +4,11 @@ The externs are provided via the `types/externs` directory.
 <summary>Show [Externs](t)</summary> -->
 
 <table>
-<tr><th><a href="https://compiler.page">Compiler</a> <a href="../blob/master/types/externs">Externs</a></th></tr>
+<tr><th><a href="https://www.compiler.page">Compiler</a> <a href="../blob/master/types/externs">Externs</a></th></tr>
 <!-- block-start -->
 <tr><td>
 
-%EXAMPLE: ../cookies/types/externs/cookies%
+%EXAMPLE: types/externs/cookies%
 </td></tr>
 <tr><td><md2html>
 The externs provide the Cookies interface with the get and set methods.
@@ -19,7 +19,7 @@ The externs provide the Cookies interface with the get and set methods.
 <!-- block-start -->
 <tr><td>
 
-%EXAMPLE: ../cookies/types/externs/options%
+%EXAMPLE: types/externs/options%
 </td></tr>
 <tr><td><md2html>
 The Cookies Options can be used in the constructor method of the _Cookies_ class.
@@ -27,7 +27,7 @@ The Cookies Options can be used in the constructor method of the _Cookies_ class
 <!-- block-start -->
 <tr><td>
 
-%EXAMPLE: ../cookies/types/externs/attributes%
+%EXAMPLE: types/externs/attributes%
 </td></tr>
 <tr><td><md2html>
 The Cookies Attribute Records are the key-value pairs that are used to create string representation of the cookie, e.g., `httpOnly=true`.
@@ -36,7 +36,7 @@ The Cookies Attribute Records are the key-value pairs that are used to create st
 <!-- block-start -->
 <tr><td>
 
-%EXAMPLE: ../cookies/types/externs/keygrip%
+%EXAMPLE: types/externs/keygrip%
 </td></tr>
 <tr><td><md2html>
 _Keygrip_ is the class that implements _goa.Keygrip interface with the 3 methods declared in the API. It is then called by the

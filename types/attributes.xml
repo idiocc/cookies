@@ -1,5 +1,5 @@
 <types namespace="_goa">
-  <type record name="CookieAttributes" desc="Used to generate the outbound cookie header." link="https://github.com/idiocc/cookies/wiki/Attributes">
+  <type record name="CookieAttributes" desc="Used to generate the outbound cookie header.">
     <prop opt number name="maxAge">
       Represents the milliseconds from `Date.now()` for expiry.
     </prop>

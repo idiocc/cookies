@@ -41,12 +41,12 @@ _goa.CookieAttributes.prototype.secure
  */
 _goa.CookieAttributes.prototype.httpOnly
 /**
- * Indicates whether the cookie is a "same site" cookie. This can be set to `'strict'`, `'lax'`, or `true` (which maps to `'strict'`).
+ * Indicates whether the cookie is a "same site" cookie. This can be set to `'strict'`, `'lax'`, or `true` (which maps to `'strict'`). Default `false`.
  * @type {(boolean|string)|undefined}
  */
 _goa.CookieAttributes.prototype.sameSite
 /**
- * Indicates whether to overwrite previously set cookies of the same name. If this is true, all cookies set during the same request with the same name (regardless of path or domain) are filtered out of the Set-Cookie header when setting this cookie.
+ * Indicates whether to overwrite previously set cookies of the same name. If this is true, all cookies set during the same request with the same name (regardless of path or domain) are filtered out of the Set-Cookie header when setting this cookie. Default `false`.
  * @type {boolean|undefined}
  */
 _goa.CookieAttributes.prototype.overwrite
