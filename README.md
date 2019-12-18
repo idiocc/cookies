@@ -17,7 +17,7 @@ yarn add @goa/cookies
     * [`CookiesOptions`](#type-cookiesoptions)
   * [`set(name, value=, attributes=): void`](#setname-stringvalue-stringattributes-cookiesetoptions-void)
     * [`CookieSetOptions`](#type-cookiesetoptions)
-  * [`get(name, opts): string|undefined`](#getname-stringopts--signed-boolean--stringundefined)
+  * [`get(name, opts=): string|undefined`](#getname-stringopts--signed-boolean--stringundefined)
 - [Wiki](#wiki)
 - [Copyright & Status](#copyright--status)
 
@@ -131,6 +131,8 @@ The overview of the _Cookies_ interface is found [in wiki](../../wiki/Cookies).
   <img src="/.documentary/section-breaks/2.svg?sanitize=true">
 </a></p>
 
+
+
 ### <code><ins>set</ins>(</code><sub><br/>&nbsp;&nbsp;`name: string,`<br/>&nbsp;&nbsp;`value=: ?string,`<br/>&nbsp;&nbsp;`attributes=: !CookieSetOptions,`<br/></sub><code>): <i>void</i></code>
 
 This sets the given cookie in the response and returns the current context to allow chaining. If the value is omitted, an outbound header with an expired date is used to delete the cookie.
@@ -139,9 +141,7 @@ This sets the given cookie in the response and returns the current context to al
  - <kbd>value</kbd> <em>`?string`</em> (optional): The value to set.
  - <kbd>attributes</kbd> <em><code><a href="#type-cookiesetoptions" title="How the cookie will be set.">!CookieSetOptions</a></code></em> (optional): The attributes and `signed` option.
 
-This sets the given cookie in the response and returns the current context to allow chaining. If the value is omitted, an outbound header with an expired date is used to delete the cookie.
-
-__<a name="type-cookiesetoptions">`CookieSetOptions`</a> extends `CookieAttributes`__: How the cookie will be set.
+__<a name="type-cookiesetoptions">`CookieSetOptions`</a> extends <a href="../../wiki/Attributes#type-cookieattributes" title="Used to generate the outbound cookie header.">`CookieAttributes`</a>__: How the cookie will be set.
 
 
 |  Name  |       Type       |                                                                                                                                                                          Description                                                                                                                                                                           | Default |
@@ -154,7 +154,7 @@ The [attributes](/wiki/Attributes) accepted by the cookie instance are listed in
   <img src="/.documentary/section-breaks/3.svg?sanitize=true">
 </a></p>
 
-### <code><ins>get</ins>(</code><sub><br/>&nbsp;&nbsp;`name: string,`<br/>&nbsp;&nbsp;`opts: { signed: boolean },`<br/></sub><code>): <i>string|undefined</i></code>
+### <code><ins>get</ins>(</code><sub><br/>&nbsp;&nbsp;`name: string,`<br/>&nbsp;&nbsp;`opts=: { signed: boolean },`<br/></sub><code>): <i>string|undefined</i></code>
 
 This extracts the cookie with the given name from the Cookie header in the request. If such a cookie exists, its value is returned. Otherwise, nothing is returned. `{ signed: true }` can optionally be passed as the second parameter options. In this case, a signature cookie (a cookie of same name ending with the .sig suffix appended) is fetched. If no such cookie exists, nothing is returned. If the signature cookie does exist, the provided Keygrip object is used to check whether the hash of cookie-name=cookie-value matches that of any registered key:
 - If the signature cookie hash matches the first key, the original cookie value is returned.
@@ -162,9 +162,7 @@ This extracts the cookie with the given name from the Cookie header in the reque
 - If the signature cookie hash does not match any key, nothing is returned, and an outbound header with an expired date is used to delete the cookie.
 
  - <kbd><strong>name*</strong></kbd> <em>`string`</em>: The name of the cookie to get.
- - <kbd><strong>opts*</strong></kbd> <em>`{ signed: boolean }`</em>: The options.
-
-Returns the cookie with the given name if it was previously set. The `signed` option might be passed to specify if a signed cookie is being accessed.
+ - <kbd>opts</kbd> <em>`{ signed: boolean }`</em> (optional): The options.
 
 <p align="center"><a href="#table-of-contents">
   <img src="/.documentary/section-breaks/4.svg?sanitize=true">
