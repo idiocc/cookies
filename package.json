@@ -14,9 +14,10 @@
     "lint": "eslint .",
     "doc": "doc -o README.md -n _goa -T types/attributes.xml -d",
     "wiki": "doc wiki -W wiki.git -n _goa -d",
-    "d1": "typal types/index.js compile/index.js src/index.js -t types -c",
-    "d": "yarn-s d1 externs",
-    "externs": "typal types/externs/*",
+    "d": "yarn-s template d1 externs",
+    "d1": "typal compile/index.js -t types -u",
+    "template": "typal compile/template.js -T compile/index.js -t types",
+    "externs": "typal types/externs/* -e",
     "build": "yarn-s d b doc",
     "e": "alanode"
   },

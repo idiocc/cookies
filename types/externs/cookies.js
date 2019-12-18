@@ -7,9 +7,13 @@
 var _goa = {}
 /**
  * The interface for Cookies: signed and unsigned cookies based on Keygrip.
+ * Creates a new cookies object to handle cookies.
+ * @param {!http.IncomingMessage} request The request object.
+ * @param {!http.ServerResponse} response The response object.
+ * @param {!_goa.CookiesOptions=} [options] Options for the constructor.
  * @interface
  */
-_goa.Cookies = function() {}
+_goa.Cookies = function(request, response, options) {}
 /**
  * The keys object constructed from passed keys (private, will be installed from options).
  * @type {(!_goa.Keygrip)|undefined}
@@ -34,6 +38,6 @@ _goa.Cookies.prototype.get = function(name, opts) {}
  * This sets the given cookie in the response and returns the current context to allow chaining. If the value is omitted, an outbound header with an expired date is used to delete the cookie.
  * @param {string} name The name of the cookie to set.
  * @param {?string=} [value] The value to set.
- * @param {!_goa.CookieAttributes=} [attributes] The attributes.
+ * @param {!_goa.CookieSetOptions=} [attributes] The attributes and `signed` option.
  */
 _goa.Cookies.prototype.set = function(name, value, attributes) {}

@@ -4,8 +4,8 @@ import Cookies, { connect, express } from './'
 import Keygrip from './Keygrip'
 
 module.exports = {
-  Cookies,
-  Keygrip,
+  '_Cookies': Cookies,
+  '_Keygrip': Keygrip,
   'express': express,
   'connect': connect,
 }

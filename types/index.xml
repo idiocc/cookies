@@ -1,5 +1,19 @@
 <types namespace="_goa">
+  <import name="IncomingMessage" from="http" />
+  <import name="ServerResponse" from="http" />
   <interface name="Cookies" desc="The interface for Cookies: signed and unsigned cookies based on Keygrip.">
+    <fn name="constructor">
+      <arg type="!http.IncomingMessage" name="request">
+        The request object.
+      </arg>
+      <arg type="!http.ServerResponse" name="response">
+        The response object.
+      </arg>
+      <arg type="!_goa.CookiesOptions" name="options" opt>
+        Options for the constructor.
+      </arg>
+      Creates a new cookies object to handle cookies.
+    </fn>
     <prop type="!_goa.Keygrip" name="keys" opt>
       The keys object constructed from passed keys (private, will be installed from options).
     </prop>
@@ -17,7 +31,7 @@
     <fn void name="set">
       <arg string name="name">The name of the cookie to set.</arg>
       <arg type="?string" name="value" opt>The value to set.</arg>
-      <arg type="!_goa.CookieAttributes" name="attributes" opt>The attributes.</arg>
+      <arg type="!_goa.CookieSetOptions" name="attributes" opt>The attributes and `signed` option.</arg>
       This sets the given cookie in the response and returns the current context to allow chaining. If the value is omitted, an outbound header with an expired date is used to delete the cookie.
     </fn>
   </interface>
