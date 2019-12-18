@@ -34,6 +34,6 @@ Current:
 
 ---
 
-<IdioFooter />
+<idio-footer />
 
 %~ -1%

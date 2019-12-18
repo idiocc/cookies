@@ -1,6 +1,5 @@
 import { strictEqual } from 'assert'
-import Cookies from '../../src'
-import Keygrip from '../../src/Keygrip'
+import Cookies, { Keygrip } from '../../src'
 import Context from '../context'
 
 /** @type {TestSuite} */

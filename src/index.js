@@ -142,6 +142,8 @@ export const connect = (keys) => {
 }
 export const express = connect
 
+export { Keygrip }
+
 /**
  * @suppress {nonStandardJsDocs}
  * @typedef {import('..').IncomingMessage} http.IncomingMessage

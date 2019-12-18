@@ -2,11 +2,11 @@
 'use strict';
 const http = require('http');
 const _crypto = require('crypto');             
-const {createHmac:k} = _crypto;
-function m(a, b, c, d) {
-  return k(b, c).update(a).digest(d).replace(/\/|\+|=/g, e => ({"/":"_", "+":"-", "=":""})[e]);
+const h = _crypto.createHmac;
+function k(a, b, c, d) {
+  return h(b, c).update(a).digest(d).replace(/\/|\+|=/g, e => ({"/":"_", "+":"-", "=":""})[e]);
 }
-;function n(a, b) {
+;function l(a, b) {
   if (null == a && null != b || null == b && null != a) {
     return !1;
   }
@@ -26,7 +26,7 @@ function m(a, b, c, d) {
  Copyright(c) 2011-2014 Jed Schmidt
  MIT Licensed
 */
-class p {
+class m {
   constructor(a, b = "sha1", c = "base64") {
     if (!(a && 0 in a)) {
       throw Error("Keys must be provided.");
@@ -36,24 +36,24 @@ class p {
     this.keys = a;
   }
   sign(a) {
-    return m(a, this.a, this.keys[0], this.encoding);
+    return k(a, this.a, this.keys[0], this.encoding);
   }
   verify(a, b) {
     return -1 < this.index(a, b);
   }
   index(a, b) {
     for (let c = 0, d = this.keys.length; c < d; c++) {
-      const e = m(a, this.a, this.keys[c], this.encoding);
-      if (n(b, e)) {
+      const e = k(a, this.a, this.keys[c], this.encoding);
+      if (l(b, e)) {
         return c;
       }
     }
     return -1;
   }
 }
-;const {OutgoingMessage:q} = http;
-const r = /^[\u0009\u0020-\u007e\u0080-\u00ff]+$/, t = /^(?:lax|strict)$/i;
-function u(a) {
+;const n = http.OutgoingMessage;
+const p = /^[\u0009\u0020-\u007e\u0080-\u00ff]+$/, q = /^(?:lax|strict)$/i;
+function r(a) {
   var b = a.toString();
   a.maxAge && (a.expires = new Date(Date.now() + a.maxAge));
   a.path && (b += "; path=" + a.path);
@@ -64,16 +64,16 @@ function u(a) {
   a.httpOnly && (b += "; httponly");
   return b;
 }
-class v {
+class t {
   constructor(a, b, c) {
     this.path = "/";
     this.maxAge = this.domain = this.expires = void 0;
     this.httpOnly = !0;
     this.overwrite = this.secure = this.sameSite = !1;
-    if (!r.test(a)) {
+    if (!p.test(a)) {
       throw new TypeError("argument name is invalid");
     }
-    if (b && !r.test(b)) {
+    if (b && !p.test(b)) {
       throw new TypeError("argument value is invalid");
     }
     b || (this.expires = new Date(0));
@@ -82,13 +82,13 @@ class v {
     for (let d in c) {
       this[d] = c[d];
     }
-    if (this.path && !r.test(this.path)) {
+    if (this.path && !p.test(this.path)) {
       throw new TypeError("option path is invalid");
     }
-    if (this.domain && !r.test(this.domain)) {
+    if (this.domain && !p.test(this.domain)) {
       throw new TypeError("option domain is invalid");
     }
-    if (this.sameSite && !0 !== this.sameSite && !t.test(this.sameSite)) {
+    if (this.sameSite && !0 !== this.sameSite && !q.test(this.sameSite)) {
       throw new TypeError("option sameSite is invalid");
     }
   }
@@ -102,18 +102,20 @@ class v {
  Copyright(c) 2015-2016 Douglas Christopher Wilson
  MIT Licensed
 */
-const w = {};
-class x {
+const u = {};
+class v {
   constructor(a, b, c) {
     this.secure = void 0;
     this.request = a;
     this.a = b;
-    c && (this.keys = Array.isArray(c.keys) ? new p(c.keys) : c.keys, this.secure = c.secure);
+    c && (this.keys = Array.isArray(c.keys) ? new m(c.keys) : c.keys, this.secure = c.secure);
   }
   get(a, b) {
-    var c = a + ".sig", d, e = b && void 0 !== b.signed ? b.signed : !!this.keys;
+    const c = `${a}.sig`;
+    var d;
+    const e = b && void 0 !== b.signed ? b.signed : !!this.keys;
     if (d = this.request.headers.cookie) {
-      if (d = d.match(w[a] ? w[a] : w[a] = new RegExp("(?:^|;) *" + a.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&") + "=([^;]*)"))) {
+      if (d = d.match(u[a] ? u[a] : u[a] = new RegExp("(?:^|;) *" + a.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&") + "=([^;]*)"))) {
         d = d[1];
         if (!b || !e) {
           return d;
@@ -133,49 +135,47 @@ class x {
       }
     }
   }
-  set(a, b, c) {
-    c = void 0 === c ? {} : c;
-    const {a:d, request:e} = this;
-    let g = d.getHeader("Set-Cookie") || [];
-    "string" == typeof g && (g = [g]);
-    var h = e.protocol, f = e.connection.encrypted;
-    h = void 0 !== this.secure ? !!this.secure : "https" == h || f;
-    f = c;
-    var l = Object.assign({}, f);
-    f = void 0 === f.signed ? !!this.keys : f.signed;
-    l = (delete l.signed, l);
-    a = new v(a, b, l);
-    if (!h && c.secure) {
+  set(a, b, c = {}) {
+    const d = this.a;
+    var e = this.request;
+    let f = d.getHeader("Set-Cookie") || [];
+    "string" == typeof f && (f = [f]);
+    var g = e.protocol;
+    e = e.connection.encrypted;
+    g = void 0 !== this.secure ? !!this.secure : "https" == g || e;
+    const {signed:y = !!this.keys, ...z} = c;
+    a = new t(a, b, z);
+    if (!g && c.secure) {
       throw Error("Cannot send secure cookie over unencrypted connection");
     }
-    a.secure = h;
-    "secure" in c || (a.secure = h);
-    y(g, a);
-    if (c && f) {
+    a.secure = g;
+    "secure" in c || (a.secure = g);
+    w(f, a);
+    if (c && y) {
       if (!this.keys) {
         throw Error(".keys required for signed cookies");
       }
       a.value = this.keys.sign(a.toString());
       a.name += ".sig";
-      y(g, a);
+      w(f, a);
     }
-    (d.set ? q.prototype.setHeader : d.setHeader).call(d, "Set-Cookie", g);
+    (d.set ? n.prototype.setHeader : d.setHeader).call(d, "Set-Cookie", f);
     return this;
   }
 }
-function y(a, b) {
+function w(a, b) {
   if (b.overwrite) {
     for (var c = a.length - 1; 0 <= c; c--) {
       0 === a[c].indexOf(b.name + "=") && a.splice(c, 1);
     }
   }
-  a.push(u(b));
+  a.push(r(b));
 }
-const z = a => (b, c, d) => {
-  b.cookies = c.cookies = new x(b, c, {keys:a});
+const x = a => (b, c, d) => {
+  b.cookies = c.cookies = new v(b, c, {keys:a});
   d();
 };
-module.exports = {Cookies:x, Keygrip:p, express:z, connect:z};
+module.exports = {_Cookies:v, _Keygrip:m, express:x, connect:x};
 
 
 //# sourceMappingURL=cookies.js.map

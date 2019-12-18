@@ -1,73 +1,8 @@
 # @goa/cookies
 
-[![npm version](https://badge.fury.io/js/%40goa%2Fcookies.svg)](https://npmjs.org/package/@goa/cookies)
+[![npm version](https://badge.fury.io/js/%40goa%2Fcookies.svg)](https://www.npmjs.com/package/@goa/cookies)
 
-`@goa/cookies` is a fork of <kbd>🗝 [Signed And Unsigned Cookies Based On Keygrip](https://github.com/pillarjs/cookies)</kbd> Written In ES6, Annotated With [Externs](/types/externs) And Optimised With [JavaScript Compiler](https://compiler.page).
-
-<table><tr><td>
-
-The original module was edited with annotations and other changes required for it to be used in [`@goa/koa`](https://artdecocode.com/goa/): _Koa_ web server [compiled](https://compiler.page) with _Closure Compiler_ using [**Depack**](https://artdecocode.com/depack/) into a single file library (with 1 dependency such as mime-db).
-
-<details><summary>Read more about the compilation.</summary>
-
-All dependencies are specified as dev dependencies because they are flattened into a single JS file by the compiler, unless the special `require(/* depack ok */ 'modulejs')` was called, which will require the package at run-time, for instance this is how mime-db is required by Goa.
-
-The package specifies the following entry points:
-
-- <kbd>[commonjs/main](/compile/index.js)</kbd>: the _require_ entry optimised with compiler. Used for individual consumption of the package's API.
-    ```m
-    compile
-    ├── cookies.js
-    ├── cookies.js.map
-    └── index.js
-    ```
-- <kbd>[es6/module](/src/index.js)</kbd>: the source code that can be used in compilation of other packages, e.g., `@goa/goa`.
-    ```m
-    src
-    ├── Cookie.js
-    ├── Keygrip.js
-    ├── depack.js
-    ├── index.js
-    └── keygrip-lib
-        ├── ctc.js
-        └── sign.js
-    ```
-
-</details></td><td>
-
-The tests were rewritten using [context testing](https://contexttesting.com). The [Http Context](https://npmjs.org/@contexts/http), in particular the Cookie Tester was used to assert on presence of entries, and their attributes.
-
-<details><summary>Show the tests.</summary>
-
-```js
-'with "secure: true" constructor option': {
-  async 'sets secure attribute on unencrypted connection'(
-    { start, c }) {
-    const opts = { secure: true } // constructor options
-    await start(c((req, res, cookies) => {
-      cookies.set('foo', 'bar', { secure: true })
-      res.end()
-    }, opts))
-      .get('/')
-      .assert(200)
-      .attribute('foo', 'Secure')
-  },
-},
-'with req.protocol === "https"': {
-  async 'sets secure attribute on unencrypted connection'(
-    { start, c }) {
-    await start(c((req, res, cookies) => {
-      req.protocol = 'https'
-      cookies.set('foo', 'bar', { secure: true })
-      res.end()
-    }))
-      .get('/')
-      .assert(200)
-      .attribute('foo', 'Secure')
-  },
-},
-```
-</details></td></tr></table>
+`@goa/cookies` is a fork of <kbd>🗝 [Signed And Unsigned Cookies Based On Keygrip](https://github.com/pillarjs/cookies)</kbd> Written In ES6, Annotated With [Externs](/types/externs) And Optimised With [JavaScript Compiler](https://www.compiler.page).
 
 ```sh
 yarn add @goa/cookies
@@ -78,15 +13,17 @@ yarn add @goa/cookies
 - [Table Of Contents](#table-of-contents)
 - [API](#api)
 - [class Cookies](#class-cookies)
-- [`constructor(request: IncomingMessage, response: ServerResponse, options: CookiesOptions): Cookies`](#constructorrequest-incomingmessageresponse-serverresponseoptions-cookiesoptions-cookies)
-  * [`CookiesOptions`](#type-cookiesoptions)
-- [`set(name: string, value=: ?, opts=: CookieSetOptions&CookieAttributes): void`](#setname-stringvalue-opts-cookiesetoptionscookieattributes-void)
-  * [`CookieSetOptions`](#type-cookiesetoptions)
-- [`get(name: string, opts=: CookieSetOptions): string`](#getname-stringopts-cookiesetoptions-string)
+  * [`constructor(request, response, options=)`](#constructorrequest-httpincomingmessageresponse-httpserverresponseoptions-cookiesoptions-void)
+    * [`CookiesOptions`](#type-cookiesoptions)
+  * [`set(name, value=, attributes=)`](#setname-stringvalue-stringattributes-cookiesetoptions-void)
+    * [`CookieSetOptions`](#type-cookiesetoptions)
+  * [`get(name, opts)`](#getname-stringopts--signed-boolean--void)
 - [Wiki](#wiki)
 - [Copyright & Status](#copyright--status)
 
-<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/0.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/0.svg?sanitize=true">
+</a></p>
 
 ## API
 
@@ -98,13 +35,15 @@ import Cookies, { Keygrip, express, connect } from '@goa/cookies'
 
 The deprecated `secureProxy`, `maxage` attributes of a cookie have been removed. The constructor only accepts the `{ keys: Array<string>|Keygrip }` option, without being able to pass keys as an array, or _Keygrip_ as an object. Please make sure no middleware is using these options.
 
-<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/1.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/1.svg?sanitize=true">
+</a></p>
 
 ## class Cookies
 
 _Cookies_ is a Node.JS module for getting and setting HTTP(S) cookies. Cookies can be signed to prevent tampering, using Keygrip. It can be used with the built-in _Node.JS_ HTTP library, or as _Connect/Express_ middleware.
 
-## `constructor(`<br/>&nbsp;&nbsp;`request: IncomingMessage,`<br/>&nbsp;&nbsp;`response: ServerResponse,`<br/>&nbsp;&nbsp;`options: CookiesOptions,`<br/>`): Cookies`
+### <code><ins>constructor</ins>(</code><sub><br/>&nbsp;&nbsp;`request: !http.IncomingMessage,`<br/>&nbsp;&nbsp;`response: !http.ServerResponse,`<br/>&nbsp;&nbsp;`options=: !CookiesOptions,`<br/></sub><code>): <i>void</i></code>
 
 This creates a cookie jar corresponding to the current _request_ and _response_, additionally passing an object options.
 
@@ -113,10 +52,6 @@ A [Keygrip](#class-keygrip) object or an array of keys can optionally be passed 
 A Boolean can optionally be passed as _options.secure_ to explicitly specify if the connection is secure, rather than this module examining request.
 
 Note that since this only saves parameters without any other processing, it is very lightweight. Cookies are only parsed on demand when they are accessed.
-
-[`import('http').IncomingMessage`](https://nodejs.org/api/http.html#http_class_http_incomingmessage) __<a name="type-httpincomingmessage">`http.IncomingMessage`</a>__: The first argument to the "request" event.
-
-[`import('http').ServerResponse`](https://nodejs.org/api/http.html#http_class_http_serverresponse) __<a name="type-httpserverresponse">`http.ServerResponse`</a>__: The second parameter to the "request" event.
 
 __<a name="type-cookiesoptions">`CookiesOptions`</a>__: Options for the constructor.
 
@@ -176,23 +111,26 @@ server.listen(async () => {
 <tr><td>
 
 ```
-http://localhost:56593
-Welcome, first time visitor! LastVisit=2019-07-25T22:53:04.827Z; path=/; httponly
-LastVisit.sig=zvL2h3aYesSL-t8sk35FJgrsxg0; path=/; httponly
-Welcome back! Nothing much changed since your last visit at 2019-07-25T22:53:04.827Z.
+http://localhost:55787
+Welcome, first time visitor! LastVisit=2019-12-18T21:05:54.405Z; path=/; httponly
+LastVisit.sig=RosnWirAT9-4bEgbxceOxUEQv-c; path=/; httponly
+Welcome back! Nothing much changed since your last visit at 2019-12-18T21:05:54.405Z.
 ```
 </td></tr>
 </table>
 
 The overview of the _Cookies_ interface is found [in wiki](../../wiki/Cookies).
 
-<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/2.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/2.svg?sanitize=true">
+</a></p>
 
-## `set(`<br/>&nbsp;&nbsp;`name: string,`<br/>&nbsp;&nbsp;`value=: ?,`<br/>&nbsp;&nbsp;`opts=: CookieSetOptions&CookieAttributes,`<br/>`): void`
+### <code><ins>set</ins>(</code><sub><br/>&nbsp;&nbsp;`name: string,`<br/>&nbsp;&nbsp;`value=: ?string,`<br/>&nbsp;&nbsp;`attributes=: !CookieSetOptions,`<br/></sub><code>): <i>void</i></code>
 
 This sets the given cookie in the response and returns the current context to allow chaining. If the value is omitted, an outbound header with an expired date is used to delete the cookie.
 
-__<a name="type-cookiesetoptions">`CookieSetOptions`</a> extends <a title="Used to generate the outbound cookie header." href="https://github.com/idiocc/cookies/wiki/Attributes">`CookieAttributes`</a>__: How the cookie will be set.
+__<a name="type-cookiesetoptions">`CookieSetOptions`</a> extends `CookieAttributes`__: How the cookie will be set.
+
 
 |  Name  |       Type       |                                                                                                                                                                          Description                                                                                                                                                                           | Default |
 | ------ | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -200,13 +138,17 @@ __<a name="type-cookiesetoptions">`CookieSetOptions`</a> extends <a title="Used 
 
 The [attributes](/wiki/Attributes) accepted by the cookie instance are listed in wiki.
 
-<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/3.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/3.svg?sanitize=true">
+</a></p>
 
-## `get(`<br/>&nbsp;&nbsp;`name: string,`<br/>&nbsp;&nbsp;`opts=: CookieSetOptions,`<br/>`): string`
+### <code><ins>get</ins>(</code><sub><br/>&nbsp;&nbsp;`name: string,`<br/>&nbsp;&nbsp;`opts: { signed: boolean },`<br/></sub><code>): <i>void</i></code>
 
 Returns the cookie with the given name if it was previously set. The `signed` option might be passed to specify if a signed cookie is being accessed.
 
-<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/4.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/4.svg?sanitize=true">
+</a></p>
 
 ## Wiki
 
@@ -254,7 +196,9 @@ The externs are required to compile the package yet keep the options' properties
 
 ---
 
-<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/5.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/5.svg?sanitize=true">
+</a></p>
 
 
 ## Copyright & Status
@@ -264,7 +208,7 @@ Original [source, documentation and testing](https://github.com/pillarjs/cookies
 Forked Off `cookies` 0.7.3 _Apr 24_
 
 Current:
-[![npm version](https://badge.fury.io/js/cookies.svg)](https://npmjs.org/package/cookies)
+[![npm version](https://badge.fury.io/js/cookies.svg)](https://www.npmjs.com/package/cookies)
 
 ---
 
@@ -292,4 +236,6 @@ Current:
   </tr>
 </table>
 
-<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/-1.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/-1.svg?sanitize=true">
+</a></p>

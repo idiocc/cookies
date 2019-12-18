@@ -14,13 +14,7 @@ The deprecated `secureProxy`, `maxage` attributes of a cookie have been removed.
 
 _Cookies_ is a Node.JS module for getting and setting HTTP(S) cookies. Cookies can be signed to prevent tampering, using Keygrip. It can be used with the built-in _Node.JS_ HTTP library, or as _Connect/Express_ middleware.
 
-```## constructor => Cookies
-[
-  ["request", "IncomingMessage"],
-  ["response", "ServerResponse"],
-  ["options", "CookiesOptions"]
-]
-```
+<method noArgTypesInToc level="3" name="Cookies.constructor">types/index.xml</method>
 
 This creates a cookie jar corresponding to the current _request_ and _response_, additionally passing an object options.
 

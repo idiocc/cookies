@@ -1,8 +1,4 @@
-```## set => void
-[["name","string"],
-["value=", "?"],
-["opts=", "CookieSetOptions&CookieAttributes"]]
-```
+<method noArgTypesInToc level="3" name="Cookies.set">types/index.xml</method>
 
 This sets the given cookie in the response and returns the current context to allow chaining. If the value is omitted, an outbound header with an expired date is used to delete the cookie.
 
