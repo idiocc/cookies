@@ -45,6 +45,12 @@ _Cookies_ is a Node.JS module for getting and setting HTTP(S) cookies. Cookies c
 
 ### <code><ins>constructor</ins>(</code><sub><br/>&nbsp;&nbsp;`request: !http.IncomingMessage,`<br/>&nbsp;&nbsp;`response: !http.ServerResponse,`<br/>&nbsp;&nbsp;`options=: !CookiesOptions,`<br/></sub><code>): <i>Cookies</i></code>
 
+Creates a new cookies object to handle cookies.
+
+ - <kbd><strong>request*</strong></kbd> <em><code><a href="#type-httpincomingmessage" title="A readable stream that receives data from the client in chunks. The first argument of the http.Server.on(&quot;request&quot;) event.">!http.IncomingMessage</a></code></em>: The request object.
+ - <kbd><strong>response*</strong></kbd> <em><code><a href="#type-httpserverresponse" title="A writable stream that communicates data to the client. The second argument of the http.Server.on(&quot;request&quot;) event.">!http.ServerResponse</a></code></em>: The response object.
+ - <kbd>options</kbd> <em><code><a href="#type-cookiesoptions" title="Options for the constructor.">!CookiesOptions</a></code></em> (optional): Options for the constructor.
+
 This creates a cookie jar corresponding to the current _request_ and _response_, additionally passing an object options.
 
 A [Keygrip](#class-keygrip) object or an array of keys can optionally be passed as _options.keys_ to enable cryptographic signing based on SHA1 HMAC, using rotated credentials.
@@ -129,6 +135,12 @@ The overview of the _Cookies_ interface is found [in wiki](../../wiki/Cookies).
 
 This sets the given cookie in the response and returns the current context to allow chaining. If the value is omitted, an outbound header with an expired date is used to delete the cookie.
 
+ - <kbd><strong>name*</strong></kbd> <em>`string`</em>: The name of the cookie to set.
+ - <kbd>value</kbd> <em>`?string`</em> (optional): The value to set.
+ - <kbd>attributes</kbd> <em><code><a href="#type-cookiesetoptions" title="How the cookie will be set.">!CookieSetOptions</a></code></em> (optional): The attributes and `signed` option.
+
+This sets the given cookie in the response and returns the current context to allow chaining. If the value is omitted, an outbound header with an expired date is used to delete the cookie.
+
 __<a name="type-cookiesetoptions">`CookieSetOptions`</a> extends `CookieAttributes`__: How the cookie will be set.
 
 
@@ -143,6 +155,14 @@ The [attributes](/wiki/Attributes) accepted by the cookie instance are listed in
 </a></p>
 
 ### <code><ins>get</ins>(</code><sub><br/>&nbsp;&nbsp;`name: string,`<br/>&nbsp;&nbsp;`opts: { signed: boolean },`<br/></sub><code>): <i>string|undefined</i></code>
+
+This extracts the cookie with the given name from the Cookie header in the request. If such a cookie exists, its value is returned. Otherwise, nothing is returned. `{ signed: true }` can optionally be passed as the second parameter options. In this case, a signature cookie (a cookie of same name ending with the .sig suffix appended) is fetched. If no such cookie exists, nothing is returned. If the signature cookie does exist, the provided Keygrip object is used to check whether the hash of cookie-name=cookie-value matches that of any registered key:
+- If the signature cookie hash matches the first key, the original cookie value is returned.
+- If the signature cookie hash matches any other key, the original cookie value is returned AND an outbound header is set to update the signature cookie's value to the hash of the first key. This enables automatic freshening of signature cookies that have become stale due to key rotation.
+- If the signature cookie hash does not match any key, nothing is returned, and an outbound header with an expired date is used to delete the cookie.
+
+ - <kbd><strong>name*</strong></kbd> <em>`string`</em>: The name of the cookie to get.
+ - <kbd><strong>opts*</strong></kbd> <em>`{ signed: boolean }`</em>: The options.
 
 Returns the cookie with the given name if it was previously set. The `signed` option might be passed to specify if a signed cookie is being accessed.
 
