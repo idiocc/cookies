@@ -1,3 +1,11 @@
+## 19 December 2019
+
+### [2.0.0](https://github.com/idiocc/cookies/compare/v1.1.6...v2.0.0)
+
+- [docs] Update types to use functions.
+- [docs] Improve linking between types within the documentation.
+- [license] Switch to _AGPL-3.0_.
+
 ## 26 July 2019
 
 ### [1.1.6](https://github.com/idiocc/cookies/compare/v1.1.5...v1.1.6)
