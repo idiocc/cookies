@@ -141,7 +141,7 @@ This sets the given cookie in the response and returns the current context to al
  - <kbd>value</kbd> <em>`?string`</em> (optional): The value to set.
  - <kbd>attributes</kbd> <em><code><a href="#type-cookiesetoptions" title="How the cookie will be set.">!CookieSetOptions</a></code></em> (optional): The attributes and `signed` option.
 
-__<a name="type-cookiesetoptions">`CookieSetOptions`</a> extends <a href="../../wiki/Attributes#type-cookieattributes" title="Used to generate the outbound cookie header.">`CookieAttributes`</a>__: How the cookie will be set.
+__<a name="type-cookiesetoptions">`CookieSetOptions`</a> extends <a title="Used to generate the outbound cookie header." href="https://github.com/idiocc/cookies/wiki/Attributes#type-cookieattributes">`CookieAttributes`</a>__: How the cookie will be set.
 
 
 |  Name  |       Type       |                                                                                                                                                                          Description                                                                                                                                                                           | Default |

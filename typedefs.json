@@ -1,0 +1,18 @@
+{
+  "_goa.CookieAttributes": {
+    "link": "https://github.com/idiocc/cookies/wiki/Attributes#type-cookieattributes",
+    "description": "Used to generate the outbound cookie header."
+  },
+  "_goa.Cookies": {
+    "link": "https://github.com/idiocc/cookies/wiki/Cookies#type-cookies",
+    "description": "The interface for Cookies: signed and unsigned cookies based on Keygrip."
+  },
+  "_goa.CookieSetOptions": {
+    "link": "https://github.com/idiocc/cookies/wiki/Cookies#type-cookiesetoptions",
+    "description": "How the cookie will be set."
+  },
+  "_goa.Keygrip": {
+    "link": "https://github.com/idiocc/cookies/wiki/Keygrip#type-keygrip",
+    "description": "Signing and verifying data (such as cookies or URLs) through a rotating credential system."
+  }
+}

@@ -24,7 +24,8 @@
   "files": [
     "compile",
     "src",
-    "types"
+    "types",
+    "typedefs.json"
   ],
   "externs": [
     "types/externs/attributes.js",
@@ -36,6 +37,7 @@
     "type": "git",
     "url": "git://github.com/idiocc/cookies.git"
   },
+  "typedefs": "typedefs.json",
   "keywords": [
     "cookies",
     "goa",
