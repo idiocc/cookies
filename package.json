@@ -49,7 +49,7 @@
   "bugs": {
     "url": "https://github.com/idiocc/cookies/issues"
   },
-  "homepage": "https://github.com/idiocc/cookies#readme",
+  "homepage": "https://www.idio.cc",
   "devDependencies": {
     "@contexts/http": "^1.6.1",
     "alamode": "^3.3.0",

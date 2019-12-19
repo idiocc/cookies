@@ -1,5 +1,9 @@
 ## 19 December 2019
 
+### [2.0.1](https://github.com/idiocc/cookies/compare/v2.0.0...v2.0.1)
+
+- [package] Update `homepage`.
+
 ### [2.0.0](https://github.com/idiocc/cookies/compare/v1.1.6...v2.0.0)
 
 - [docs] Update types to use functions.
