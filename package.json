@@ -13,7 +13,7 @@
     "test-compile": "ALAMODE_ENV=test-compile yarn test",
     "lint": "eslint .",
     "doc": "doc -o README.md -n _goa -d",
-    "wiki": "doc wiki -W wiki.git -n _goa -d",
+    "wiki": "doc wiki -W wiki.git -n _goa -d -a",
     "d": "yarn-s template d1 externs",
     "d1": "typal compile/index.js -t types -u",
     "template": "typal compile/template.js -T compile/index.js -t types",
@@ -54,7 +54,7 @@
     "alamode": "^3.3.0",
     "connect": "^3.7.0",
     "depack": "^1.0.1",
-    "documentary": "^1.34.10",
+    "documentary": "^1.35.0",
     "eslint-config-artdeco": "1.0.1",
     "yarn-s": "1.2.1",
     "zoroaster": "^4.1.2"

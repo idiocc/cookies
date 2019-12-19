@@ -148,7 +148,7 @@ __<a name="type-cookiesetoptions">`CookieSetOptions`</a> extends <a title="Used 
 | ------ | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | signed | <em>boolean</em> | Indicating whether the cookie is to be signed. If this is true, another cookie of the same name with the .sig suffix appended will also be sent, with a 27-byte url-safe base64 SHA1 value representing the hash of cookie-name=cookie-value against the first Keygrip key. This signature key is used to detect tampering the next time a cookie is received. | `false` |
 
-The [attributes](/wiki/Attributes) accepted by the cookie instance are listed in wiki.
+The [attributes](../../wiki/Attributes) accepted by the cookie instance are listed in wiki.
 
 <p align="center"><a href="#table-of-contents">
   <img src="/.documentary/section-breaks/3.svg?sanitize=true">
