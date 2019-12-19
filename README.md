@@ -47,8 +47,8 @@ _Cookies_ is a Node.JS module for getting and setting HTTP(S) cookies. Cookies c
 
 Creates a new cookies object to handle cookies.
 
- - <kbd><strong>request*</strong></kbd> <em><code><a href="#type-httpincomingmessage" title="A readable stream that receives data from the client in chunks. The first argument of the http.Server.on(&quot;request&quot;) event.">!http.IncomingMessage</a></code></em>: The request object.
- - <kbd><strong>response*</strong></kbd> <em><code><a href="#type-httpserverresponse" title="A writable stream that communicates data to the client. The second argument of the http.Server.on(&quot;request&quot;) event.">!http.ServerResponse</a></code></em>: The response object.
+ - <kbd><strong>request*</strong></kbd> <em><code><a href="https://nodejs.org/api/http.html#http_class_http_incomingmessage" title="A readable stream that receives data from the client in chunks. The first argument of the http.Server.on(&quot;request&quot;) event."><img src=".documentary/type-icons/node.png" alt="Node.JS Docs">!http.IncomingMessage</a></code></em>: The request object.
+ - <kbd><strong>response*</strong></kbd> <em><code><a href="https://nodejs.org/api/http.html#http_class_http_serverresponse" title="A writable stream that communicates data to the client. The second argument of the http.Server.on(&quot;request&quot;) event."><img src=".documentary/type-icons/node.png" alt="Node.JS Docs">!http.ServerResponse</a></code></em>: The response object.
  - <kbd>options</kbd> <em><code><a href="#type-cookiesoptions" title="Options for the constructor.">!CookiesOptions</a></code></em> (optional): Options for the constructor.
 
 This creates a cookie jar corresponding to the current _request_ and _response_, additionally passing an object options.
