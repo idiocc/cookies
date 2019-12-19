@@ -94,10 +94,10 @@ differently@^1.0.0:
   dependencies:
     erte "^1.2.0"
 
-documentary@^1.35.0:
-  version "1.35.0"
-  resolved "https://registry.yarnpkg.com/documentary/-/documentary-1.35.0.tgz#07c16799162013c8a8718f8381092324456dc5d3"
-  integrity sha512-cp4RzYMl8IC9LwAAOP+0LrtPf4jl3gmWUVu3tGttGS0Vsh+Q8SOBNHAcwRQT6UJSl4Y0p1lego0J+OoO5wyStg==
+documentary@^1.35.1:
+  version "1.35.1"
+  resolved "https://registry.yarnpkg.com/documentary/-/documentary-1.35.1.tgz#83381c461781483361d0d6e2abb169f60e863ea7"
+  integrity sha512-ILrLeyUUMh7n6DM/T7B+M5o0JtAUOPvaftvzjKdQtrFYXadnUvPUUSwL/x/buMx3FhMKv7zCGLyQJUe7ur0vgA==
   dependencies:
     alamode "^3.3.0"
     preact "8.5.3"

@@ -54,7 +54,7 @@
     "alamode": "^3.3.0",
     "connect": "^3.7.0",
     "depack": "^1.0.1",
-    "documentary": "^1.35.0",
+    "documentary": "^1.35.1",
     "eslint-config-artdeco": "1.0.1",
     "yarn-s": "1.2.1",
     "zoroaster": "^4.1.2"
