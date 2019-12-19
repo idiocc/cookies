@@ -53,7 +53,7 @@ Creates a new cookies object to handle cookies.
 
 This creates a cookie jar corresponding to the current _request_ and _response_, additionally passing an object options.
 
-A [Keygrip](#class-keygrip) object or an array of keys can optionally be passed as _options.keys_ to enable cryptographic signing based on SHA1 HMAC, using rotated credentials.
+A <a href="https://github.com/idiocc/cookies/wiki/Keygrip#type-keygrip" title="Signing and verifying data (such as cookies or URLs) through a rotating credential system.">Keygrip</a> object or an array of keys can optionally be passed as _options.keys_ to enable cryptographic signing based on SHA1 HMAC, using rotated credentials.
 
 A Boolean can optionally be passed as _options.secure_ to explicitly specify if the connection is secure, rather than this module examining request.
 
