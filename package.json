@@ -1,6 +1,6 @@
 {
   "name": "@goa/cookies",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "[fork] Signed And Unsigned Cookies Based On Keygrip Written In ES6 And Optimised With JavaScript Compiler.",
   "main": "compile/index.js",
   "module": "src/index.js",
