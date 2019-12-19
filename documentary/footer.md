@@ -23,16 +23,16 @@
 <!-- </table> -->
 
 
-## Copyright & Status
+## Copyright & License
 
-Original [source, documentation and testing](https://github.com/pillarjs/cookies) by [Jed Schmidt](http://jed.is/) & Douglas Christopher Wilson.
+GNU Affero General Public License v3.0
+
+[Original source, documentation and testing](https://github.com/pillarjs/cookies) by Jed Schmidt and Douglas Christopher Wilson under MIT license found in [COPYING](COPYING) file.
 
 Forked Off `cookies` 0.7.3 _Apr 24_
 
 Current:
 %NPM: cookies%
-
----
 
 <idio-footer />
 

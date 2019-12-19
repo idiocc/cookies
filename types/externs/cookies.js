@@ -30,7 +30,7 @@ _goa.Cookies.prototype.secure
  * - If the signature cookie hash matches any other key, the original cookie value is returned AND an outbound header is set to update the signature cookie's value to the hash of the first key. This enables automatic freshening of signature cookies that have become stale due to key rotation.
  * - If the signature cookie hash does not match any key, nothing is returned, and an outbound header with an expired date is used to delete the cookie.
  * @param {string} name The name of the cookie to get.
- * @param {{ signed: boolean }} opts The options.
+ * @param {{ signed: boolean }=} [opts] The options.
  * @return {(string|undefined)}
  */
 _goa.Cookies.prototype.get = function(name, opts) {}

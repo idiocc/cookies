@@ -37,6 +37,7 @@
     "type": "git",
     "url": "git://github.com/idiocc/cookies.git"
   },
+  "fork": "0.7.3",
   "typedefs": "typedefs.json",
   "keywords": [
     "cookies",
@@ -44,7 +45,7 @@
     "http"
   ],
   "author": "Anton <anton@adc.sh>",
-  "license": "MIT",
+  "license": "AGPL-3.0",
   "bugs": {
     "url": "https://github.com/idiocc/cookies/issues"
   },

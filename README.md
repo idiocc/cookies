@@ -19,7 +19,7 @@ yarn add @goa/cookies
     * [`CookieSetOptions`](#type-cookiesetoptions)
   * [`get(name, opts=): string|undefined`](#getname-stringopts--signed-boolean--stringundefined)
 - [Wiki](#wiki)
-- [Copyright & Status](#copyright--status)
+- [Copyright & License](#copyright--license)
 
 <p align="center"><a href="#table-of-contents">
   <img src="/.documentary/section-breaks/0.svg?sanitize=true">
@@ -219,16 +219,16 @@ The externs are required to compile the package yet keep the options' properties
 </a></p>
 
 
-## Copyright & Status
+## Copyright & License
 
-Original [source, documentation and testing](https://github.com/pillarjs/cookies) by [Jed Schmidt](http://jed.is/) & Douglas Christopher Wilson.
+GNU Affero General Public License v3.0
+
+[Original source, documentation and testing](https://github.com/pillarjs/cookies) by Jed Schmidt and Douglas Christopher Wilson under MIT license found in [COPYING](COPYING) file.
 
 Forked Off `cookies` 0.7.3 _Apr 24_
 
 Current:
 [![npm version](https://badge.fury.io/js/cookies.svg)](https://www.npmjs.com/package/cookies)
-
----
 
 <table>
   <tr>
